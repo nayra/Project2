@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">مراعينا</string>
+    <string name="type_name">اسم النوع</string>
+
+    <string name="welcome_in_maraiina">مرحباً بكم في تطبيق مراعينا</string>
+    <string name="choose_country">اختر البلد</string>
+    <string name="continue_to_app">متابعة</string>
+</resources>
