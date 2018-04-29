@@ -7,5 +7,7 @@
     <color name="img_border_color">#FF000000</color>
 
     <color name="green_very_dark">#12331D</color>
+    <color name="green_dark">#3E8C58</color>
     <color name="green_light">#98BE65</color>
+
 </resources>
