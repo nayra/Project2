@@ -50,7 +50,11 @@ public class SpinnerCountryCustomAdapter extends ArrayAdapter<CountryModel> {
 
         TextView names = view.findViewById(R.id.textView);
 
-        names.setText(countryModels.get(i).getName());
+        if (selected_lang_index == 0) {
+            names.setText(countryModels.get(i).getName());
+        } else {
+            names.setText(countryModels.get(i).getNameAr());
+        }
 
         return view;
     }
@@ -60,8 +64,14 @@ public class SpinnerCountryCustomAdapter extends ArrayAdapter<CountryModel> {
         view = layoutInflater.inflate(R.layout.row_spinner, null);
 
         TextView names = view.findViewById(R.id.textView);
+
         names.setTextColor(ContextCompat.getColor(context, R.color.green_very_dark));
-        names.setText(countryModels.get(position).getName());
+
+        if (selected_lang_index == 0) {
+            names.setText(countryModels.get(position).getName());
+        } else {
+            names.setText(countryModels.get(position).getNameAr());
+        }
 
         return view;
     }

@@ -2,12 +2,12 @@ package com.nayra.maraiina.views;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatSpinner;
 import android.util.Log;
 import android.view.View;
-import android.widget.Spinner;
+import android.widget.AdapterView;
 
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.adapters.SpinnerCountryCustomAdapter;
@@ -25,7 +25,7 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
     private static final String TAG = ChooseCountryActivity.class.getSimpleName();
     @BindView(R.id.spCountries)
-    Spinner countrySpinner;
+    AppCompatSpinner countrySpinner;
 
 
     private LiveData<ArrayList<CountryModel>> countryModels;
@@ -37,8 +37,24 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        spinnerOnItemSelectedListener();
         fillCountriesSpinner();
     }
+
+    private void spinnerOnItemSelectedListener() {
+        countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
 
     private void fillCountriesSpinner() {
         GetCountriesViewModel getCountriesViewModel = ViewModelProviders.of(this).get(GetCountriesViewModel.class);
@@ -59,17 +75,4 @@ public class ChooseCountryActivity extends AppCompatActivity {
     @OnClick(R.id.btnContinue) void continueToApp(final View view){
         Utils.displayNextActivity(this, MainActivity.class);
     }
-
-    public void energyBreakPointStart(final int stateId, final String stateDescription) {
-        final Intent stateUpdate = new Intent("com.quicinc.Trepn.UpdateAppState");
-        stateUpdate.putExtra("com.quicinc.Trepn.UpdateAppState.Value", stateId);
-        stateUpdate.putExtra("com.quicinc.Trepn.UpdateAppState.Value.Desc", stateDescription);
-        sendBroadcast(stateUpdate);
-    }// Generated  energyBreakPointStart method
-
-    public void energyBreakPointEnd() {
-        final Intent stateUpdate = new Intent("com.quicinc.Trepn.UpdateAppState");
-        stateUpdate.putExtra("com.quicinc.Trepn.UpdateAppState.Value", 0);
-        sendBroadcast(stateUpdate);
-    }// Generated  energyBreakPointEnd method
 }
