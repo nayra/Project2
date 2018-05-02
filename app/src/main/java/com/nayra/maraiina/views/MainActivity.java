@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
     private Drawer result;
-
     private CustomDrawerItem[] drawerItems = new CustomDrawerItem[6];
-
     private CustomDrawerItem lastSelectedItem;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

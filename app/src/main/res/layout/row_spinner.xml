@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:textColor="@android:color/white"
-    tools:text="CountryTest">
+    tools:text="CountryTest"
+    android:background="@android:color/transparent">
 
 </com.nayra.maraiina.custom_views.MyTextView>
