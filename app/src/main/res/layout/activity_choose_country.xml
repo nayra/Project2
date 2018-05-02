@@ -68,7 +68,9 @@
         android:entries="@array/countries"
         android:layout_margin="5dp"
         style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-        app:backgroundTint="@color/colorAccent">
+        app:backgroundTint="@color/colorAccent"
+        android:prompt="@string/choose_country"
+        android:spinnerMode="dialog">
 
     </android.support.v7.widget.AppCompatSpinner>
 
