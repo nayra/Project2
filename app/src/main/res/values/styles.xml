@@ -11,12 +11,4 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="spinner_style" parent="Widget.AppCompat.Spinner.Underlined">
-        <item name="android:background">@drawable/ic_spinner_arrow</item>
-        <!-- Color when pressed -->
-        <item name="colorAccent">#ffa000</item>
-        <!-- Default color for the dropdown arrow and line -->
-        <item name="colorControlNormal">#ffc107</item>
-        </style>
-
     </resources>
