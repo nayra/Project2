@@ -1,8 +1,18 @@
 <resources>
-    <string name="app_name">مراعينا</string>
-    <string name="type_name">اسم النوع</string>
+    <string name="app_name">Maraiina</string>
+    <string name="type_name">type name</string>
 
-    <string name="welcome_in_maraiina">مرحباً بكم في تطبيق مراعينا</string>
-    <string name="choose_country">اختر البلد</string>
-    <string name="continue_to_app">متابعة</string>
+    <string name="welcome_in_maraiina">Welcome in application Maraiina</string>
+    <string name="choose_country">Choose the country</string>
+    <string name="continue_to_app">Continue</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drawer_item_home">Home</string>
+    <string name="drawer_item_previous_orders">Previous orders</string>
+    <string name="drawer_item_new_products">New Products</string>
+    <string name="drawer_item_opinions_notifications">Opinions and Notifications</string>
+    <string name="drawer_item_contact_us">Contact Us</string>
+    <string name="drawer_item_about_us">About Us</string>
+
 </resources>

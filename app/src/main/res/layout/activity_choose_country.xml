@@ -37,7 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20sdp"
         android:textSize="@dimen/_16sdp"
-        android:gravity="right"
         android:text="@string/choose_country"
         android:layout_margin="5dp"
         android:textColor="@android:color/white"

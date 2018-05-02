@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">مراعينا</string>
+    <string name="type_name">اسم النوع</string>
+
+    <string name="welcome_in_maraiina">مرحباً بكم في تطبيق مراعينا</string>
+    <string name="choose_country">اختر البلد</string>
+    <string name="continue_to_app">متابعة</string>
+    <string name="drawer_item_home">الرئيسية</string>
+    <string name="drawer_item_previous_orders">طلباتي السابقة</string>
+    <string name="drawer_item_new_products">منتجات جديدة</string>
+    <string name="drawer_item_opinions_notifications">آراء و اشعارات</string>
+    <string name="drawer_item_contact_us">اتصل بنا</string>
+    <string name="drawer_item_about_us">عن مراعينا</string>
+</resources>

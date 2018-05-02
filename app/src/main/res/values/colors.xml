@@ -10,4 +10,5 @@
     <color name="green_dark">#3E8C58</color>
     <color name="green_light">#98BE65</color>
 
+    <color name="green_selected_menu">#5c8a47</color>
 </resources>
