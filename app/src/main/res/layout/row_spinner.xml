@@ -7,6 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:textColor="@android:color/white"
     tools:text="CountryTest"
-    android:background="@android:color/transparent">
+    android:background="@android:color/transparent"
+    android:padding="5dp">
 
 </com.nayra.maraiina.custom_views.MyTextView>

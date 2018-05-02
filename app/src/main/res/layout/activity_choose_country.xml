@@ -59,20 +59,18 @@
         app:layout_constraintTop_toBottomOf="@+id/myTextView2"
     />-->
 
-    <android.support.v7.widget.AppCompatSpinner
+    <Spinner
         android:id="@+id/spCountries"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_15sdp"
         app:layout_constraintTop_toBottomOf="@+id/myTextView2"
-        android:entries="@array/countries"
         android:layout_margin="5dp"
         style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-        app:backgroundTint="@color/colorAccent"
         android:prompt="@string/choose_country"
         android:spinnerMode="dialog">
 
-    </android.support.v7.widget.AppCompatSpinner>
+    </Spinner>
 
 
     <com.nayra.maraiina.custom_views.MyButton

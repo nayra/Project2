@@ -1,22 +1,46 @@
 package com.nayra.maraiina.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CountryModel {
-    private int id;
-    private String countryName;
+    @SerializedName("CountryID")
+    private int countryID;
+    @SerializedName("Name")
+    private String name;
+    @SerializedName("NameAr")
+    private String nameAr;
+    @SerializedName("Cities")
+    private Object cities;
 
-    public int getId() {
-        return id;
+    public int getCountryID() {
+        return countryID;
     }
 
-    public void setId(final int id) {
-        this.id = id;
+    public void setCountryID(int countryID) {
+        this.countryID = countryID;
     }
 
-    public String getCountryName() {
-        return countryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCountryName(final String countryName) {
-        this.countryName = countryName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNameAr() {
+        return nameAr;
+    }
+
+    public void setNameAr(String nameAr) {
+        this.nameAr = nameAr;
+    }
+
+    public Object getCities() {
+        return cities;
+    }
+
+    public void setCities(Object cities) {
+        this.cities = cities;
     }
 }
