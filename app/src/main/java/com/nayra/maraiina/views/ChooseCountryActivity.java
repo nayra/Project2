@@ -59,15 +59,15 @@ public class ChooseCountryActivity extends AppCompatActivity {
     private void fillCountriesSpinner() {
         GetCountriesViewModel getCountriesViewModel = ViewModelProviders.of(this).get(GetCountriesViewModel.class);
         countryModels = getCountriesViewModel.getCountryArrayListLiveData();
-        countryModels.observe(this, foodItems -> {
-            Log.e(TAG, foodItems.toString());
-            displayCountries();
+        countryModels.observe(this, countries -> {
+            displayCountries(countries);
         });
     }
 
-    private void displayCountries() {
-        if (countryModels != null && countryModels.getValue() != null) {
-            SpinnerCountryCustomAdapter countryCustomAdapter = new SpinnerCountryCustomAdapter(this, R.layout.row_spinner, countryModels.getValue(), 0);
+    private void displayCountries(ArrayList<CountryModel> countries) {
+        if (countries != null) {
+            Log.d(TAG, countries.toString());
+            SpinnerCountryCustomAdapter countryCustomAdapter = new SpinnerCountryCustomAdapter(this, R.layout.row_spinner, countries, 0);
             countrySpinner.setAdapter(countryCustomAdapter);
         }
     }
