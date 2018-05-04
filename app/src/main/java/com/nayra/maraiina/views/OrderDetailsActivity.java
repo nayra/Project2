@@ -9,11 +9,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nayra.maraiina.R;
+import com.nayra.maraiina.util.Utils;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class OrderDetailsActivity extends AppCompatActivity {
@@ -47,7 +49,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             TextView txtWeights = itemView.findViewById(R.id.tv_weight);
             txtWeights.setText(weight);
             if (selectedIndex == i) {
-                txtWeights.setTextColor(ContextCompat.getColor(this, R.color.green_very_dark));
+                txtWeights.setTextColor(ContextCompat.getColor(this, R.color.grey_dark));
             } else {
                 txtWeights.setTextColor(ContextCompat.getColor(this, R.color.grey));
             }
@@ -61,5 +63,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
             });
             weightsLinearLayout.addView(itemView);
         }
+    }
+
+    @OnClick(R.id.btContinue)
+    void continueInfo(View view) {
+        Utils.displayNextActivity(this, CustomerDetailsActivity.class);
     }
 }

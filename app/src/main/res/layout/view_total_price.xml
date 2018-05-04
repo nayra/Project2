@@ -19,13 +19,14 @@
             android:text="@string/total_price"
             android:textColor="@color/green_very_dark"
             android:layout_margin="@dimen/_5sdp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            style="@style/Base.TextAppearance.AppCompat.Medium" />
 
         <com.nayra.maraiina.custom_views.MyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
-            tools:text="1000 derham" />
+            tools:text="@string/fees" />
 
     </LinearLayout>
 
@@ -40,13 +41,14 @@
             android:text="@string/receive_order_in"
             android:textColor="@color/green_very_dark"
             android:layout_margin="@dimen/_5sdp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            style="@style/Base.TextAppearance.AppCompat.Medium" />
 
         <com.nayra.maraiina.custom_views.MyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
-            tools:text="2 hours" />
+            tools:text="@string/hours_num" />
 
     </LinearLayout>
 

@@ -27,7 +27,7 @@ public class MaraiinaRepository {
                 @Override
                 public void onResponse(Call<ResultCountryModel> call, Response<ResultCountryModel> response) {
                     if (response != null && response.body() != null) {
-                        Log.d(TAG, "response");
+                        Log.d(TAG, response.body().getResult().toString());
                         data.setValue(response.body().getResult());
 
                     }
@@ -35,7 +35,8 @@ public class MaraiinaRepository {
 
                 @Override
                 public void onFailure(Call<ResultCountryModel> call, Throwable t) {
-                    Log.d(TAG, t.toString());
+                    Log.e(TAG, t.toString());
+                    getCountries();
                 }
             });
         } else {

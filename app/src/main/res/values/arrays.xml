@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="countries">
-        <item>أبو ظبي</item>
-        <item>الشارقة</item>
-        <item>دبي</item>
+    <string-array name="languages">
+        <item>English</item>
+        <item>اللغة العربية</item>
     </string-array>
 </resources>

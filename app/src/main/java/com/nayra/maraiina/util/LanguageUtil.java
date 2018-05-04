@@ -1,9 +1,13 @@
 package com.nayra.maraiina.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+
+import com.nayra.maraiina.views.ChooseCountryActivity;
 
 import java.util.Locale;
 
@@ -31,9 +35,9 @@ public class LanguageUtil {
 
             SharedPrefsUtil.setInteger(SharedPrefsUtil.SELECTED_LANGUAGE_INDEX, language_index);
 
-            /*Intent refresh = new Intent(context, HomeActivity.class);
+            Intent refresh = new Intent(context, ChooseCountryActivity.class);
             context.startActivity(refresh);
-            ((AppCompatActivity) context).finish();*/
+            ((AppCompatActivity) context).finish();
         }
     }
 

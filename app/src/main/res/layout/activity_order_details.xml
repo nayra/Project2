@@ -25,7 +25,7 @@
         <com.nayra.maraiina.custom_views.MyTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/green_very_dark"
+            android:textColor="@color/grey_dark"
             android:text="@string/doUwantCook"
             android:layout_margin="@dimen/_10sdp" />
 
@@ -118,6 +118,19 @@
 
 
                 <include layout="@layout/view_total_price" />
+
+                <com.nayra.maraiina.custom_views.MyButton
+                    android:id="@+id/btContinue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_button"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textColor="@android:color/white"
+                    android:text="@string/continue_to_app"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
             </LinearLayout>
 
 

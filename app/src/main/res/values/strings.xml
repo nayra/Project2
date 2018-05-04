@@ -22,4 +22,7 @@
     <string name="kilo">Kilo</string>
     <string name="total_price">Total price</string>
     <string name="receive_order_in">Receive order in</string>
+    <string name="hours_num">%1$d hours</string>
+    <string name="fees">%1$d AED</string>
+    <string name="title_activity_customer_details">CustomerDetailsActivity</string>
 </resources>

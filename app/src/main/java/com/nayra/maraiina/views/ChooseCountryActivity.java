@@ -8,10 +8,14 @@ import android.support.v7.widget.AppCompatSpinner;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.adapters.SpinnerCountryCustomAdapter;
 import com.nayra.maraiina.model.CountryModel;
+import com.nayra.maraiina.util.LanguageUtil;
+import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
 import com.nayra.maraiina.viewmodels.GetCountriesViewModel;
 
@@ -20,6 +24,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import info.hoang8f.android.segmented.SegmentedGroup;
 
 public class ChooseCountryActivity extends AppCompatActivity {
 
@@ -27,6 +32,14 @@ public class ChooseCountryActivity extends AppCompatActivity {
     @BindView(R.id.spCountries)
     AppCompatSpinner countrySpinner;
 
+    @BindView(R.id.segmented2)
+    SegmentedGroup langSegmentedGroup;
+
+    @BindView(R.id.rb_ar)
+    RadioButton arabicRadioButton;
+
+    @BindView(R.id.rb_en)
+    RadioButton englishRadioButton;
 
     private LiveData<ArrayList<CountryModel>> countryModels;
 
@@ -39,6 +52,34 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
         spinnerOnItemSelectedListener();
         fillCountriesSpinner();
+
+        initLang();
+    }
+
+    private void initLang() {
+        int selectedLang = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_LANGUAGE_INDEX);
+        if (selectedLang == 0) {
+            englishRadioButton.setChecked(true);
+        } else {
+            arabicRadioButton.setChecked(true);
+        }
+
+        langSegmentedGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                int lang = 0;
+                switch (i) {
+                    case R.id.rb_en:
+                        lang = 0;
+                        break;
+                    case R.id.rb_ar:
+                        lang = 1;
+                        break;
+                }
+
+                LanguageUtil.changeLanguage(lang, ChooseCountryActivity.this);
+            }
+        });
     }
 
     private void spinnerOnItemSelectedListener() {
