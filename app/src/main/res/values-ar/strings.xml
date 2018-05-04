@@ -12,4 +12,11 @@
     <string name="drawer_item_opinions_notifications">آراء و اشعارات</string>
     <string name="drawer_item_contact_us">اتصل بنا</string>
     <string name="drawer_item_about_us">عن مراعينا</string>
+    <string name="doUwantCook">هل تريد الطبخ</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="choose_weight">اختر الوزن</string>
+    <string name="kilo">كيلو</string>
+    <string name="total_price">Total price</string>
+    <string name="receive_order_in">Receive order in</string>
 </resources>

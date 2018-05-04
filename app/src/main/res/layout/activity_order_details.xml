@@ -1,54 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     tools:context=".views.OrderDetailsActivity">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="20dp"
-        android:layout_margin="@dimen/_5sdp"
-        card_view:cardElevation="2dp"
-        card_view:cardCornerRadius="5dp"
-        card_view:cardUseCompatPadding="false"
-        card_view:cardPreventCornerOverlap="false"
-        card_view:cardBackgroundColor="@color/green_dark">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        tools:context=".views.OrderDetailsActivity"
+        android:orientation="vertical">
 
-        <ImageView
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@color/green_very_dark">
+
+        </android.support.v7.widget.Toolbar>
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green_very_dark"
+            android:text="@string/doUwantCook"
+            android:layout_margin="@dimen/_10sdp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_margin="@dimen/_5sdp"
+                card_view:cardElevation="2dp"
+                card_view:cardCornerRadius="5dp"
+                card_view:cardUseCompatPadding="false"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardBackgroundColor="@color/green_dark">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/mndi"
+                    android:scaleType="fitXY" />
+            </android.support.v7.widget.CardView>
+
+
+            <info.hoang8f.android.segmented.SegmentedGroup
+                android:id="@+id/segmented2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                segmentedgroup:sc_corner_radius="20dp"
+                android:elevation="20dp"
+                android:layout_centerHorizontal="true"
+                segmentedgroup:sc_tint_color="@color/green_very_dark"
+                segmentedgroup:sc_checked_text_color="@android:color/white"
+                android:background="@drawable/bg_grey">
+
+                <RadioButton
+                    android:id="@+id/button21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes"
+                    style="@style/MyRadioButton"
+                    android:background="@drawable/rb_selector"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/button22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no"
+                    style="@style/MyRadioButton"
+                    android:background="@drawable/rb_selector" />
+            </info.hoang8f.android.segmented.SegmentedGroup>
+
+        </RelativeLayout>
+
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_weight"
+            android:layout_margin="@dimen/_10sdp" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardWeight"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/line" />
-    </android.support.v7.widget.CardView>
+            android:layout_marginTop="20dp"
+            android:layout_margin="@dimen/_5sdp"
+            card_view:cardElevation="2dp"
+            card_view:cardCornerRadius="@dimen/_10sdp"
+            card_view:cardUseCompatPadding="false"
+            card_view:cardPreventCornerOverlap="false">
 
-    <info.hoang8f.android.segmented.SegmentedGroup
-        android:id="@+id/segmented2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        app:sc_corner_radius="0dp"
-        android:elevation="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/button21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="One"
-            style="@style/RadioButton"
-            android:background="@color/green_very_dark"
-            android:backgroundTint="@color/green_very_dark" />
+                <LinearLayout
+                    android:id="@+id/linearWeights"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/button22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Two"
-            style="@style/RadioButton" />
-    </info.hoang8f.android.segmented.SegmentedGroup>
+                </LinearLayout>
 
-</RelativeLayout>
+
+                <include layout="@layout/view_total_price" />
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+</ScrollView>

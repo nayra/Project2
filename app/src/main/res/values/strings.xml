@@ -15,4 +15,11 @@
     <string name="drawer_item_contact_us">Contact Us</string>
     <string name="drawer_item_about_us">About Us</string>
 
+    <string name="doUwantCook">Do you want to cook ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="choose_weight">Choose weight</string>
+    <string name="kilo">Kilo</string>
+    <string name="total_price">Total price</string>
+    <string name="receive_order_in">Receive order in</string>
 </resources>
