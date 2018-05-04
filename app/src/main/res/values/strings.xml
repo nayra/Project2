@@ -25,4 +25,7 @@
     <string name="hours_num">%1$d hours</string>
     <string name="fees">%1$d AED</string>
     <string name="title_activity_customer_details">CustomerDetailsActivity</string>
+
+    <string name="english">English</string>
+    <string name="arabic">اللغة العربية</string>
 </resources>

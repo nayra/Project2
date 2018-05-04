@@ -42,22 +42,6 @@
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/myTextView3" />
 
-<!--
-    <TextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@android:id/text1"
-        style="?android:attr/spinnerItemStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:textSize="yourTextsize"
-        android:drawablePadding="paddingValueYouWant"
-        android:drawableLeft="@drawable/ic_arrow_white"
-
-
-        android:layout_marginTop="@dimen/_15sdp"
-        app:layout_constraintTop_toBottomOf="@+id/myTextView2"
-    />-->
 
     <Spinner
         android:id="@+id/spCountries"
@@ -90,14 +74,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MyRadioButton"
-            android:text="English" />
+            android:text="@string/english" />
 
         <RadioButton
             android:id="@+id/rb_ar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MyRadioButton"
-            android:text="Arabic" />
+            android:text="@string/arabic" />
     </info.hoang8f.android.segmented.SegmentedGroup>
 
     <com.nayra.maraiina.custom_views.MyButton
