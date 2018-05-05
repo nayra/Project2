@@ -4,7 +4,7 @@
     <string name="type_name">اسم النوع</string>
 
     <string name="welcome_in_maraiina">مرحباً بكم في تطبيق مراعينا</string>
-    <string name="choose_country">اختر البلد</string>
+    <string name="choose_country">اختر الإمارة</string>
     <string name="continue_to_app">متابعة</string>
     <string name="drawer_item_home">الرئيسية</string>
     <string name="drawer_item_previous_orders">طلباتي السابقة</string>
@@ -21,4 +21,5 @@
     <string name="receive_order_in">توصيل الطلب خلال</string>
     <string name="hours_num">%1$d ساعة</string>
     <string name="fees">%1$d درهم</string>
+    <string name="Loading">تحميل ...</string>
 </resources>

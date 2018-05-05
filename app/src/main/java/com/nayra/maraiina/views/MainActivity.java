@@ -1,6 +1,8 @@
 package com.nayra.maraiina.views;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,16 +12,20 @@ import android.view.View;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.nayra.maraiina.Constants;
+import com.nayra.maraiina.MyApplication;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.CustomDrawerItem;
+import com.nayra.maraiina.util.FragmentUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
 
     private Drawer result;
     private CustomDrawerItem[] drawerItems = new CustomDrawerItem[6];
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withHeader(R.layout.header_menu)
-                .withSliderBackgroundColor(ContextCompat.getColor(this, R.color.green_light))
+                .withSliderBackgroundColor(ContextCompat.getColor(this, R.color.green_very_dark))
                 .withHeaderDivider(true)
                 .withDisplayBelowStatusBar(true)
                 .addDrawerItems(
@@ -66,12 +72,24 @@ public class MainActivity extends AppCompatActivity {
                             result.updateItem(lastSelectedItem);
 
                             lastSelectedItem = (CustomDrawerItem) drawerItem;
+
+                            menuNavigation(position);
                         }
                         result.closeDrawer();
                         return true;
                     }
                 })
                 .build();
+    }
+
+    private void menuNavigation(int pos) {
+        switch (pos) {
+            case 1:
+                HomeFragment fragment = new HomeFragment();
+                FragmentUtils.addFragment(R.id.frame_container, this, fragment, HomeFragment.class.getSimpleName());
+                break;
+
+        }
     }
 
     private void initAllMenuItems() {
@@ -95,15 +113,20 @@ public class MainActivity extends AppCompatActivity {
         drawerItems[5] = item6;
 
         lastSelectedItem = item1;
+
+        menuNavigation(1);
     }
 
     private CustomDrawerItem initMenuItem(int name, int color, int id) {
+        Typeface menuTypeFace = MyApplication.getmInstance().getTypeFace(Constants.KUFI_REGULAR);
+
         final CustomDrawerItem item = new CustomDrawerItem()
                 .withIdentifier(id)
                 .withBackgroundColor(getResources().getColor(color))
                 .withName(name)
                 .withTextColor(Color.WHITE)
-                .withSelectedTextColor(Color.WHITE);
+                .withSelectedTextColor(Color.WHITE)
+                .withTypeface(menuTypeFace);
 
         return item;
     }
@@ -118,5 +141,10 @@ public class MainActivity extends AppCompatActivity {
         item.withBackgroundColor(getResources().getColor(R.color.green_selected_menu));
         item.withSetSelected(true);
         return item;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

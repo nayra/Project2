@@ -1,5 +1,6 @@
 package com.nayra.maraiina.views;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nayra.maraiina.R;
+import com.nayra.maraiina.viewmodels.GetCategoriesViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +37,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void displayMainRecyclerView() {
+
+        GetCategoriesViewModel getCategoriesViewModel = ViewModelProviders.of(this).get(GetCategoriesViewModel.class);
 
     }
 

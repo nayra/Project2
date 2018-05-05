@@ -2,11 +2,15 @@ package com.nayra.maraiina.util;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.nayra.maraiina.MyApplication;
+import com.nayra.maraiina.custom_views.MyTextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -61,5 +65,10 @@ public class Utils {
         return formatter.format(calendar.getTime());
     }
 
+
+    public static void setTypeFace(MyTextView myTextView, int type) {
+        Typeface typeface = MyApplication.getmInstance().getTypeFace(type);
+        myTextView.setTypeface(typeface);
+    }
 
 }

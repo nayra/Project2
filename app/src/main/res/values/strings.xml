@@ -28,4 +28,6 @@
 
     <string name="english">English</string>
     <string name="arabic">اللغة العربية</string>
+    <string name="desc">descripton</string>
+    <string name="Loading">Loading ...</string>
 </resources>

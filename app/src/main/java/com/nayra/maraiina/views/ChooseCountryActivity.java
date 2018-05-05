@@ -11,10 +11,13 @@ import android.widget.AdapterView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.adapters.SpinnerCountryCustomAdapter;
+import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.model.CountryModel;
 import com.nayra.maraiina.util.LanguageUtil;
+import com.nayra.maraiina.util.ProgressDialogUtil;
 import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
 import com.nayra.maraiina.viewmodels.GetCountriesViewModel;
@@ -41,19 +44,37 @@ public class ChooseCountryActivity extends AppCompatActivity {
     @BindView(R.id.rb_en)
     RadioButton englishRadioButton;
 
+    @BindView(R.id.tv_welcome)
+    MyTextView txtWelcome;
+
+    @BindView(R.id.tv_choose_country)
+    MyTextView txtChooseCountry;
+
     private LiveData<ArrayList<CountryModel>> countryModels;
 
+    private int selectedLanguage;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_country);
+        selectedLanguage = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_LANGUAGE_INDEX);
 
+        LanguageUtil.setLocaleLanguage(selectedLanguage, this);
+
+        setContentView(R.layout.activity_choose_country);
         ButterKnife.bind(this);
 
+        setTypeFace();
         spinnerOnItemSelectedListener();
         fillCountriesSpinner();
 
         initLang();
+    }
+
+    private void setTypeFace() {
+        if (selectedLanguage == 1) {
+            Utils.setTypeFace(txtWelcome, Constants.KUFI_REGULAR);
+            Utils.setTypeFace(txtChooseCountry, Constants.KUFI_REGULAR);
+        }
     }
 
     private void initLang() {
@@ -98,6 +119,8 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
 
     private void fillCountriesSpinner() {
+
+        ProgressDialogUtil.show(this);
         GetCountriesViewModel getCountriesViewModel = ViewModelProviders.of(this).get(GetCountriesViewModel.class);
         countryModels = getCountriesViewModel.getCountryArrayListLiveData();
         countryModels.observe(this, countries -> {
@@ -107,8 +130,9 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
     private void displayCountries(ArrayList<CountryModel> countries) {
         if (countries != null) {
+            ProgressDialogUtil.dismiss();
             Log.d(TAG, countries.toString());
-            SpinnerCountryCustomAdapter countryCustomAdapter = new SpinnerCountryCustomAdapter(this, R.layout.row_spinner, countries, 0);
+            SpinnerCountryCustomAdapter countryCustomAdapter = new SpinnerCountryCustomAdapter(this, R.layout.row_spinner, countries);
             countrySpinner.setAdapter(countryCustomAdapter);
         }
     }
