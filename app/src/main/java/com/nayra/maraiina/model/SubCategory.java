@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class CategoryModel {
+class SubCategory {
     @SerializedName("CategoryID")
     @Expose
     private int categoryID;
     @SerializedName("ParentID")
     @Expose
-    private String parentID;
+    private int parentID;
     @SerializedName("Name")
     @Expose
     private String name;
@@ -20,7 +20,7 @@ public class CategoryModel {
     private String imageUrl;
     @SerializedName("SubCategory")
     @Expose
-    private ArrayList<CategoryModel> subCategory = null;
+    private ArrayList<Object> subCategory = null;
     @SerializedName("CuttingMethods")
     @Expose
     private ArrayList<Object> cuttingMethods = null;
@@ -42,11 +42,11 @@ public class CategoryModel {
         this.categoryID = categoryID;
     }
 
-    public Object getParentID() {
+    public int getParentID() {
         return parentID;
     }
 
-    public void setParentID(String parentID) {
+    public void setParentID(int parentID) {
         this.parentID = parentID;
     }
 
@@ -66,11 +66,11 @@ public class CategoryModel {
         this.imageUrl = imageUrl;
     }
 
-    public ArrayList<CategoryModel> getSubCategory() {
+    public ArrayList<Object> getSubCategory() {
         return subCategory;
     }
 
-    public void setSubCategory(ArrayList<CategoryModel> subCategory) {
+    public void setSubCategory(ArrayList<Object> subCategory) {
         this.subCategory = subCategory;
     }
 
@@ -104,20 +104,5 @@ public class CategoryModel {
 
     public void setProducts(ArrayList<Object> products) {
         this.products = products;
-    }
-
-    @Override
-    public String toString() {
-        return "CategoryModel{" +
-                "categoryID=" + categoryID +
-                ", parentID='" + parentID + '\'' +
-                ", name='" + name + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", subCategory=" + subCategory +
-                ", cuttingMethods=" + cuttingMethods +
-                ", cookingMethods=" + cookingMethods +
-                ", packagingMethods=" + packagingMethods +
-                ", products=" + products +
-                '}';
     }
 }

@@ -3,13 +3,17 @@ package com.nayra.maraiina.util;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RadioButton;
 
 import com.nayra.maraiina.MyApplication;
+import com.nayra.maraiina.custom_views.MyErrorEditText;
 import com.nayra.maraiina.custom_views.MyTextView;
 
 import java.text.SimpleDateFormat;
@@ -66,9 +70,28 @@ public class Utils {
     }
 
 
-    public static void setTypeFace(MyTextView myTextView, int type) {
-        Typeface typeface = MyApplication.getmInstance().getTypeFace(type);
+    public static void setTypeFace(final MyTextView myTextView, final int type) {
+        final Typeface typeface = MyApplication.getmInstance().getTypeFace(type);
         myTextView.setTypeface(typeface);
     }
 
+    public static void setTypeFace(final RadioButton myRadioButton, final int type) {
+        final Typeface typeface = MyApplication.getmInstance().getTypeFace(type);
+        myRadioButton.setTypeface(typeface);
+    }
+
+    public static void setTypeFace(final TextInputLayout myRadioButton, final int type) {
+        final Typeface typeface = MyApplication.getmInstance().getTypeFace(type);
+        myRadioButton.setTypeface(typeface);
+    }
+
+    public static void setTypeFace(final TextInputEditText myRadioButton, final int type) {
+        final Typeface typeface = MyApplication.getmInstance().getTypeFace(type);
+        myRadioButton.setTypeface(typeface);
+    }
+
+    public static void setTypeFace(final MyErrorEditText myRadioButton, final int type) {
+        final Typeface typeface = MyApplication.getmInstance().getTypeFace(type);
+        myRadioButton.setTypeface(typeface);
+    }
 }

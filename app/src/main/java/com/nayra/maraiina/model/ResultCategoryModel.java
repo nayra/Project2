@@ -50,4 +50,14 @@ public class ResultCategoryModel {
     public void setResult(ArrayList<CategoryModel> result) {
         this.result = result;
     }
+
+    @Override
+    public String toString() {
+        return "ResultCategoryModel{" +
+                "version='" + version + '\'' +
+                ", statusCode=" + statusCode +
+                ", errorMessage=" + errorMessage +
+                ", result=" + result +
+                '}';
+    }
 }

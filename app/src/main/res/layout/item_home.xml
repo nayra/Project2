@@ -10,6 +10,7 @@
     android:layout_margin="@dimen/_5sdp">
 
     <ImageView
+        android:id="@+id/subCatImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher"
@@ -17,10 +18,12 @@
         android:layout_gravity="center_horizontal" />
 
     <com.nayra.maraiina.custom_views.MyTextView
+        android:id="@+id/subTypeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/type_name"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/green_very_dark" />
+        android:textColor="@color/green_very_dark"
+        android:padding="@dimen/_10sdp" />
 
 </LinearLayout>

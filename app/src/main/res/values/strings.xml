@@ -30,4 +30,13 @@
     <string name="arabic">اللغة العربية</string>
     <string name="desc">descripton</string>
     <string name="Loading">Loading ...</string>
+    <string name="CookingMethod">Cooking Method</string>
+    <string name="CuttingMethod">Cutting Method</string>
+    <string name="PackagingMethod">Packaging Method</string>
+    <string name="addDeliveryDetails">Add delivery details</string>
+    <string name="hint_name">Name</string>
+    <string name="mandatory">Mandatory</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_phone">Phone Number</string>
+    <string name="hint_address">Address Details</string>
 </resources>

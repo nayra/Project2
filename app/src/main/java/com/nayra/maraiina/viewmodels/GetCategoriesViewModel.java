@@ -10,14 +10,15 @@ import java.util.ArrayList;
 
 public class GetCategoriesViewModel extends ViewModel {
 
-    private LiveData<ArrayList<CategoryModel>> countryArrayListLiveData;
+    private LiveData<ArrayList<CategoryModel>> categoriesArrayListLiveData;
 
     public GetCategoriesViewModel() {
 
-        countryArrayListLiveData = MaraiinaRepository.getCategories();
+        categoriesArrayListLiveData = MaraiinaRepository.getCategories();
     }
 
-    public LiveData<ArrayList<CategoryModel>> getCountryArrayListLiveData() {
-        return countryArrayListLiveData;
+    public LiveData<ArrayList<CategoryModel>> getCategoriesArrayListLiveData() {
+        return categoriesArrayListLiveData;
     }
+
 }

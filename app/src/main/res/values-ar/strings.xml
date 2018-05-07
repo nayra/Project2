@@ -17,9 +17,18 @@
     <string name="no">لا</string>
     <string name="choose_weight">اختر الوزن</string>
     <string name="kilo">كيلو</string>
-    <string name="total_price">السعر الإجمالي</string>
-    <string name="receive_order_in">توصيل الطلب خلال</string>
+    <string name="total_price">اجمالي السعر</string>
+    <string name="receive_order_in">التوصيل في خلال</string>
     <string name="hours_num">%1$d ساعة</string>
     <string name="fees">%1$d درهم</string>
     <string name="Loading">تحميل ...</string>
+    <string name="CookingMethod">طريقة الطبخ</string>
+    <string name="CuttingMethod">طريقة التقطيع</string>
+    <string name="PackagingMethod">طريقة التغليف</string>
+    <string name="addDeliveryDetails">اضف بيانات التوصيل</string>
+    <string name="hint_name">الاسم</string>
+    <string name="mandatory">مطلوب إجباري</string>
+    <string name="hint_email">الإيميل</string>
+    <string name="hint_phone">رقم التليفون</string>
+    <string name="hint_address">العنوان بالتفصيل</string>
 </resources>

@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         initToolbar();
         initMenu();
+
+        //Utils.displayNextActivity(this , OrderDetailsActivity.class);
     }
 
     private void initToolbar() {
