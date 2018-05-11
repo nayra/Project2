@@ -8,6 +8,8 @@ import android.util.Log;
 import com.nayra.maraiina.MyApplication;
 import com.nayra.maraiina.model.CategoryModel;
 import com.nayra.maraiina.model.CountryModel;
+import com.nayra.maraiina.model.ProductAndMethodsResultModel;
+import com.nayra.maraiina.model.Result;
 import com.nayra.maraiina.model.ResultCategoryModel;
 import com.nayra.maraiina.model.ResultCountryModel;
 import com.nayra.maraiina.util.ConnectivityCheck;
@@ -32,7 +34,7 @@ public class MaraiinaRepository {
             ApiConnection.getRetrofit().getCountriesList().enqueue(new Callback<ResultCountryModel>() {
                 @Override
                 public void onResponse(Call<ResultCountryModel> call, Response<ResultCountryModel> response) {
-                    if (response != null && response.body() != null) {
+                    if (response != null && response.body() != null && response.body().getResult() != null) {
                         Log.d(TAG, response.body().getResult().toString());
                         data.setValue(response.body().getResult());
                     }
@@ -73,6 +75,34 @@ public class MaraiinaRepository {
         } else {
             Log.e(TAG, "No internet connectivity");
         }
+        return data;
+    }
+
+    public static LiveData<Result> getProductDetails(int subCategory) {
+        final MutableLiveData<Result> data = new MutableLiveData<>();
+
+
+        Context context = MyApplication.getmInstance().getContext();
+
+        if (ConnectivityCheck.isConnected(context)) {
+            ApiConnection.getRetrofit().getProductsModel(subCategory).enqueue(new Callback<ProductAndMethodsResultModel>() {
+                @Override
+                public void onResponse(Call<ProductAndMethodsResultModel> call, Response<ProductAndMethodsResultModel> response) {
+                    if (response != null && response.body() != null) {
+                        Log.d(TAG, response.body().toString());
+                        data.setValue(response.body().getResult());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ProductAndMethodsResultModel> call, Throwable t) {
+                    Log.e(TAG, t.toString());
+                }
+            });
+        } else {
+            Log.e(TAG, "No internet connectivity");
+        }
+
         return data;
     }
 }

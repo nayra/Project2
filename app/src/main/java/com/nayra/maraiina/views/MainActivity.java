@@ -2,7 +2,6 @@ package com.nayra.maraiina.views;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +16,7 @@ import com.nayra.maraiina.MyApplication;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.CustomDrawerItem;
 import com.nayra.maraiina.util.FragmentUtils;
+import com.nayra.maraiina.util.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -145,8 +145,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         return item;
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
+    @Override
+    public void onFragmentInteraction(int subCat) {
+        Utils.displayNextActivity(this, OrderDetailsActivity.class);
     }
 }

@@ -137,7 +137,8 @@ public class ChooseCountryActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.btnContinue) void continueToApp(final View view){
+    @OnClick(R.id.btnContinue)
+    void continueToApp() {
         Utils.displayNextActivity(this, MainActivity.class);
     }
 }

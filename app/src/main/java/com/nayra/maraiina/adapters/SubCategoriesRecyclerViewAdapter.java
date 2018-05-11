@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.MyTextView;
+import com.nayra.maraiina.interfaces.SubCategoryRecyclerViewClickListener;
 import com.nayra.maraiina.model.CategoryModel;
 import com.squareup.picasso.Picasso;
 
@@ -23,9 +24,12 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
 
     private Context context;
 
-    public SubCategoriesRecyclerViewAdapter(Context context, ArrayList<CategoryModel> weightsList) {
-        this.categoriesList = weightsList;
+    private SubCategoryRecyclerViewClickListener listener;
+
+    public SubCategoriesRecyclerViewAdapter(Context context, ArrayList<CategoryModel> categoriesList, SubCategoryRecyclerViewClickListener listener) {
+        this.categoriesList = categoriesList;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -41,10 +45,10 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
         holder.title.setText(categoryModel.getName());
 
         String img_url = categoryModel.getImageUrl();
-        if (img_url != null)
+        if (img_url != null && !img_url.isEmpty())
             Picasso.get().load(img_url).into(holder.imageView);
         else
-            Picasso.get().load(R.drawable.ic_launcher_background).into(holder.imageView);
+            Picasso.get().load(R.drawable.cow).into(holder.imageView);
     }
 
     @Override
@@ -63,7 +67,9 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(view1 -> {
-                notifyDataSetChanged();
+                int pos = getAdapterPosition();
+                int subCatId = categoriesList.get(pos).getCategoryID();
+                listener.OnRecyclerViewClickListener(subCatId);
             });
         }
     }

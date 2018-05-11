@@ -23,16 +23,16 @@ public class CategoryModel {
     private ArrayList<CategoryModel> subCategory = null;
     @SerializedName("CuttingMethods")
     @Expose
-    private ArrayList<Object> cuttingMethods = null;
+    private ArrayList<CuttingMethod> cuttingMethods = null;
     @SerializedName("CookingMethods")
     @Expose
-    private ArrayList<Object> cookingMethods = null;
+    private ArrayList<CookingMethod> cookingMethods = null;
     @SerializedName("PackagingMethods")
     @Expose
-    private ArrayList<Object> packagingMethods = null;
+    private ArrayList<PackagingMethod> packagingMethods = null;
     @SerializedName("Products")
     @Expose
-    private ArrayList<Object> products = null;
+    private ArrayList<Product> products = null;
 
     public int getCategoryID() {
         return categoryID;
@@ -42,7 +42,7 @@ public class CategoryModel {
         this.categoryID = categoryID;
     }
 
-    public Object getParentID() {
+    public String getParentID() {
         return parentID;
     }
 
@@ -74,35 +74,35 @@ public class CategoryModel {
         this.subCategory = subCategory;
     }
 
-    public ArrayList<Object> getCuttingMethods() {
+    public ArrayList<CuttingMethod> getCuttingMethods() {
         return cuttingMethods;
     }
 
-    public void setCuttingMethods(ArrayList<Object> cuttingMethods) {
+    public void setCuttingMethods(ArrayList<CuttingMethod> cuttingMethods) {
         this.cuttingMethods = cuttingMethods;
     }
 
-    public ArrayList<Object> getCookingMethods() {
+    public ArrayList<CookingMethod> getCookingMethods() {
         return cookingMethods;
     }
 
-    public void setCookingMethods(ArrayList<Object> cookingMethods) {
+    public void setCookingMethods(ArrayList<CookingMethod> cookingMethods) {
         this.cookingMethods = cookingMethods;
     }
 
-    public ArrayList<Object> getPackagingMethods() {
+    public ArrayList<PackagingMethod> getPackagingMethods() {
         return packagingMethods;
     }
 
-    public void setPackagingMethods(ArrayList<Object> packagingMethods) {
+    public void setPackagingMethods(ArrayList<PackagingMethod> packagingMethods) {
         this.packagingMethods = packagingMethods;
     }
 
-    public ArrayList<Object> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<Object> products) {
+    public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
 

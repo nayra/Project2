@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.MyTextView;
+import com.nayra.maraiina.interfaces.SubCategoryRecyclerViewClickListener;
 import com.nayra.maraiina.model.CategoryModel;
 
 import java.util.ArrayList;
@@ -22,9 +23,12 @@ public class CategoriesRecyclerViewAdapter extends RecyclerView.Adapter<Categori
 
     private Context context;
 
-    public CategoriesRecyclerViewAdapter(Context context, ArrayList<CategoryModel> weightsList) {
+    private SubCategoryRecyclerViewClickListener listener;
+
+    public CategoriesRecyclerViewAdapter(Context context, ArrayList<CategoryModel> weightsList, SubCategoryRecyclerViewClickListener listener) {
         this.categoriesList = weightsList;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -39,7 +43,7 @@ public class CategoriesRecyclerViewAdapter extends RecyclerView.Adapter<Categori
         CategoryModel categoryModel = categoriesList.get(position);
         holder.title.setText(categoryModel.getName());
 
-        SubCategoriesRecyclerViewAdapter adapter = new SubCategoriesRecyclerViewAdapter(context, categoryModel.getSubCategory());
+        SubCategoriesRecyclerViewAdapter adapter = new SubCategoriesRecyclerViewAdapter(context, categoryModel.getSubCategory(), listener);
         holder.recyclerView.setAdapter(adapter);
     }
 

@@ -31,7 +31,6 @@ public class SpinnerCountryCustomAdapter extends ArrayAdapter<CountryModel> {
 
     public SpinnerCountryCustomAdapter(@NonNull Context context, int resource, @NonNull ArrayList<CountryModel> countries) {
         super(context, resource, countries);
-        this.selected_lang_index = selected_lang_index;
         this.countryModels = countries;
         layoutInflater = (LayoutInflater.from(context));
         this.context = context;
@@ -55,7 +54,7 @@ public class SpinnerCountryCustomAdapter extends ArrayAdapter<CountryModel> {
 
         MyTextView names = view.findViewById(R.id.textView);
 
-        if (selected_lang_index == 0) {
+        if (selected_lang_index == SharedPrefsUtil.ENGLISH) {
             names.setText(countryModels.get(i).getName());
         } else {
             names.setText(countryModels.get(i).getNameAr());
@@ -73,7 +72,7 @@ public class SpinnerCountryCustomAdapter extends ArrayAdapter<CountryModel> {
 
         names.setTextColor(ContextCompat.getColor(context, R.color.green_very_dark));
 
-        if (selected_lang_index == 0) {
+        if (selected_lang_index == SharedPrefsUtil.ENGLISH) {
             names.setText(countryModels.get(position).getName());
         } else {
 
