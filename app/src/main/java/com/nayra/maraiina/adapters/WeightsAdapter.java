@@ -6,9 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
+import com.nayra.maraiina.custom_views.MyTextView;
+import com.nayra.maraiina.interfaces.WeightsRecyclerViewClickListener;
+import com.nayra.maraiina.model.Product;
+import com.nayra.maraiina.util.SharedPrefsUtil;
+import com.nayra.maraiina.util.Utils;
 
 import java.util.ArrayList;
 
@@ -17,14 +22,19 @@ import butterknife.ButterKnife;
 
 public class WeightsAdapter extends RecyclerView.Adapter<WeightsAdapter.MyViewHolder> {
 
-    private ArrayList<String> weightsList;
+    private ArrayList<Product> weightsList;
     private int selected_weight = 0;
 
     private Context context;
+    private int selected_language_index;
 
-    public WeightsAdapter(Context context, ArrayList<String> weightsList) {
+    private WeightsRecyclerViewClickListener weightsRecyclerViewClickListener;
+
+    public WeightsAdapter(Context context, ArrayList<Product> weightsList, WeightsRecyclerViewClickListener weightsRecyclerViewClickListener) {
         this.weightsList = weightsList;
         this.context = context;
+        selected_language_index = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_LANGUAGE_INDEX);
+        this.weightsRecyclerViewClickListener = weightsRecyclerViewClickListener;
     }
 
     @Override
@@ -35,13 +45,16 @@ public class WeightsAdapter extends RecyclerView.Adapter<WeightsAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String weight = weightsList.get(position);
+        String weight = weightsList.get(position).getName();
         if (selected_weight == position) {
-            holder.title.setTextColor(ContextCompat.getColor(context, R.color.green_very_dark));
+            holder.title.setTextColor(ContextCompat.getColor(context, R.color.grey_dark));
         } else {
             holder.title.setTextColor(ContextCompat.getColor(context, R.color.grey));
         }
 
+        if (selected_language_index == SharedPrefsUtil.ARABIC) {
+            Utils.setTypeFace(holder.title, Constants.KUFI_BOLD_font);
+        }
 
         holder.title.setText(weight);
     }
@@ -54,13 +67,14 @@ public class WeightsAdapter extends RecyclerView.Adapter<WeightsAdapter.MyViewHo
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_weight)
-        public TextView title;
+        public MyTextView title;
 
         public MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(view1 -> {
                 selected_weight = getAdapterPosition();
+                weightsRecyclerViewClickListener.OnWeightsRecyclerViewClickListener(selected_weight);
                 notifyDataSetChanged();
             });
         }

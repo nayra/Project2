@@ -3,10 +3,9 @@ package com.nayra.maraiina.views;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -19,12 +18,14 @@ import com.nayra.maraiina.R;
 import com.nayra.maraiina.adapters.CookingMethodsSpinnerAdapter;
 import com.nayra.maraiina.adapters.CuttingMethodsSpinnerAdapter;
 import com.nayra.maraiina.adapters.PackagingMethodsSpinnerAdapter;
+import com.nayra.maraiina.adapters.WeightsAdapter;
 import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.interfaces.WeightsRecyclerViewClickListener;
 import com.nayra.maraiina.model.CookingMethod;
 import com.nayra.maraiina.model.CuttingMethod;
 import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.model.PackagingMethod;
+import com.nayra.maraiina.model.Product;
 import com.nayra.maraiina.model.Result;
 import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
@@ -40,8 +41,11 @@ import info.hoang8f.android.segmented.SegmentedGroup;
 
 public class OrderDetailsActivity extends AppCompatActivity implements WeightsRecyclerViewClickListener {
 
-    @BindView(R.id.linearWeights)
-    LinearLayout weightsLinearLayout;
+    @BindView(R.id.linearMainCookingMethods)
+    LinearLayout mainCookingMethodsLinearLayout;
+
+    @BindView(R.id.rcvWeights)
+    RecyclerView weightsRecyclerView;
 
     @BindView(R.id.tv_choose_weight)
     MyTextView txtChooseWeight;
@@ -99,7 +103,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     Spinner spCookingMethods;
 
     private int selectedIndex = 0;
-    private ArrayList<String> arr;
 
     private int selected_language_index = 0;
     private LiveData<Result> productOptions;
@@ -122,13 +125,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
         setTypeFace();
 
-        arr = new ArrayList<>();
-        arr.add("10/8");
-        arr.add("12/10");
-        arr.add("14/12");
-
-        displayWeights();
-
         initListeners();
 
         getProductsDetails();
@@ -143,7 +139,15 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             displayCookingMethods(methods.getCookingMethods());
             displayPackagingMethods(methods.getPackagingMethods());
             displayCuttingMethods(methods.getCuttingMethods());
+
+            displayWeights(methods.getProducts());
         });
+    }
+
+    private void displayWeights(ArrayList<Product> products) {
+
+        WeightsAdapter adapter = new WeightsAdapter(this, products, this);
+        weightsRecyclerView.setAdapter(adapter);
     }
 
     private void displayCookingMethods(ArrayList<CookingMethod> cookingMethods) {
@@ -234,43 +238,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         }
     }
 
-    private void displayWeights() {
-        final int x = arr.size();
-
-        weightsLinearLayout.removeAllViews();
-        for (int i = 0; i < x; i++) {
-            final String weight = arr.get(i);
-            final View itemView = LayoutInflater.from(this).inflate(R.layout.row_weight, weightsLinearLayout, false);
-            final MyTextView txtWeights = itemView.findViewById(R.id.tv_weight);
-            final MyTextView txtUnit = itemView.findViewById(R.id.tv_weight_unit);
-
-            txtWeights.setText(weight);
-            if (selectedIndex == i) {
-                txtWeights.setTextColor(ContextCompat.getColor(this, R.color.grey_dark));
-                txtUnit.setTextColor(ContextCompat.getColor(this, R.color.grey_dark));
-
-            } else {
-                txtWeights.setTextColor(ContextCompat.getColor(this, R.color.grey));
-                txtUnit.setTextColor(ContextCompat.getColor(this, R.color.grey));
-            }
-
-            Utils.setTypeFace(txtUnit, Constants.MUSEOSANS_2_TTF);
-
-            if (selected_language_index == SharedPrefsUtil.ARABIC) {
-                Utils.setTypeFace(txtUnit, Constants.KUFI_BOLD_font);
-            }
-            itemView.setTag(i);
-            itemView.setOnClickListener(view -> {
-                final int pos = Integer.parseInt(view.getTag().toString());
-                if (selectedIndex != pos) {
-                    selectedIndex = pos;
-                    displayWeights();
-                }
-            });
-            weightsLinearLayout.addView(itemView);
-        }
-    }
-
     @OnClick(R.id.btContinue)
     void continueInfo() {
         OrderDetailsModel model = new OrderDetailsModel();
@@ -285,6 +252,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
     @Override
     public void OnWeightsRecyclerViewClickListener(int pos) {
-        weight = arr.get(pos);
+        //weight = arr.get(pos);
     }
 }

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".views.OrderDetailsActivity">
 
@@ -66,14 +67,20 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rcvWeights"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layoutManager="android.support.v7.widget.LinearLayoutManager">
+
+                    </android.support.v7.widget.RecyclerView>
+
                     <LinearLayout
-                        android:id="@+id/linearWeights"
+                        android:id="@+id/linearMainCookingMethods"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-
-                    </LinearLayout>
-
                     <com.nayra.maraiina.custom_views.MyTextView
                         android:id="@+id/tv_cook"
                         android:layout_width="match_parent"
@@ -140,7 +147,7 @@
                             android:layout_margin="@dimen/_10sdp"></Spinner>
 
                     </LinearLayout>
-
+                    </LinearLayout>
                     <LinearLayout
                         android:id="@+id/linearCuttingMethods"
                         android:layout_width="match_parent"
