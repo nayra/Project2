@@ -1,6 +1,5 @@
 package com.nayra.maraiina.adapters;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,13 +21,10 @@ import butterknife.ButterKnife;
 public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCategoriesRecyclerViewAdapter.MyViewHolder> {
     private ArrayList<CategoryModel> categoriesList;
 
-    private Context context;
-
     private SubCategoryRecyclerViewClickListener listener;
 
-    public SubCategoriesRecyclerViewAdapter(Context context, ArrayList<CategoryModel> categoriesList, SubCategoryRecyclerViewClickListener listener) {
+    public SubCategoriesRecyclerViewAdapter(ArrayList<CategoryModel> categoriesList, SubCategoryRecyclerViewClickListener listener) {
         this.categoriesList = categoriesList;
-        this.context = context;
         this.listener = listener;
     }
 
@@ -69,7 +65,8 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
             view.setOnClickListener(view1 -> {
                 int pos = getAdapterPosition();
                 int subCatId = categoriesList.get(pos).getCategoryID();
-                listener.OnRecyclerViewClickListener(subCatId);
+                int catId = Integer.parseInt(categoriesList.get(pos).getParentID());
+                listener.OnRecyclerViewClickListener(catId, subCatId);
             });
         }
     }

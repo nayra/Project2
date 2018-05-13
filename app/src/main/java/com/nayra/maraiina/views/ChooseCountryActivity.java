@@ -13,13 +13,16 @@ import android.widget.RadioGroup;
 
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
+import com.nayra.maraiina.adapters.SpinnerCityAdapter;
 import com.nayra.maraiina.adapters.SpinnerCountryCustomAdapter;
 import com.nayra.maraiina.custom_views.MyTextView;
+import com.nayra.maraiina.model.CityModel;
 import com.nayra.maraiina.model.CountryModel;
 import com.nayra.maraiina.util.LanguageUtil;
 import com.nayra.maraiina.util.ProgressDialogUtil;
 import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
+import com.nayra.maraiina.viewmodels.GetCitiesViewModel;
 import com.nayra.maraiina.viewmodels.GetCountriesViewModel;
 
 import java.util.ArrayList;
@@ -34,6 +37,9 @@ public class ChooseCountryActivity extends AppCompatActivity {
     private static final String TAG = ChooseCountryActivity.class.getSimpleName();
     @BindView(R.id.spCountries)
     AppCompatSpinner countrySpinner;
+
+    @BindView(R.id.spCities)
+    AppCompatSpinner citySpinner;
 
     @BindView(R.id.segmented2)
     SegmentedGroup langSegmentedGroup;
@@ -50,9 +56,15 @@ public class ChooseCountryActivity extends AppCompatActivity {
     @BindView(R.id.tv_choose_country)
     MyTextView txtChooseCountry;
 
+    @BindView(R.id.tv_choose_city)
+    MyTextView txtChooseCity;
+
     private LiveData<ArrayList<CountryModel>> countryModels;
 
     private int selectedLanguage;
+    private LiveData<ArrayList<CityModel>> citiesArray;
+    private int lastSelectedCountryId = 0;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +76,6 @@ public class ChooseCountryActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setTypeFace();
-        spinnerOnItemSelectedListener();
         fillCountriesSpinner();
 
         initLang();
@@ -74,6 +85,7 @@ public class ChooseCountryActivity extends AppCompatActivity {
         if (selectedLanguage == 1) {
             Utils.setTypeFace(txtWelcome, Constants.KUFI_REGULAR);
             Utils.setTypeFace(txtChooseCountry, Constants.KUFI_REGULAR);
+            Utils.setTypeFace(txtChooseCity, Constants.KUFI_REGULAR);
         }
     }
 
@@ -103,19 +115,6 @@ public class ChooseCountryActivity extends AppCompatActivity {
         });
     }
 
-    private void spinnerOnItemSelectedListener() {
-        countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
 
 
     private void fillCountriesSpinner() {
@@ -134,6 +133,58 @@ public class ChooseCountryActivity extends AppCompatActivity {
             Log.d(TAG, countries.toString());
             SpinnerCountryCustomAdapter countryCustomAdapter = new SpinnerCountryCustomAdapter(this, R.layout.row_spinner, countries);
             countrySpinner.setAdapter(countryCustomAdapter);
+
+            countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    int countryId = countries.get(i).getCountryID();
+
+                    // if(lastSelectedCountryId != countryId)
+                    {
+
+                        lastSelectedCountryId = countryId;
+
+                        SharedPrefsUtil.setInteger(SharedPrefsUtil.SELECTED_COUNTRY_ID, countryId);
+                        fillCitiesSpinner();
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+        }
+    }
+
+    private void fillCitiesSpinner() {
+        ProgressDialogUtil.show(this);
+        GetCitiesViewModel viewModel = ViewModelProviders.of(this).get(GetCitiesViewModel.class);
+        citiesArray = viewModel.getCityArrayListLiveData();
+        citiesArray.observe(this, cities -> {
+            displayCities(cities);
+        });
+    }
+
+    private void displayCities(ArrayList<CityModel> cities) {
+        if (cities != null) {
+            ProgressDialogUtil.dismiss();
+            Log.d(TAG, cities.toString());
+            SpinnerCityAdapter countryCustomAdapter = new SpinnerCityAdapter(this, R.layout.row_spinner, cities);
+            citySpinner.setAdapter(countryCustomAdapter);
+
+            citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    int cityId = cities.get(i).getCityID();
+                    SharedPrefsUtil.setInteger(SharedPrefsUtil.SELECTED_CITY_ID, cityId);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
         }
     }
 

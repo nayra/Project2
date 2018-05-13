@@ -7,10 +7,12 @@ import android.util.Log;
 
 import com.nayra.maraiina.MyApplication;
 import com.nayra.maraiina.model.CategoryModel;
+import com.nayra.maraiina.model.CityModel;
 import com.nayra.maraiina.model.CountryModel;
 import com.nayra.maraiina.model.ProductAndMethodsResultModel;
 import com.nayra.maraiina.model.Result;
 import com.nayra.maraiina.model.ResultCategoryModel;
+import com.nayra.maraiina.model.ResultCityModel;
 import com.nayra.maraiina.model.ResultCountryModel;
 import com.nayra.maraiina.util.ConnectivityCheck;
 
@@ -103,6 +105,33 @@ public class MaraiinaRepository {
             Log.e(TAG, "No internet connectivity");
         }
 
+        return data;
+    }
+
+    public static LiveData<ArrayList<CityModel>> getCities() {
+        final MutableLiveData<ArrayList<CityModel>> data = new MutableLiveData<>();
+
+        Context context = MyApplication.getmInstance().getContext();
+
+        if (ConnectivityCheck.isConnected(context)) {
+            ApiConnection.getRetrofit().getCitiesList().enqueue(new Callback<ResultCityModel>() {
+                @Override
+                public void onResponse(Call<ResultCityModel> call, Response<ResultCityModel> response) {
+                    if (response != null && response.body() != null && response.body().getResult() != null) {
+                        Log.d(TAG, response.body().getResult().toString());
+                        data.setValue(response.body().getResult());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResultCityModel> call, Throwable t) {
+                    Log.e(TAG, t.toString());
+                    getCountries();
+                }
+            });
+        } else {
+            Log.e(TAG, "No internet connectivity");
+        }
         return data;
     }
 }

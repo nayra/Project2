@@ -1,6 +1,5 @@
 package com.nayra.maraiina.adapters;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,13 +20,10 @@ public class CategoriesRecyclerViewAdapter extends RecyclerView.Adapter<Categori
     private ArrayList<CategoryModel> categoriesList;
     private int selected_weight = 0;
 
-    private Context context;
-
     private SubCategoryRecyclerViewClickListener listener;
 
-    public CategoriesRecyclerViewAdapter(Context context, ArrayList<CategoryModel> weightsList, SubCategoryRecyclerViewClickListener listener) {
+    public CategoriesRecyclerViewAdapter(ArrayList<CategoryModel> weightsList, SubCategoryRecyclerViewClickListener listener) {
         this.categoriesList = weightsList;
-        this.context = context;
         this.listener = listener;
     }
 
@@ -43,7 +39,7 @@ public class CategoriesRecyclerViewAdapter extends RecyclerView.Adapter<Categori
         CategoryModel categoryModel = categoriesList.get(position);
         holder.title.setText(categoryModel.getName());
 
-        SubCategoriesRecyclerViewAdapter adapter = new SubCategoriesRecyclerViewAdapter(context, categoryModel.getSubCategory(), listener);
+        SubCategoriesRecyclerViewAdapter adapter = new SubCategoriesRecyclerViewAdapter(categoryModel.getSubCategory(), listener);
         holder.recyclerView.setAdapter(adapter);
     }
 

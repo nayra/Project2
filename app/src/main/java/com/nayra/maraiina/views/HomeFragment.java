@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment implements SubCategoryRecyclerViewCli
             if (categories != null && categories.size() > 0) {
                 ProgressDialogUtil.dismiss();
                 Log.e("nahmed", categories.toString());
-                CategoriesRecyclerViewAdapter adapter = new CategoriesRecyclerViewAdapter(getActivity(), categories, this);
+                CategoriesRecyclerViewAdapter adapter = new CategoriesRecyclerViewAdapter(categories, this);
                 main_recycler_view.setAdapter(adapter);
             }
         });
@@ -81,13 +81,13 @@ public class HomeFragment extends Fragment implements SubCategoryRecyclerViewCli
     }
 
     @Override
-    public void OnRecyclerViewClickListener(int subCatId) {
+    public void OnRecyclerViewClickListener(int catId, int subCatId) {
         Toast.makeText(getActivity(), "" + subCatId, Toast.LENGTH_LONG).show();
-        mListener.onFragmentInteraction(subCatId);
+        mListener.onFragmentInteraction(catId, subCatId);
     }
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(int subCat);
+        void onFragmentInteraction(int catId, int subCat);
     }
 }

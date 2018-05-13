@@ -20,4 +20,8 @@ public class Constants {
     public static final int MUSEOSANS_500ITALIC = 14;
     public static final int MUSEOSANS_700ITALIC = 15;
     public static final int MUSEOSANS_900ITALIC = 16;
+    public static final String CATEGORY_ID = "catId";
+
+    public static final String SUBCATEGORY_ID = "subId";
+    public static final int CAMEL_ID = 4;
 }

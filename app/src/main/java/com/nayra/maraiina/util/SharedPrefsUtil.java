@@ -13,6 +13,8 @@ public class SharedPrefsUtil {
     public static final String SELECTED_AREA_NAME = "SELECTED_AREA_NAME";
     public static final int ARABIC = 1;
     public static final int ENGLISH = 0;
+    public static final String SELECTED_CITY_ID = "SELECTED_CITY_ID";
+    public static final int ABUZABI = 2;
 
     private static SharedPreferences prefs;
     private static SharedPreferences.Editor editor;

@@ -114,6 +114,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private boolean isCooking = true;
     private String weight = "";
 
+    private int category_id = 0, sub_category_id = 0;
+
+    //private boolean isCamel = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,18 +124,42 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
         selected_language_index = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_LANGUAGE_INDEX);
 
+
         ButterKnife.bind(this);
 
+        checkCategory();
         setTypeFace();
 
         initListeners();
 
         getProductsDetails();
+
+        showOrHideCookingOption();
+    }
+
+    private void checkCategory() {
+        category_id = getIntent().getIntExtra(Constants.CATEGORY_ID, 0);
+        sub_category_id = getIntent().getIntExtra(Constants.SUBCATEGORY_ID, 0);
+
+        if (category_id == Constants.CAMEL_ID) {
+            txtChooseWeight.setText(getResources().getString(R.string.choose_age));
+        }
+    }
+
+    private void showOrHideCookingOption() {
+        int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
+        if (cityId == SharedPrefsUtil.ABUZABI) {
+            mainCookingMethodsLinearLayout.setVisibility(View.VISIBLE);
+        } else {
+            mainCookingMethodsLinearLayout.setVisibility(View.GONE);
+            packagingMethodLinearLayout.setVisibility(View.VISIBLE);
+            cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     private void getProductsDetails() {
         ProductDetailsViewModel productDetailsViewModel = ViewModelProviders.of(this).get(ProductDetailsViewModel.class);
-        productOptions = productDetailsViewModel.getMethodsModelLiveData(5);
+        productOptions = productDetailsViewModel.getMethodsModelLiveData(sub_category_id);
         productOptions.observe(this, methods -> {
             Log.e("nahmed", methods.toString());
 
@@ -213,7 +240,11 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                     case R.id.rbNoCook:
                         cookingMethodLinearLayout.setVisibility(View.GONE);
                         cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
+                        /*if(isCamel) {
+                            packagingMethodLinearLayout.setVisibility(View.GONE);
+                        }else{*/
                         packagingMethodLinearLayout.setVisibility(View.VISIBLE);
+                        //}
                         noCookRadioButton.setChecked(true);
                         isCooking = false;
                         break;
