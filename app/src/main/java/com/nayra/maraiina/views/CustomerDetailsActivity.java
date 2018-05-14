@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
+import com.nayra.maraiina.custom_views.MyButton;
 import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.util.SharedPrefsUtil;
@@ -59,6 +60,9 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tv_total_price_value)
     MyTextView txtTotalPriceValue;
 
+    @BindView(R.id.btContinue)
+    MyButton continueMyButton;
+
     private OrderDetailsModel orderDetailsModel;
 
     @Override
@@ -99,6 +103,8 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
             Utils.setTypeFace(txtTotalPrice, Constants.KUFI_BOLD_font);
             Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);
+
+            //  Utils.setTypeFace(continueMyButton, Constants.KUFI_REGULAR);
         }
     }
 
