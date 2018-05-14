@@ -1,7 +1,10 @@
 package com.nayra.maraiina.model;
 
-public class OrderDetailsModel {
-    private int cookingId, cuttingId, packagingId;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class OrderDetailsModel implements Parcelable {
+    private int cookingId, cuttingId, packagingId, price;
     private boolean doYouWantCooking;
     private String Weight;
 
@@ -48,14 +51,60 @@ public class OrderDetailsModel {
         Weight = weight;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "OrderDetailsModel{" +
                 "cookingId=" + cookingId +
                 ", cuttingId=" + cuttingId +
                 ", packagingId=" + packagingId +
+                ", price=" + price +
                 ", doYouWantCooking=" + doYouWantCooking +
                 ", Weight='" + Weight + '\'' +
                 '}';
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.cookingId);
+        dest.writeInt(this.cuttingId);
+        dest.writeInt(this.packagingId);
+        dest.writeInt(this.price);
+        dest.writeByte(this.doYouWantCooking ? (byte) 1 : (byte) 0);
+        dest.writeString(this.Weight);
+    }
+
+    protected OrderDetailsModel(Parcel in) {
+        this.cookingId = in.readInt();
+        this.cuttingId = in.readInt();
+        this.packagingId = in.readInt();
+        this.price = in.readInt();
+        this.doYouWantCooking = in.readByte() != 0;
+        this.Weight = in.readString();
+    }
+
+    public static final Parcelable.Creator<OrderDetailsModel> CREATOR = new Parcelable.Creator<OrderDetailsModel>() {
+        @Override
+        public OrderDetailsModel createFromParcel(Parcel source) {
+            return new OrderDetailsModel(source);
+        }
+
+        @Override
+        public OrderDetailsModel[] newArray(int size) {
+            return new OrderDetailsModel[size];
+        }
+    };
 }

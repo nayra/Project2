@@ -2,6 +2,7 @@ package com.nayra.maraiina.views;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -115,6 +116,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private String weight = "";
 
     private int category_id = 0, sub_category_id = 0;
+    private int price = 0;
+    private int cityId = 0;
 
     //private boolean isCamel = false;
     @Override
@@ -147,7 +150,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     }
 
     private void showOrHideCookingOption() {
-        int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
+        cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
         if (cityId == SharedPrefsUtil.ABUZABI) {
             mainCookingMethodsLinearLayout.setVisibility(View.VISIBLE);
         } else {
@@ -175,6 +178,15 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
         WeightsAdapter adapter = new WeightsAdapter(this, products, this);
         weightsRecyclerView.setAdapter(adapter);
+
+        if (products.size() > 0) {
+            price = products.get(0).getPrice();
+            if (cityId == SharedPrefsUtil.ABUZABI && cookRadioButton.isChecked()) {
+                price += 150;
+            }
+            txtTotalPriceValue.setText(String.valueOf(price));
+        }
+
     }
 
     private void displayCookingMethods(ArrayList<CookingMethod> cookingMethods) {
@@ -235,6 +247,11 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                         cuttingMethodLinearLayout.setVisibility(View.GONE);
                         packagingMethodLinearLayout.setVisibility(View.GONE);
                         cookRadioButton.setChecked(true);
+                        txtTotalPriceValue.setText(String.valueOf(price));
+
+                        price += 150;
+                        txtTotalPriceValue.setText(String.valueOf(price));
+
                         isCooking = true;
                         break;
                     case R.id.rbNoCook:
@@ -244,6 +261,10 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                             packagingMethodLinearLayout.setVisibility(View.GONE);
                         }else{*/
                         packagingMethodLinearLayout.setVisibility(View.VISIBLE);
+
+                        price -= 150;
+                        txtTotalPriceValue.setText(String.valueOf(price));
+
                         //}
                         noCookRadioButton.setChecked(true);
                         isCooking = false;
@@ -276,13 +297,21 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         model.setCuttingId(cuttingMethodID);
         model.setPackagingId(packagingMethodID);
         model.setDoYouWantCooking(isCooking);
+        model.setPrice(price);
         model.setWeight(weight);
         Log.e("nahmed", model.toString());
-        Utils.displayNextActivity(this, CustomerDetailsActivity.class);
+        Intent intent = new Intent(this, CustomerDetailsActivity.class);
+        intent.putExtra(Constants.ORDER_DETAILS, model);
+        startActivity(intent);
     }
 
     @Override
     public void OnWeightsRecyclerViewClickListener(int pos) {
-        //weight = arr.get(pos);
+        price = productOptions.getValue().getProducts().get(pos).getPrice();
+        if (cookRadioButton.isChecked()) {
+            price += 150;
+        }
+        txtTotalPriceValue.setText(String.valueOf(price));
     }
+
 }

@@ -1,5 +1,6 @@
 package com.nayra.maraiina.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.MyTextView;
+import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
 
@@ -45,6 +47,20 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tvDeliveryDetails)
     MyTextView txtDeliveryDetails;
 
+    @BindView(R.id.tv_delivery)
+    MyTextView txtDelivery;
+
+    @BindView(R.id.tv_delivery_duration)
+    MyTextView txtDeliveryDuration;
+
+    @BindView(R.id.tv_total_price)
+    MyTextView txtTotalPrice;
+
+    @BindView(R.id.tv_total_price_value)
+    MyTextView txtTotalPriceValue;
+
+    private OrderDetailsModel orderDetailsModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +70,15 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setTypeFace();
+
+        Intent intent = getIntent();
+        orderDetailsModel = intent.getParcelableExtra(Constants.ORDER_DETAILS);
+
+        setPriceAndDuration();
+    }
+
+    private void setPriceAndDuration() {
+        txtTotalPriceValue.setText(String.valueOf(orderDetailsModel.getPrice()));
     }
 
     private void setTypeFace() {
@@ -69,6 +94,11 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             Utils.setTypeFace(etxtEmail, Constants.KUFI_BOLD_font);
 
             Utils.setTypeFace(txtDeliveryDetails, Constants.KUFI_REGULAR);
+
+            Utils.setTypeFace(txtDelivery, Constants.KUFI_BOLD_font);
+            Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
+            Utils.setTypeFace(txtTotalPrice, Constants.KUFI_BOLD_font);
+            Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);
         }
     }
 
