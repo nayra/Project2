@@ -29,8 +29,9 @@
     <string name="addDeliveryDetails">اضف بيانات التوصيل</string>
     <string name="hint_name">الاسم</string>
     <string name="mandatory">مطلوب إجباري</string>
-    <string name="hint_email">الإيميل</string>
+    <string name="hint_email">البريد الإلكتروني</string>
     <string name="hint_phone">رقم التليفون</string>
     <string name="hint_address">العنوان بالتفصيل</string>
     <string name="choose_city">اختر المدينة</string>
+    <string name="hint_subject">العنوان</string>
 </resources>
