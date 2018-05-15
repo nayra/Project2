@@ -5,6 +5,8 @@ import com.nayra.maraiina.model.ProductAndMethodsResultModel;
 import com.nayra.maraiina.model.ResultCategoryModel;
 import com.nayra.maraiina.model.ResultCityModel;
 import com.nayra.maraiina.model.ResultCountryModel;
+import com.nayra.maraiina.model.ResultOffersModel;
+import com.nayra.maraiina.model.ResultSuggestion;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -58,5 +60,21 @@ public interface MaraiinaService {
                                              @Field("Latitude") double lat, @Field("Longitude") double lng,
                                              @Field("CuttingMethodID") int cuttingMethodId,
                                              @Field("PackagingMethodID") int packagingMethodId, @Field("ProductID") int productId);
+
+    @GET("offers/")
+    Call<ResultOffersModel> getOffers();
+
+    /*
+    Title:title
+Name:name
+Email:n@gmail.com
+PhoneNumber:01098045881
+Description:fdffsf
+     */
+    @FormUrlEncoded
+    @POST("Suggestions/")
+    Call<ResultSuggestion> postSuggestion(@Field("Title") String subject, @Field("Name") String name,
+                                          @Field("Email") String email, @Field("PhoneNumber") String phone,
+                                          @Field("Description") String desc);
 
 }

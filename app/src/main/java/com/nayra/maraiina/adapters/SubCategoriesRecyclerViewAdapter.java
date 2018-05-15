@@ -47,7 +47,7 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
         if (img_url != null && !img_url.isEmpty())
             Picasso.get().load(img_url).into(holder.imageView);
         else
-            Picasso.get().load(R.drawable.cow).into(holder.imageView);
+            Picasso.get().load(R.drawable.no_image).into(holder.imageView);
     }
 
     @Override

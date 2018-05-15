@@ -5,19 +5,18 @@
     android:layout_marginBottom="@dimen/_5sdp"
     android:background="@color/green_very_dark">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/logo_toolbar"
-            android:layout_margin="5dp"
-            android:contentDescription="@string/desc" />
+            android:contentDescription="@string/desc"
+            android:layout_gravity="center" />
 
-    </LinearLayout>
+    </FrameLayout>
 
 
 </android.support.v7.widget.Toolbar>

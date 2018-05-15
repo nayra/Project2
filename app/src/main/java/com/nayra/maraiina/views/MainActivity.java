@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -84,11 +85,26 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 .build();
     }
 
-    private void menuNavigation(int pos) {
+    public void menuNavigation(int pos) {
         switch (pos) {
             case 1:
                 HomeFragment fragment = new HomeFragment();
-                FragmentUtils.addFragment(R.id.frame_container, this, fragment, HomeFragment.class.getSimpleName());
+                FragmentUtils.replaceFragment(R.id.frame_container, this, fragment, HomeFragment.class.getSimpleName());
+                break;
+
+            case 2:
+                OffersFragment offersFragment = new OffersFragment();
+                FragmentUtils.replaceFragment(R.id.frame_container, this, offersFragment, OffersFragment.class.getSimpleName());
+                break;
+
+            case 3:
+                SuggestionsFragment suggestionsFragment = new SuggestionsFragment();
+                FragmentUtils.replaceFragment(R.id.frame_container, this, suggestionsFragment, SuggestionsFragment.class.getSimpleName());
+                break;
+
+            default:
+                HomeFragment defaultFragment = new HomeFragment();
+                FragmentUtils.replaceFragment(R.id.frame_container, this, defaultFragment, HomeFragment.class.getSimpleName());
                 break;
 
         }
@@ -97,22 +113,13 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     private void initAllMenuItems() {
         final CustomDrawerItem item1 = initMenuItem(R.string.drawer_item_home, R.color.green_selected_menu, 1);
 
-        final CustomDrawerItem item2 = initMenuItem(R.string.drawer_item_previous_orders, R.color.green_very_dark, 2);
+        final CustomDrawerItem item2 = initMenuItem(R.string.drawer_item_offers, R.color.green_very_dark, 2);
 
-        final CustomDrawerItem item3 = initMenuItem(R.string.drawer_item_new_products, R.color.green_very_dark, 3);
-
-        final CustomDrawerItem item4 = initMenuItem(R.string.drawer_item_opinions_notifications, R.color.green_very_dark, 4);
-
-        final CustomDrawerItem item5 = initMenuItem(R.string.drawer_item_contact_us, R.color.green_very_dark, 5);
-
-        final CustomDrawerItem item6 = initMenuItem(R.string.drawer_item_about_us, R.color.green_very_dark, 6);
+        final CustomDrawerItem item3 = initMenuItem(R.string.drawer_item_complains_and_suggestions, R.color.green_very_dark, 3);
 
         drawerItems[0] = item1;
         drawerItems[1] = item2;
         drawerItems[2] = item3;
-        drawerItems[3] = item4;
-        drawerItems[4] = item5;
-        drawerItems[5] = item6;
 
         lastSelectedItem = item1;
 
@@ -154,5 +161,21 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         intent.putExtra(Constants.TYPE_NAME, type);
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        back();
+    }
+
+    private void back() {
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+        final int backStack = fragmentManager.getBackStackEntryCount();
+
+        if (backStack > 1) {
+            fragmentManager.popBackStack();
+        } else {
+            finish();
+        }
     }
 }

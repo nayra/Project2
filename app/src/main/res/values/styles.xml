@@ -11,6 +11,11 @@
         <item name="windowNoTitle">true</item>
 
         <item name="spinnerStyle">@style/mySpinnerItemStyle</item>
+        <item name="drawerArrowStyle">@style/MyDrawerArrowToggleStyle</item>
+    </style>
+
+    <style name="MyDrawerArrowToggleStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
     </style>
 
     <style name="MyRadioButton" parent="RadioButton">

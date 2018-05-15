@@ -8,7 +8,7 @@
     <string name="continue_to_app">متابعة</string>
     <string name="drawer_item_home">الرئيسية</string>
     <string name="drawer_item_previous_orders">طلباتي السابقة</string>
-    <string name="drawer_item_new_products">منتجات جديدة</string>
+    <string name="drawer_item_offers">العروض</string>
     <string name="drawer_item_opinions_notifications">آراء و اشعارات</string>
     <string name="drawer_item_contact_us">اتصل بنا</string>
     <string name="drawer_item_about_us">عن مراعينا</string>
@@ -36,4 +36,8 @@
     <string name="hint_subject">العنوان</string>
     <string name="order_details">بيانات الطلب</string>
     <string name="confirm_order">إتمام الطلب</string>
+    <string name="details">التفاصيل</string>
+    <string name="send">إرسال</string>
+    <string name="drawer_item_complains_and_suggestions">الاقتراحات</string>
+    <string name="thank_you">شكرا لك</string>
 </resources>

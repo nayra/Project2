@@ -1,109 +1,127 @@
 package com.nayra.maraiina.views;
 
-import android.content.Context;
-import android.net.Uri;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
+import com.nayra.maraiina.model.SuggestionModel;
+import com.nayra.maraiina.util.ProgressDialogUtil;
+import com.nayra.maraiina.util.Utils;
+import com.nayra.maraiina.viewmodels.SendSuggestionViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SuggestionsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SuggestionsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class SuggestionsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    @BindView(R.id.til_subject)
+    TextInputLayout subjectHint;
 
-    private OnFragmentInteractionListener mListener;
+    @BindView(R.id.til_Email)
+    TextInputLayout emailHint;
 
-    public SuggestionsFragment() {
-        // Required empty public constructor
-    }
+    @BindView(R.id.til_Name_hint)
+    TextInputLayout nameHint;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SuggestionsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SuggestionsFragment newInstance(String param1, String param2) {
-        SuggestionsFragment fragment = new SuggestionsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    @BindView(R.id.til_Phone)
+    TextInputLayout phoneHint;
+
+    @BindView(R.id.tiet_details)
+    TextInputEditText etDetails;
+
+    @BindView(R.id.tiet_name)
+    TextInputEditText etName;
+
+    @BindView(R.id.tiet_subject)
+    TextInputEditText etSubject;
+
+    @BindView(R.id.tiet_phone)
+    TextInputEditText etPhone;
+
+    @BindView(R.id.tiet_email)
+    TextInputEditText etEmail;
+
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_suggestions, container, false);
+        View view = inflater.inflate(R.layout.fragment_suggestions, container, false);
+        ButterKnife.bind(this, view);
+
+        setTypeFace();
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    private void setTypeFace() {
+        Utils.setTypeFace(subjectHint, Constants.KUFI_REGULAR);
+        Utils.setTypeFace(emailHint, Constants.KUFI_REGULAR);
+        Utils.setTypeFace(phoneHint, Constants.KUFI_REGULAR);
+        Utils.setTypeFace(etDetails, Constants.KUFI_REGULAR);
+        Utils.setTypeFace(etSubject, Constants.KUFI_REGULAR);
+        Utils.setTypeFace(etPhone, Constants.KUFI_REGULAR);
+        Utils.setTypeFace(etEmail, Constants.KUFI_REGULAR);
+        Utils.setTypeFace(etName, Constants.KUFI_REGULAR);
+        Utils.setTypeFace(nameHint, Constants.KUFI_REGULAR);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+    @OnClick(R.id.btSendSuggestion)
+    void sendSuggestion() {
+        String name = etName.getText().toString();
+        String email = etEmail.getText().toString();
+        String phone = etPhone.getText().toString();
+        String desc = etDetails.getText().toString();
+        String subject = etSubject.getText().toString();
+
+
+        if (!name.isEmpty() && !phone.isEmpty() && !email.isEmpty() && !desc.isEmpty() && !subject.isEmpty()) {
+
+
+            SuggestionModel suggestionModel = new SuggestionModel();
+            suggestionModel.setDescription(desc);
+            suggestionModel.setEmail(email);
+            suggestionModel.setName(name);
+            suggestionModel.setPhoneNumber(phone);
+            suggestionModel.setTitle(subject);
+
+            ProgressDialogUtil.show(getActivity());
+            SendSuggestionViewModel _ViewModel = ViewModelProviders.of(this).get(SendSuggestionViewModel.class);
+            LiveData<Boolean> booleanLiveData = _ViewModel.sendSuggestion(suggestionModel);
+            booleanLiveData.observe(this, isSent -> {
+                if (isSent) {
+                    ProgressDialogUtil.dismiss();
+                    Toast.makeText(getActivity(), getString(R.string.thank_you), Toast.LENGTH_LONG).show();
+                    ((MainActivity) getActivity()).menuNavigation(1);
+                }
+            });
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            if (name.isEmpty()) {
+                etName.setError(getResources().getString(R.string.mandatory));
+            }
+            if (phone.isEmpty()) {
+                etPhone.setError(getResources().getString(R.string.mandatory));
+            }
+            if (desc.isEmpty()) {
+                etDetails.setError(getResources().getString(R.string.mandatory));
+            }
+            if (subject.isEmpty()) {
+                etSubject.setError(getResources().getString(R.string.mandatory));
+            }
+            if (email.isEmpty()) {
+                etEmail.setError(getResources().getString(R.string.mandatory));
+            }
+
         }
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }
