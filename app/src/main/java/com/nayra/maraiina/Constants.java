@@ -25,4 +25,5 @@ public class Constants {
     public static final String SUBCATEGORY_ID = "subId";
     public static final int CAMEL_ID = 4;
     public static final String ORDER_DETAILS = "orderDetails";
+    public static final String TYPE_NAME = "TypeName";
 }

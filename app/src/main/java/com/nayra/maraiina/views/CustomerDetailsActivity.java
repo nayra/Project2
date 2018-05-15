@@ -11,6 +11,7 @@ import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.MyButton;
 import com.nayra.maraiina.custom_views.MyTextView;
+import com.nayra.maraiina.model.CustomerDetails;
 import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
@@ -116,7 +117,17 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         String email = etxtEmail.getText().toString();
 
         if (!name.isEmpty() && !phone.isEmpty() && !address.isEmpty()) {
+            CustomerDetails customerDetails = new CustomerDetails();
+            customerDetails.setName(name);
+            customerDetails.setAddress(address);
+            customerDetails.setEmail(email);
+            customerDetails.setPhone(phone);
 
+            orderDetailsModel.setCustomerDetails(customerDetails);
+
+            Intent intent = new Intent(this, ReviewOrderDetailsActivity.class);
+            intent.putExtra(Constants.ORDER_DETAILS, orderDetailsModel);
+            startActivity(intent);
         } else {
             if (name.isEmpty()) {
                 etxtName.setError(getResources().getString(R.string.mandatory));

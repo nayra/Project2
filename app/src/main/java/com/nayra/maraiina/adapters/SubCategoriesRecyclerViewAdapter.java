@@ -23,9 +23,12 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
 
     private SubCategoryRecyclerViewClickListener listener;
 
-    public SubCategoriesRecyclerViewAdapter(ArrayList<CategoryModel> categoriesList, SubCategoryRecyclerViewClickListener listener) {
+    private String parentCategory = "";
+
+    public SubCategoriesRecyclerViewAdapter(String catName, ArrayList<CategoryModel> categoriesList, SubCategoryRecyclerViewClickListener listener) {
         this.categoriesList = categoriesList;
         this.listener = listener;
+        parentCategory = catName;
     }
 
     @NonNull
@@ -66,7 +69,8 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
                 int pos = getAdapterPosition();
                 int subCatId = categoriesList.get(pos).getCategoryID();
                 int catId = Integer.parseInt(categoriesList.get(pos).getParentID());
-                listener.OnRecyclerViewClickListener(catId, subCatId);
+                String fullCategoryName = parentCategory + " " + categoriesList.get(pos).getName();
+                listener.OnRecyclerViewClickListener(catId, subCatId, fullCategoryName);
             });
         }
     }

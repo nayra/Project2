@@ -81,13 +81,13 @@ public class HomeFragment extends Fragment implements SubCategoryRecyclerViewCli
     }
 
     @Override
-    public void OnRecyclerViewClickListener(int catId, int subCatId) {
+    public void OnRecyclerViewClickListener(int catId, int subCatId, String type) {
         Toast.makeText(getActivity(), "" + subCatId, Toast.LENGTH_LONG).show();
-        mListener.onFragmentInteraction(catId, subCatId);
+        mListener.onFragmentInteraction(catId, subCatId, type);
     }
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(int catId, int subCat);
+        void onFragmentInteraction(int catId, int subCat, String type);
     }
 }

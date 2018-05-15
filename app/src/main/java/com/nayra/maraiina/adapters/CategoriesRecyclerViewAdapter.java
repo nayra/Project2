@@ -39,7 +39,7 @@ public class CategoriesRecyclerViewAdapter extends RecyclerView.Adapter<Categori
         CategoryModel categoryModel = categoriesList.get(position);
         holder.title.setText(categoryModel.getName());
 
-        SubCategoriesRecyclerViewAdapter adapter = new SubCategoriesRecyclerViewAdapter(categoryModel.getSubCategory(), listener);
+        SubCategoriesRecyclerViewAdapter adapter = new SubCategoriesRecyclerViewAdapter(categoryModel.getName(), categoryModel.getSubCategory(), listener);
         holder.recyclerView.setAdapter(adapter);
     }
 

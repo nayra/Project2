@@ -34,4 +34,6 @@
     <string name="hint_address">العنوان بالتفصيل</string>
     <string name="choose_city">اختر المدينة</string>
     <string name="hint_subject">العنوان</string>
+    <string name="order_details">بيانات الطلب</string>
+    <string name="confirm_order">إتمام الطلب</string>
 </resources>

@@ -42,4 +42,6 @@
     <string name="hint_address">Address Details</string>
     <string name="choose_city">Choose City</string>
     <string name="hint_subject">Subject</string>
+    <string name="order_details">Order details</string>
+    <string name="confirm_order">Confirm Order</string>
 </resources>

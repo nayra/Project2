@@ -113,12 +113,17 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private int cookingMethodID = 0;
 
     private boolean isCooking = true;
-    private String weight = "";
+    private String weightOrAge = "";
+    private String cookingMethod = "";
+    private String cuttingMethod = "";
+    private String packagingMethod = "";
 
     private int category_id = 0, sub_category_id = 0;
     private int price = 0;
     private int cityId = 0;
+    private int productId = 0;
 
+    private String typeName = "";
     //private boolean isCamel = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +148,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private void checkCategory() {
         category_id = getIntent().getIntExtra(Constants.CATEGORY_ID, 0);
         sub_category_id = getIntent().getIntExtra(Constants.SUBCATEGORY_ID, 0);
+        typeName = getIntent().getStringExtra(Constants.TYPE_NAME);
 
         if (category_id == Constants.CAMEL_ID) {
             txtChooseWeight.setText(getResources().getString(R.string.choose_age));
@@ -154,6 +160,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         if (cityId == SharedPrefsUtil.ABUZABI) {
             mainCookingMethodsLinearLayout.setVisibility(View.VISIBLE);
         } else {
+            isCooking = false;
             mainCookingMethodsLinearLayout.setVisibility(View.GONE);
             packagingMethodLinearLayout.setVisibility(View.VISIBLE);
             cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
@@ -166,7 +173,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         productOptions.observe(this, methods -> {
             Log.e("nahmed", methods.toString());
 
-            displayCookingMethods(methods.getCookingMethods());
+            if (cityId == SharedPrefsUtil.ABUZABI) {
+                displayCookingMethods(methods.getCookingMethods());
+            }
             displayPackagingMethods(methods.getPackagingMethods());
             displayCuttingMethods(methods.getCuttingMethods());
 
@@ -180,7 +189,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         weightsRecyclerView.setAdapter(adapter);
 
         if (products.size() > 0) {
+            productId = products.get(0).getProductID();
             price = products.get(0).getPrice();
+            weightOrAge = products.get(0).getName();
             if (cityId == SharedPrefsUtil.ABUZABI && cookRadioButton.isChecked()) {
                 price += 150;
             }
@@ -192,10 +203,19 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private void displayCookingMethods(ArrayList<CookingMethod> cookingMethods) {
         CookingMethodsSpinnerAdapter adapter = new CookingMethodsSpinnerAdapter(this, R.layout.row_spinner, cookingMethods);
         spCookingMethods.setAdapter(adapter);
+        spCookingMethods.setSelection(0);
         spCookingMethods.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 cookingMethodID = cookingMethods.get(i).getCookingMethodID();
+                if (selected_language_index == SharedPrefsUtil.ARABIC) {
+                    cookingMethod = cookingMethods.get(i).getNameAr();
+                    if (cookingMethod == null) {
+                        cookingMethod = cookingMethods.get(i).getName();
+                    }
+                } else {
+                    cookingMethod = cookingMethods.get(i).getName();
+                }
             }
 
             @Override
@@ -208,10 +228,19 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private void displayPackagingMethods(ArrayList<PackagingMethod> packagingMethods) {
         PackagingMethodsSpinnerAdapter adapter = new PackagingMethodsSpinnerAdapter(this, R.layout.row_spinner, packagingMethods);
         spPackagingMethods.setAdapter(adapter);
+        spPackagingMethods.setSelection(0);
         spPackagingMethods.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 packagingMethodID = packagingMethods.get(i).getPackagingMethodID();
+                if (selected_language_index == SharedPrefsUtil.ARABIC) {
+                    packagingMethod = packagingMethods.get(i).getNameAr();
+                    if (packagingMethod == null) {
+                        packagingMethod = packagingMethods.get(i).getName();
+                    }
+                } else {
+                    packagingMethod = packagingMethods.get(i).getName();
+                }
             }
 
             @Override
@@ -224,10 +253,19 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private void displayCuttingMethods(ArrayList<CuttingMethod> cuttingMethods) {
         CuttingMethodsSpinnerAdapter adapter = new CuttingMethodsSpinnerAdapter(this, R.layout.row_spinner, cuttingMethods);
         spCuttingMethods.setAdapter(adapter);
+        spCuttingMethods.setSelection(0);
         spCuttingMethods.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 cuttingMethodID = cuttingMethods.get(i).getCuttingMethodID();
+                if (selected_language_index == SharedPrefsUtil.ARABIC) {
+                    cuttingMethod = cuttingMethods.get(i).getNameAr();
+                    if (cuttingMethod == null) {
+                        cuttingMethod = cuttingMethods.get(i).getName();
+                    }
+                } else {
+                    cuttingMethod = cuttingMethods.get(i).getName();
+                }
             }
 
             @Override
@@ -298,7 +336,12 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         model.setPackagingId(packagingMethodID);
         model.setDoYouWantCooking(isCooking);
         model.setPrice(price);
-        model.setWeight(weight);
+        model.setWeight(weightOrAge);
+        model.setProductId(productId);
+        model.setCookingMethod(cookingMethod);
+        model.setCuttingMethod(cuttingMethod);
+        model.setPackagingMethod(packagingMethod);
+        model.setType(typeName);
         Log.e("nahmed", model.toString());
         Intent intent = new Intent(this, CustomerDetailsActivity.class);
         intent.putExtra(Constants.ORDER_DETAILS, model);
@@ -308,6 +351,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     @Override
     public void OnWeightsRecyclerViewClickListener(int pos) {
         price = productOptions.getValue().getProducts().get(pos).getPrice();
+        productId = productOptions.getValue().getProducts().get(pos).getProductID();
+
+        weightOrAge = productOptions.getValue().getProducts().get(pos).getName();
         if (cookRadioButton.isChecked()) {
             price += 150;
         }
