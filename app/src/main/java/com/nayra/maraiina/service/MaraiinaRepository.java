@@ -143,10 +143,6 @@ public class MaraiinaRepository {
         return data;
     }
 
-    /*
-                orderResultModelLiveData = MaraiinaRepository.postCookedOrder();
-
-     */
     public static LiveData<OrderResultModel> postCookedOrder(String address, int cityId, String phone, String email, String fName,
                                                              String LName, double lat, double lng, int cookingMethodId, int productId) {
         final MutableLiveData<OrderResultModel> result = new MediatorLiveData<>();
