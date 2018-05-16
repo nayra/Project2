@@ -2,6 +2,7 @@ package com.nayra.maraiina.views;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -126,6 +127,10 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
             if (orderResultModel != null) {
                 ProgressDialogUtil.dismiss();
                 Log.e("nahmed", orderResultModel.toString());
+
+                Intent intent = new Intent(this, ReferenceNumberActivity.class);
+                intent.putExtra(Constants.REF_NO, orderResultModel);
+                startActivity(intent);
             }
         });
     }

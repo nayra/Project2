@@ -8,7 +8,8 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:background="@android:color/white"
-    android:layout_margin="@dimen/_5sdp">
+    android:layout_margin="@dimen/_5sdp"
+    android:layoutDirection="inherit">
 
     <ImageView
         android:id="@+id/imgOffer"
@@ -26,11 +27,10 @@
 
         <com.nayra.maraiina.custom_views.MyTextView
             android:id="@+id/tvOffer"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/type_name"
-            android:textColor="@color/green_very_dark"
-            android:padding="@dimen/_10sdp" />
+            android:textColor="@color/green_very_dark" />
 
         <com.nayra.maraiina.custom_views.MyTextView
             android:id="@+id/tvOfferDesc"

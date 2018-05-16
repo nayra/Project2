@@ -6,6 +6,8 @@ import android.os.Parcelable;
 public class CustomerDetails implements Parcelable {
     private String name, email, phone, address;
 
+    private double lat, lng;
+
     public String getName() {
         return name;
     }
@@ -38,6 +40,22 @@ public class CustomerDetails implements Parcelable {
         this.address = address;
     }
 
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
     @Override
     public String toString() {
         return "CustomerDetails{" +
@@ -45,6 +63,8 @@ public class CustomerDetails implements Parcelable {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", lat=" + lat +
+                ", lng=" + lng +
                 '}';
     }
 
@@ -59,6 +79,8 @@ public class CustomerDetails implements Parcelable {
         dest.writeString(this.email);
         dest.writeString(this.phone);
         dest.writeString(this.address);
+        dest.writeDouble(this.lat);
+        dest.writeDouble(this.lng);
     }
 
     public CustomerDetails() {
@@ -69,9 +91,11 @@ public class CustomerDetails implements Parcelable {
         this.email = in.readString();
         this.phone = in.readString();
         this.address = in.readString();
+        this.lat = in.readDouble();
+        this.lng = in.readDouble();
     }
 
-    public static final Parcelable.Creator<CustomerDetails> CREATOR = new Parcelable.Creator<CustomerDetails>() {
+    public static final Creator<CustomerDetails> CREATOR = new Creator<CustomerDetails>() {
         @Override
         public CustomerDetails createFromParcel(Parcel source) {
             return new CustomerDetails(source);

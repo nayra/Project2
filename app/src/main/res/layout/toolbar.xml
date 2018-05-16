@@ -14,7 +14,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/logo_toolbar"
             android:contentDescription="@string/desc"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_14sdp" />
 
     </FrameLayout>
 

@@ -26,4 +26,5 @@ public class Constants {
     public static final int CAMEL_ID = 4;
     public static final String ORDER_DETAILS = "orderDetails";
     public static final String TYPE_NAME = "TypeName";
+    public static final String REF_NO = "reference_number";
 }
