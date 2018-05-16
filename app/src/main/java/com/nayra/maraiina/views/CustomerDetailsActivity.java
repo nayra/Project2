@@ -116,7 +116,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         String address = etxtAddress.getText().toString();
         String email = etxtEmail.getText().toString();
 
-        if (!name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && Utils.isValidEmail(email)) {
+        if (!name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && (email.isEmpty() || Utils.isValidEmail(email))) {
             CustomerDetails customerDetails = new CustomerDetails();
             customerDetails.setName(name);
             customerDetails.setAddress(address);
@@ -139,7 +139,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                 etxtAddress.setError(getResources().getString(R.string.mandatory));
             }
 
-            if (!Utils.isValidEmail(email)) {
+            if (!email.isEmpty() && !Utils.isValidEmail(email)) {
                 etxtEmail.setText(getResources().getString(R.string.not_valid_email));
             }
         }
