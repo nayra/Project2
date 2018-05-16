@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.adapters.CategoriesRecyclerViewAdapter;
@@ -82,7 +81,6 @@ public class HomeFragment extends Fragment implements SubCategoryRecyclerViewCli
 
     @Override
     public void OnRecyclerViewClickListener(int catId, int subCatId, String type) {
-        Toast.makeText(getActivity(), "" + subCatId, Toast.LENGTH_LONG).show();
         mListener.onFragmentInteraction(catId, subCatId, type);
     }
 

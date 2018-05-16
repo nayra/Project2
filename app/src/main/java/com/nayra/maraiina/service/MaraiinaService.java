@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -50,7 +51,8 @@ public interface MaraiinaService {
                                            @Field("PhoneNumber") String phone, @Field("email") String email,
                                            @Field("Firstname") String firstName, @Field("LastName") String lastName,
                                            @Field("Latitude") double lat, @Field("Longitude") double lng,
-                                           @Field("CookingMethodID") int cookingMethodId, @Field("ProductID") int productId);
+                                           @Field("CookingMethodID") int cookingMethodId, @Field("ProductID") int productId,
+                                           @Header("Authorization") String authHeader);
 
     @FormUrlEncoded
     @POST("Orders/")
@@ -59,7 +61,8 @@ public interface MaraiinaService {
                                              @Field("Firstname") String firstName, @Field("LastName") String lastName,
                                              @Field("Latitude") double lat, @Field("Longitude") double lng,
                                              @Field("CuttingMethodID") int cuttingMethodId,
-                                             @Field("PackagingMethodID") int packagingMethodId, @Field("ProductID") int productId);
+                                             @Field("PackagingMethodID") int packagingMethodId, @Field("ProductID") int productId,
+                                             @Header("Authorization") String authHeader);
 
     @GET("offers/")
     Call<ResultOffersModel> getOffers();

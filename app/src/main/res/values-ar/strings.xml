@@ -42,4 +42,7 @@
     <string name="thank_you">شكرا لك</string>
     <string name="not_valid_email">بريد الكتروني غير صحيح</string>
     <string name="wrong_number">رقم غير صحيح</string>
+    <string name="two_hours">ساعتين</string>
+    <string name="four_hours">اربع ساعات</string>
+    <string name="your_ref_no">رقم طلبك هو</string>
 </resources>

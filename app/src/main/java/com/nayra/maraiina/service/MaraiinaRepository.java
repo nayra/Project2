@@ -144,13 +144,13 @@ public class MaraiinaRepository {
     }
 
     public static LiveData<OrderResultModel> postCookedOrder(String address, int cityId, String phone, String email, String fName,
-                                                             String LName, double lat, double lng, int cookingMethodId, int productId) {
+                                                             String LName, double lat, double lng, int cookingMethodId, int productId, String header) {
         final MutableLiveData<OrderResultModel> result = new MediatorLiveData<>();
 
         Context context = MyApplication.getmInstance().getContext();
 
         if (ConnectivityCheck.isConnected(context)) {
-            ApiConnection.getRetrofit().postCookedOrder(address, cityId, phone, email, fName, LName, lat, lng, cookingMethodId, productId).enqueue(new Callback<OrderResultModel>() {
+            ApiConnection.getRetrofit().postCookedOrder(address, cityId, phone, email, fName, LName, lat, lng, cookingMethodId, productId, header).enqueue(new Callback<OrderResultModel>() {
                 @Override
                 public void onResponse(Call<OrderResultModel> call, Response<OrderResultModel> response) {
                     if (response != null && response.body() != null && response.body().getResult() != null) {
@@ -170,14 +170,14 @@ public class MaraiinaRepository {
         return result;
     }
 
-    public static LiveData<OrderResultModel> postUnCookedOrder(String address, int cityId, String phone, String email, String fName, String lName, double lat, double lng, int cuttingId, int packagingId, int productId) {
+    public static LiveData<OrderResultModel> postUnCookedOrder(String address, int cityId, String phone, String email, String fName, String lName, double lat, double lng, int cuttingId, int packagingId, int productId, String header) {
 
         final MutableLiveData<OrderResultModel> result = new MediatorLiveData<>();
 
         Context context = MyApplication.getmInstance().getContext();
 
         if (ConnectivityCheck.isConnected(context)) {
-            ApiConnection.getRetrofit().postUnCookedOrder(address, cityId, phone, email, fName, lName, lat, lng, cuttingId, packagingId, productId).enqueue(new Callback<OrderResultModel>() {
+            ApiConnection.getRetrofit().postUnCookedOrder(address, cityId, phone, email, fName, "", 2.1, 2.3, cuttingId, packagingId, productId, header).enqueue(new Callback<OrderResultModel>() {
                 @Override
                 public void onResponse(Call<OrderResultModel> call, Response<OrderResultModel> response) {
                     if (response != null && response.body() != null && response.body().getResult() != null) {

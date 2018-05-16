@@ -45,8 +45,9 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:textSize="@dimen/_16sdp"
             android:text="@string/choose_country"
-            android:layout_margin="@dimen/_10sdp"
-            android:textColor="@android:color/white"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:textColor="@color/green_very_dark"
             app:layout_constraintTop_toBottomOf="@+id/tv_app_name" />
 
 
@@ -72,8 +73,9 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:textSize="@dimen/_16sdp"
             android:text="@string/choose_city"
-            android:layout_margin="@dimen/_10sdp"
-            android:textColor="@android:color/white"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:textColor="@color/green_very_dark"
             app:layout_constraintTop_toBottomOf="@+id/spCountries" />
 
 

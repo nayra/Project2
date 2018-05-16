@@ -4,8 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".MyApplication"
@@ -17,22 +15,34 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".views.SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.MainActivity" />
-        <activity android:name=".views.ChooseCountryActivity" />
-        <activity android:name=".views.OrderDetailsActivity" />
+        <activity
+            android:name=".views.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.ChooseCountryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.OrderDetailsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".views.CustomerDetailsActivity"
             android:label="@string/title_activity_customer_details"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".views.ReviewOrderDetailsActivity" />
-        <activity android:name=".views.ReferenceNumberActivity"></activity>
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.ReviewOrderDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.ReferenceNumberActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

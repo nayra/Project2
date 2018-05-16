@@ -15,6 +15,9 @@ public class CategoryModel {
     @SerializedName("Name")
     @Expose
     private String name;
+    @SerializedName("NameAr")
+    @Expose
+    private String nameAr;
     @SerializedName("ImageUrl")
     @Expose
     private String imageUrl;
@@ -106,12 +109,21 @@ public class CategoryModel {
         this.products = products;
     }
 
+    public String getNameAr() {
+        return nameAr;
+    }
+
+    public void setNameAr(String nameAr) {
+        this.nameAr = nameAr;
+    }
+
     @Override
     public String toString() {
         return "CategoryModel{" +
                 "categoryID=" + categoryID +
                 ", parentID='" + parentID + '\'' +
                 ", name='" + name + '\'' +
+                ", nameAr='" + nameAr + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", subCategory=" + subCategory +
                 ", cuttingMethods=" + cuttingMethods +

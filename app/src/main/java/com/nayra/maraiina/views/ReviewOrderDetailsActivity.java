@@ -13,6 +13,7 @@ import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.model.OrderResultModel;
 import com.nayra.maraiina.util.ProgressDialogUtil;
+import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
 import com.nayra.maraiina.viewmodels.SendOrderDetailsViewModel;
 
@@ -85,6 +86,13 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
 
         txtTotalPriceValue.setText(String.valueOf(orderDetailsModel.getPrice()));
 
+        int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
+        if (cityId == SharedPrefsUtil.ABUZABI) {
+            txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
+        } else {
+            txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
+        }
+
         String desc = orderDetailsModel.getType() + " ";
 
         if (orderDetailsModel.isDoYouWantCooking()) {
@@ -121,7 +129,7 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
     void confirmOrder() {
         ProgressDialogUtil.show(this);
         SendOrderDetailsViewModel _viewModel = ViewModelProviders.of(this).get(SendOrderDetailsViewModel.class);
-        LiveData<OrderResultModel> orderResultModelLiveData = _viewModel.postOrdersDetails(orderDetailsModel);
+        LiveData<OrderResultModel> orderResultModelLiveData = _viewModel.postOrdersDetails(orderDetailsModel, Constants.auth);
         orderResultModelLiveData.observe(this, orderResultModel -> {
 
             if (orderResultModel != null) {
@@ -129,9 +137,12 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
                 Log.e("nahmed", orderResultModel.toString());
 
                 Intent intent = new Intent(this, ReferenceNumberActivity.class);
-                intent.putExtra(Constants.REF_NO, orderResultModel);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra(Constants.REF_NO, orderResultModel.getResult());
                 startActivity(intent);
+                finish();
             }
         });
     }
+
 }

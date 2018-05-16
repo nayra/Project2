@@ -49,11 +49,8 @@ public class CookingMethodsSpinnerAdapter extends ArrayAdapter<CookingMethod> {
             names.setText(cookingMethodsList.get(position).getName());
         } else {
             String arName = cookingMethodsList.get(position).getNameAr();
-            if (arName != null && arName.isEmpty())
-                names.setText(arName);
-            else {
-                names.setText(cookingMethodsList.get(position).getName());
-            }
+            names.setText(arName);
+
             Utils.setTypeFace(names, Constants.KUFI_REGULAR);
         }
 
@@ -71,11 +68,8 @@ public class CookingMethodsSpinnerAdapter extends ArrayAdapter<CookingMethod> {
             names.setText(cookingMethodsList.get(position).getName());
         } else {
             String arName = cookingMethodsList.get(position).getNameAr();
-            if (arName != null && arName.isEmpty())
-                names.setText(arName);
-            else {
-                names.setText(cookingMethodsList.get(position).getName());
-            }
+            names.setText(arName);
+
             Utils.setTypeFace(names, Constants.KUFI_REGULAR);
         }
 

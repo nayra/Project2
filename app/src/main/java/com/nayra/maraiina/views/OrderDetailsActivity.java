@@ -157,13 +157,15 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
     private void showOrHideCookingOption() {
         cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
-        if (cityId == SharedPrefsUtil.ABUZABI) {
+        if (cityId == SharedPrefsUtil.ABUZABI && category_id != Constants.CAMEL_ID) {
             mainCookingMethodsLinearLayout.setVisibility(View.VISIBLE);
+            txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
         } else {
             isCooking = false;
             mainCookingMethodsLinearLayout.setVisibility(View.GONE);
             packagingMethodLinearLayout.setVisibility(View.VISIBLE);
             cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
+            txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
         }
     }
 
@@ -191,7 +193,11 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         if (products.size() > 0) {
             productId = products.get(0).getProductID();
             price = products.get(0).getPrice();
-            weightOrAge = products.get(0).getName();
+            if (selected_language_index == SharedPrefsUtil.ENGLISH) {
+                weightOrAge = products.get(0).getName();
+            } else {
+                weightOrAge = products.get(0).getDescription();
+            }
             if (cityId == SharedPrefsUtil.ABUZABI && cookRadioButton.isChecked()) {
                 price += 150;
             }
@@ -210,9 +216,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                 cookingMethodID = cookingMethods.get(i).getCookingMethodID();
                 if (selected_language_index == SharedPrefsUtil.ARABIC) {
                     cookingMethod = cookingMethods.get(i).getNameAr();
-                    if (cookingMethod == null) {
-                        cookingMethod = cookingMethods.get(i).getName();
-                    }
                 } else {
                     cookingMethod = cookingMethods.get(i).getName();
                 }
@@ -235,9 +238,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                 packagingMethodID = packagingMethods.get(i).getPackagingMethodID();
                 if (selected_language_index == SharedPrefsUtil.ARABIC) {
                     packagingMethod = packagingMethods.get(i).getNameAr();
-                    if (packagingMethod == null) {
-                        packagingMethod = packagingMethods.get(i).getName();
-                    }
                 } else {
                     packagingMethod = packagingMethods.get(i).getName();
                 }
@@ -260,9 +260,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                 cuttingMethodID = cuttingMethods.get(i).getCuttingMethodID();
                 if (selected_language_index == SharedPrefsUtil.ARABIC) {
                     cuttingMethod = cuttingMethods.get(i).getNameAr();
-                    if (cuttingMethod == null) {
-                        cuttingMethod = cuttingMethods.get(i).getName();
-                    }
                 } else {
                     cuttingMethod = cuttingMethods.get(i).getName();
                 }

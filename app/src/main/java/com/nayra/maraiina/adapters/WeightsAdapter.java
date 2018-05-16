@@ -45,14 +45,17 @@ public class WeightsAdapter extends RecyclerView.Adapter<WeightsAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String weight = weightsList.get(position).getName();
+        String weight;
         if (selected_weight == position) {
             holder.title.setTextColor(ContextCompat.getColor(context, R.color.grey_dark));
         } else {
             holder.title.setTextColor(ContextCompat.getColor(context, R.color.grey));
         }
 
-        if (selected_language_index == SharedPrefsUtil.ARABIC) {
+        if (selected_language_index == SharedPrefsUtil.ENGLISH) {
+            weight = weightsList.get(position).getName();
+        } else {
+            weight = weightsList.get(position).getDescription();
             Utils.setTypeFace(holder.title, Constants.KUFI_BOLD_font);
         }
 

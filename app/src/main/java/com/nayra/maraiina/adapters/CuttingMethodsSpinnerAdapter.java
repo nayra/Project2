@@ -49,11 +49,8 @@ public class CuttingMethodsSpinnerAdapter extends ArrayAdapter<CuttingMethod> {
             names.setText(cuttingMethodsList.get(position).getName());
         } else {
             String arName = cuttingMethodsList.get(position).getNameAr();
-            if (arName != null && arName.isEmpty())
-                names.setText(arName);
-            else {
-                names.setText(cuttingMethodsList.get(position).getName());
-            }
+            names.setText(arName);
+
             Utils.setTypeFace(names, Constants.KUFI_REGULAR);
         }
 
@@ -71,11 +68,8 @@ public class CuttingMethodsSpinnerAdapter extends ArrayAdapter<CuttingMethod> {
             names.setText(cuttingMethodsList.get(position).getName());
         } else {
             String arName = cuttingMethodsList.get(position).getNameAr();
-            if (arName != null && arName.isEmpty())
-                names.setText(arName);
-            else {
-                names.setText(cuttingMethodsList.get(position).getName());
-            }
+            names.setText(arName);
+
             Utils.setTypeFace(names, Constants.KUFI_REGULAR);
         }
 

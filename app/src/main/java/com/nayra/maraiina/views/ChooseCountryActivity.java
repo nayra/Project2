@@ -133,7 +133,8 @@ public class ChooseCountryActivity extends AppCompatActivity {
             Log.d(TAG, countries.toString());
             SpinnerCountryCustomAdapter countryCustomAdapter = new SpinnerCountryCustomAdapter(this, R.layout.row_spinner, countries);
             countrySpinner.setAdapter(countryCustomAdapter);
-
+            int selectedCountry = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_COUNTRY_INDEX);
+            countrySpinner.setSelection(selectedCountry);
             countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -141,10 +142,11 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
                     // if(lastSelectedCountryId != countryId)
                     {
-
                         lastSelectedCountryId = countryId;
 
                         SharedPrefsUtil.setInteger(SharedPrefsUtil.SELECTED_COUNTRY_ID, countryId);
+                        SharedPrefsUtil.setInteger(SharedPrefsUtil.SELECTED_COUNTRY_INDEX, i);
+
                         fillCitiesSpinner();
                     }
                 }
@@ -173,11 +175,15 @@ public class ChooseCountryActivity extends AppCompatActivity {
             SpinnerCityAdapter countryCustomAdapter = new SpinnerCityAdapter(this, R.layout.row_spinner, cities);
             citySpinner.setAdapter(countryCustomAdapter);
 
+            int selectedCity = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_INDEX);
+            citySpinner.setSelection(selectedCity);
+
             citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     int cityId = cities.get(i).getCityID();
                     SharedPrefsUtil.setInteger(SharedPrefsUtil.SELECTED_CITY_ID, cityId);
+                    SharedPrefsUtil.setInteger(SharedPrefsUtil.SELECTED_CITY_INDEX, i);
                 }
 
                 @Override

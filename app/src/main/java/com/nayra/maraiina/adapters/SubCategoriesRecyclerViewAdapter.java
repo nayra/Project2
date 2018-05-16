@@ -11,6 +11,7 @@ import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.interfaces.SubCategoryRecyclerViewClickListener;
 import com.nayra.maraiina.model.CategoryModel;
+import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,11 +25,14 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
     private SubCategoryRecyclerViewClickListener listener;
 
     private String parentCategory = "";
+    private int selected_language_index = 0;
 
     public SubCategoriesRecyclerViewAdapter(String catName, ArrayList<CategoryModel> categoriesList, SubCategoryRecyclerViewClickListener listener) {
         this.categoriesList = categoriesList;
         this.listener = listener;
         parentCategory = catName;
+
+        selected_language_index = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_LANGUAGE_INDEX);
     }
 
     @NonNull
@@ -41,7 +45,11 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
     @Override
     public void onBindViewHolder(@NonNull SubCategoriesRecyclerViewAdapter.MyViewHolder holder, int position) {
         CategoryModel categoryModel = categoriesList.get(position);
-        holder.title.setText(categoryModel.getName());
+        if (selected_language_index == SharedPrefsUtil.ARABIC) {
+            holder.title.setText(categoryModel.getNameAr());
+        } else {
+            holder.title.setText(categoryModel.getName());
+        }
 
         String img_url = categoryModel.getImageUrl();
         if (img_url != null && !img_url.isEmpty())
@@ -69,7 +77,13 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
                 int pos = getAdapterPosition();
                 int subCatId = categoriesList.get(pos).getCategoryID();
                 int catId = Integer.parseInt(categoriesList.get(pos).getParentID());
-                String fullCategoryName = parentCategory + " " + categoriesList.get(pos).getName();
+                String subType;
+                if (selected_language_index == SharedPrefsUtil.ARABIC) {
+                    subType = categoriesList.get(pos).getNameAr();
+                } else {
+                    subType = categoriesList.get(pos).getName();
+                }
+                String fullCategoryName = parentCategory + " " + subType;
                 listener.OnRecyclerViewClickListener(catId, subCatId, fullCategoryName);
             });
         }

@@ -10,6 +10,7 @@ import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.interfaces.SubCategoryRecyclerViewClickListener;
 import com.nayra.maraiina.model.CategoryModel;
+import com.nayra.maraiina.util.SharedPrefsUtil;
 
 import java.util.ArrayList;
 
@@ -18,13 +19,15 @@ import butterknife.ButterKnife;
 
 public class CategoriesRecyclerViewAdapter extends RecyclerView.Adapter<CategoriesRecyclerViewAdapter.MyViewHolder> {
     private ArrayList<CategoryModel> categoriesList;
-    private int selected_weight = 0;
+    private int selected_lang_index = 0;
 
     private SubCategoryRecyclerViewClickListener listener;
 
     public CategoriesRecyclerViewAdapter(ArrayList<CategoryModel> weightsList, SubCategoryRecyclerViewClickListener listener) {
         this.categoriesList = weightsList;
         this.listener = listener;
+
+        selected_lang_index = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_LANGUAGE_INDEX);
     }
 
     @NonNull
@@ -37,9 +40,15 @@ public class CategoriesRecyclerViewAdapter extends RecyclerView.Adapter<Categori
     @Override
     public void onBindViewHolder(@NonNull CategoriesRecyclerViewAdapter.MyViewHolder holder, int position) {
         CategoryModel categoryModel = categoriesList.get(position);
-        holder.title.setText(categoryModel.getName());
+        String category;
+        if (selected_lang_index == SharedPrefsUtil.ARABIC) {
+            category = categoryModel.getNameAr();
+        } else {
+            category = categoryModel.getName();
+        }
+        holder.title.setText(category);
 
-        SubCategoriesRecyclerViewAdapter adapter = new SubCategoriesRecyclerViewAdapter(categoryModel.getName(), categoryModel.getSubCategory(), listener);
+        SubCategoriesRecyclerViewAdapter adapter = new SubCategoriesRecyclerViewAdapter(category, categoryModel.getSubCategory(), listener);
         holder.recyclerView.setAdapter(adapter);
     }
 
@@ -59,7 +68,6 @@ public class CategoriesRecyclerViewAdapter extends RecyclerView.Adapter<Categori
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(view1 -> {
-                selected_weight = getAdapterPosition();
                 notifyDataSetChanged();
             });
         }

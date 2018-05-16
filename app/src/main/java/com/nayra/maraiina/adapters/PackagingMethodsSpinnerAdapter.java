@@ -49,11 +49,8 @@ public class PackagingMethodsSpinnerAdapter extends ArrayAdapter<PackagingMethod
             names.setText(packagingMethodsList.get(position).getName());
         } else {
             String arName = packagingMethodsList.get(position).getNameAr();
-            if (arName != null && arName.isEmpty())
-                names.setText(arName);
-            else {
-                names.setText(packagingMethodsList.get(position).getName());
-            }
+            names.setText(arName);
+
             Utils.setTypeFace(names, Constants.KUFI_REGULAR);
         }
 
@@ -71,11 +68,8 @@ public class PackagingMethodsSpinnerAdapter extends ArrayAdapter<PackagingMethod
             names.setText(packagingMethodsList.get(position).getName());
         } else {
             String arName = packagingMethodsList.get(position).getNameAr();
-            if (arName != null && arName.isEmpty())
-                names.setText(arName);
-            else {
-                names.setText(packagingMethodsList.get(position).getName());
-            }
+            names.setText(arName);
+
             Utils.setTypeFace(names, Constants.KUFI_REGULAR);
         }
 

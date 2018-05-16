@@ -26,7 +26,7 @@ public class MyTextView extends android.support.v7.widget.AppCompatTextView {
     }
 
     private void init() {
-        final Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/comic_sans.ttf");
+        final Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/DroidKufi-Regular.ttf");
         setTypeface(typeface);
     }
 }

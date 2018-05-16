@@ -26,7 +26,7 @@ public class MySwitch extends Switch {
     }
 
     private void init() {
-        final Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/comic_sans.ttf");
+        final Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/DroidKufi-Regular.ttf");
         setTypeface(typeface);
     }
 }
