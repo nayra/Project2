@@ -40,4 +40,5 @@
     <string name="send">إرسال</string>
     <string name="drawer_item_complains_and_suggestions">الاقتراحات</string>
     <string name="thank_you">شكرا لك</string>
+    <string name="not_valid_email">بريد الكتروني غير صحيح</string>
 </resources>

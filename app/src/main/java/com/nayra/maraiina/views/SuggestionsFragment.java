@@ -83,7 +83,7 @@ public class SuggestionsFragment extends Fragment {
         String subject = etSubject.getText().toString();
 
 
-        if (!name.isEmpty() && !phone.isEmpty() && !email.isEmpty() && !desc.isEmpty() && !subject.isEmpty()) {
+        if (!name.isEmpty() && !phone.isEmpty() && !email.isEmpty() && !desc.isEmpty() && !subject.isEmpty() && Utils.isValidEmail(email)) {
 
 
             SuggestionModel suggestionModel = new SuggestionModel();
@@ -116,8 +116,8 @@ public class SuggestionsFragment extends Fragment {
             if (subject.isEmpty()) {
                 etSubject.setError(getResources().getString(R.string.mandatory));
             }
-            if (email.isEmpty()) {
-                etEmail.setError(getResources().getString(R.string.mandatory));
+            if (!Utils.isValidEmail(email)) {
+                etEmail.setText(getResources().getString(R.string.not_valid_email));
             }
 
         }
