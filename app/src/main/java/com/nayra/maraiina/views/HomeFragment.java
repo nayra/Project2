@@ -1,9 +1,11 @@
 package com.nayra.maraiina.views;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -51,13 +53,15 @@ public class HomeFragment extends Fragment implements SubCategoryRecyclerViewCli
         ProgressDialogUtil.show(getActivity());
         GetCategoriesViewModel getCategoriesViewModel = ViewModelProviders.of(this).get(GetCategoriesViewModel.class);
         categoryModelArrayList = getCategoriesViewModel.getCategoriesArrayListLiveData();
-        categoryModelArrayList.observe(this, categories -> {
-
-            if (categories != null && categories.size() > 0) {
-                ProgressDialogUtil.dismiss();
-                Log.e("nahmed", categories.toString());
-                CategoriesRecyclerViewAdapter adapter = new CategoriesRecyclerViewAdapter(categories, this);
-                main_recycler_view.setAdapter(adapter);
+        categoryModelArrayList.observe(this, new Observer<ArrayList<CategoryModel>>() {
+            @Override
+            public void onChanged(@Nullable ArrayList<CategoryModel> categories) {
+                if (categories != null && categories.size() > 0) {
+                    ProgressDialogUtil.dismiss();
+                    Log.e("nahmed", categories.toString());
+                    CategoriesRecyclerViewAdapter adapter = new CategoriesRecyclerViewAdapter(categories, HomeFragment.this);
+                    main_recycler_view.setAdapter(adapter);
+                }
             }
         });
     }

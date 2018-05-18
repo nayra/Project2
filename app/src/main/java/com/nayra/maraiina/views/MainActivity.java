@@ -101,6 +101,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 FragmentUtils.replaceFragment(R.id.frame_container, this, suggestionsFragment, SuggestionsFragment.class.getSimpleName());
                 break;
 
+            case 4:
+                AboutFragment aboutFragment = new AboutFragment();
+                FragmentUtils.replaceFragment(R.id.frame_container, this, aboutFragment, AboutFragment.class.getSimpleName());
+                break;
             default:
                 HomeFragment defaultFragment = new HomeFragment();
                 FragmentUtils.replaceFragment(R.id.frame_container, this, defaultFragment, HomeFragment.class.getSimpleName());
@@ -116,9 +120,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         final CustomDrawerItem item3 = initMenuItem(R.string.drawer_item_complains_and_suggestions, R.color.green_very_dark, 3);
 
+        final CustomDrawerItem item4 = initMenuItem(R.string.drawer_item_about, R.color.green_very_dark, 4);
+
         drawerItems[0] = item1;
         drawerItems[1] = item2;
         drawerItems[2] = item3;
+        drawerItems[3] = item4;
 
         lastSelectedItem = item1;
 

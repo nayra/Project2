@@ -2,8 +2,10 @@ package com.nayra.maraiina.views;
 
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -49,13 +51,15 @@ public class OffersFragment extends Fragment {
         ProgressDialogUtil.show(getActivity());
         GetOffersViewModel _ViewModel = ViewModelProviders.of(this).get(GetOffersViewModel.class);
         LiveData<ArrayList<OffersModel>> modelOffers = _ViewModel.getOffers();
-        modelOffers.observe(this, offers -> {
-
-            if (offers != null && offers.size() > 0) {
-                ProgressDialogUtil.dismiss();
-                Log.e("nahmed", offers.toString());
-                OffersRecyclerViewAdapter adapter = new OffersRecyclerViewAdapter(offers);
-                recyclerView.setAdapter(adapter);
+        modelOffers.observe(this, new Observer<ArrayList<OffersModel>>() {
+            @Override
+            public void onChanged(@Nullable ArrayList<OffersModel> offers) {
+                if (offers != null && offers.size() > 0) {
+                    ProgressDialogUtil.dismiss();
+                    Log.e("nahmed", offers.toString());
+                    OffersRecyclerViewAdapter adapter = new OffersRecyclerViewAdapter(offers);
+                    recyclerView.setAdapter(adapter);
+                }
             }
         });
     }

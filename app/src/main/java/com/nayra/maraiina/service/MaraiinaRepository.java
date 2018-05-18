@@ -228,8 +228,8 @@ public class MaraiinaRepository {
         return result;
     }
 
-    public static LiveData<Boolean> sendSuggestion(SuggestionModel model) {
-        MutableLiveData<Boolean> isSent = new MediatorLiveData<>();
+    public static LiveData<Boolean> sendSuggestion(final SuggestionModel model) {
+        final MutableLiveData<Boolean> isSent = new MediatorLiveData<>();
 
         Context context = MyApplication.getmInstance().getContext();
 

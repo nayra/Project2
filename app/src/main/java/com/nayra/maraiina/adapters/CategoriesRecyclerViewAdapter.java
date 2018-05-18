@@ -67,8 +67,12 @@ public class CategoriesRecyclerViewAdapter extends RecyclerView.Adapter<Categori
         public MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            view.setOnClickListener(view1 -> {
-                notifyDataSetChanged();
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    notifyDataSetChanged();
+                }
             });
         }
     }

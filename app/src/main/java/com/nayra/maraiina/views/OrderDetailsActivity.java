@@ -1,9 +1,11 @@
 package com.nayra.maraiina.views;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -172,16 +174,19 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private void getProductsDetails() {
         ProductDetailsViewModel productDetailsViewModel = ViewModelProviders.of(this).get(ProductDetailsViewModel.class);
         productOptions = productDetailsViewModel.getMethodsModelLiveData(sub_category_id);
-        productOptions.observe(this, methods -> {
-            Log.e("nahmed", methods.toString());
+        productOptions.observe(this, new Observer<Result>() {
+            @Override
+            public void onChanged(@Nullable Result methods) {
+                Log.e("nahmed", methods.toString());
 
-            if (cityId == SharedPrefsUtil.ABUZABI) {
-                displayCookingMethods(methods.getCookingMethods());
+                if (cityId == SharedPrefsUtil.ABUZABI) {
+                    displayCookingMethods(methods.getCookingMethods());
+                }
+                displayPackagingMethods(methods.getPackagingMethods());
+                displayCuttingMethods(methods.getCuttingMethods());
+
+                displayWeights(methods.getProducts());
             }
-            displayPackagingMethods(methods.getPackagingMethods());
-            displayCuttingMethods(methods.getCuttingMethods());
-
-            displayWeights(methods.getProducts());
         });
     }
 
@@ -206,7 +211,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
     }
 
-    private void displayCookingMethods(ArrayList<CookingMethod> cookingMethods) {
+    private void displayCookingMethods(final ArrayList<CookingMethod> cookingMethods) {
         CookingMethodsSpinnerAdapter adapter = new CookingMethodsSpinnerAdapter(this, R.layout.row_spinner, cookingMethods);
         spCookingMethods.setAdapter(adapter);
         spCookingMethods.setSelection(0);
@@ -228,7 +233,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         });
     }
 
-    private void displayPackagingMethods(ArrayList<PackagingMethod> packagingMethods) {
+    private void displayPackagingMethods(final ArrayList<PackagingMethod> packagingMethods) {
         PackagingMethodsSpinnerAdapter adapter = new PackagingMethodsSpinnerAdapter(this, R.layout.row_spinner, packagingMethods);
         spPackagingMethods.setAdapter(adapter);
         spPackagingMethods.setSelection(0);
@@ -250,7 +255,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         });
     }
 
-    private void displayCuttingMethods(ArrayList<CuttingMethod> cuttingMethods) {
+    private void displayCuttingMethods(final ArrayList<CuttingMethod> cuttingMethods) {
         CuttingMethodsSpinnerAdapter adapter = new CuttingMethodsSpinnerAdapter(this, R.layout.row_spinner, cuttingMethods);
         spCuttingMethods.setAdapter(adapter);
         spCuttingMethods.setSelection(0);

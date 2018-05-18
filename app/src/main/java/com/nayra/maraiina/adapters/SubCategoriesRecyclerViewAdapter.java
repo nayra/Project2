@@ -73,18 +73,21 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
         public MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            view.setOnClickListener(view1 -> {
-                int pos = getAdapterPosition();
-                int subCatId = categoriesList.get(pos).getCategoryID();
-                int catId = Integer.parseInt(categoriesList.get(pos).getParentID());
-                String subType;
-                if (selected_language_index == SharedPrefsUtil.ARABIC) {
-                    subType = categoriesList.get(pos).getNameAr();
-                } else {
-                    subType = categoriesList.get(pos).getName();
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    int subCatId = categoriesList.get(pos).getCategoryID();
+                    int catId = Integer.parseInt(categoriesList.get(pos).getParentID());
+                    String subType;
+                    if (selected_language_index == SharedPrefsUtil.ARABIC) {
+                        subType = categoriesList.get(pos).getNameAr();
+                    } else {
+                        subType = categoriesList.get(pos).getName();
+                    }
+                    String fullCategoryName = parentCategory + " " + subType;
+                    listener.OnRecyclerViewClickListener(catId, subCatId, fullCategoryName);
                 }
-                String fullCategoryName = parentCategory + " " + subType;
-                listener.OnRecyclerViewClickListener(catId, subCatId, fullCategoryName);
             });
         }
     }

@@ -34,7 +34,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".views.CustomerDetailsActivity"
-            android:label="@string/title_activity_customer_details"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait" />
         <activity

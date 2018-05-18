@@ -53,7 +53,6 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
     private int selectedLanguage;
     private LiveData<ArrayList<CityModel>> citiesArray;
-    private int lastSelectedCountryId = 0;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

@@ -1,9 +1,11 @@
 package com.nayra.maraiina.views;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -130,17 +132,19 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
         ProgressDialogUtil.show(this);
         SendOrderDetailsViewModel _viewModel = ViewModelProviders.of(this).get(SendOrderDetailsViewModel.class);
         LiveData<OrderResultModel> orderResultModelLiveData = _viewModel.postOrdersDetails(orderDetailsModel, Constants.auth);
-        orderResultModelLiveData.observe(this, orderResultModel -> {
+        orderResultModelLiveData.observe(this, new Observer<OrderResultModel>() {
+            @Override
+            public void onChanged(@Nullable OrderResultModel orderResultModel) {
+                if (orderResultModel != null) {
+                    ProgressDialogUtil.dismiss();
+                    Log.e("nahmed", orderResultModel.toString());
 
-            if (orderResultModel != null) {
-                ProgressDialogUtil.dismiss();
-                Log.e("nahmed", orderResultModel.toString());
-
-                Intent intent = new Intent(this, ReferenceNumberActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.putExtra(Constants.REF_NO, orderResultModel.getResult());
-                startActivity(intent);
-                finish();
+                    Intent intent = new Intent(ReviewOrderDetailsActivity.this, ReferenceNumberActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra(Constants.REF_NO, orderResultModel.getResult());
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }

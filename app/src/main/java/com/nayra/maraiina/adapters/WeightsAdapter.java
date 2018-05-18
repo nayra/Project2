@@ -75,10 +75,13 @@ public class WeightsAdapter extends RecyclerView.Adapter<WeightsAdapter.MyViewHo
         public MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            view.setOnClickListener(view1 -> {
-                selected_weight = getAdapterPosition();
-                weightsRecyclerViewClickListener.OnWeightsRecyclerViewClickListener(selected_weight);
-                notifyDataSetChanged();
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selected_weight = getAdapterPosition();
+                    weightsRecyclerViewClickListener.OnWeightsRecyclerViewClickListener(selected_weight);
+                    notifyDataSetChanged();
+                }
             });
         }
     }
