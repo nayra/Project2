@@ -14,7 +14,6 @@ import android.widget.RadioGroup;
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.adapters.SpinnerCityAdapter;
-import com.nayra.maraiina.adapters.SpinnerCountryCustomAdapter;
 import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.model.CityModel;
 import com.nayra.maraiina.model.CountryModel;
@@ -23,7 +22,6 @@ import com.nayra.maraiina.util.ProgressDialogUtil;
 import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
 import com.nayra.maraiina.viewmodels.GetCitiesViewModel;
-import com.nayra.maraiina.viewmodels.GetCountriesViewModel;
 
 import java.util.ArrayList;
 
@@ -35,8 +33,6 @@ import info.hoang8f.android.segmented.SegmentedGroup;
 public class ChooseCountryActivity extends AppCompatActivity {
 
     private static final String TAG = ChooseCountryActivity.class.getSimpleName();
-    @BindView(R.id.spCountries)
-    AppCompatSpinner countrySpinner;
 
     @BindView(R.id.spCities)
     AppCompatSpinner citySpinner;
@@ -49,12 +45,6 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
     @BindView(R.id.rb_en)
     RadioButton englishRadioButton;
-
-    @BindView(R.id.tv_welcome)
-    MyTextView txtWelcome;
-
-    @BindView(R.id.tv_choose_country)
-    MyTextView txtChooseCountry;
 
     @BindView(R.id.tv_choose_city)
     MyTextView txtChooseCity;
@@ -76,15 +66,13 @@ public class ChooseCountryActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setTypeFace();
-        fillCountriesSpinner();
+        fillCitiesSpinner();
 
         initLang();
     }
 
     private void setTypeFace() {
         if (selectedLanguage == 1) {
-            Utils.setTypeFace(txtWelcome, Constants.KUFI_REGULAR);
-            Utils.setTypeFace(txtChooseCountry, Constants.KUFI_REGULAR);
             Utils.setTypeFace(txtChooseCity, Constants.KUFI_REGULAR);
         }
     }
@@ -115,49 +103,6 @@ public class ChooseCountryActivity extends AppCompatActivity {
         });
     }
 
-
-
-    private void fillCountriesSpinner() {
-
-        ProgressDialogUtil.show(this);
-        GetCountriesViewModel getCountriesViewModel = ViewModelProviders.of(this).get(GetCountriesViewModel.class);
-        countryModels = getCountriesViewModel.getCountryArrayListLiveData();
-        countryModels.observe(this, countries -> {
-            displayCountries(countries);
-        });
-    }
-
-    private void displayCountries(ArrayList<CountryModel> countries) {
-        if (countries != null) {
-            ProgressDialogUtil.dismiss();
-            Log.d(TAG, countries.toString());
-            SpinnerCountryCustomAdapter countryCustomAdapter = new SpinnerCountryCustomAdapter(this, R.layout.row_spinner, countries);
-            countrySpinner.setAdapter(countryCustomAdapter);
-            int selectedCountry = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_COUNTRY_INDEX);
-            countrySpinner.setSelection(selectedCountry);
-            countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    int countryId = countries.get(i).getCountryID();
-
-                    // if(lastSelectedCountryId != countryId)
-                    {
-                        lastSelectedCountryId = countryId;
-
-                        SharedPrefsUtil.setInteger(SharedPrefsUtil.SELECTED_COUNTRY_ID, countryId);
-                        SharedPrefsUtil.setInteger(SharedPrefsUtil.SELECTED_COUNTRY_INDEX, i);
-
-                        fillCitiesSpinner();
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-
-                }
-            });
-        }
-    }
 
     private void fillCitiesSpinner() {
         ProgressDialogUtil.show(this);
