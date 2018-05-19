@@ -199,6 +199,32 @@
                             android:layout_margin="@dimen/_10sdp"></Spinner>
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearDistributionMethods"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.nayra.maraiina.custom_views.MyTextView
+                            android:id="@+id/tvDistributionMethod"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/distributionMethod"
+                            style="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/grey_dark"
+                            android:layout_margin="@dimen/_10sdp" />
+
+                        <Spinner
+                            android:id="@+id/spDistributionMethods"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/mySpinnerItemStyle"
+                            android:layoutDirection="locale"
+                            android:layout_margin="@dimen/_10sdp"></Spinner>
+
+                    </LinearLayout>
                 </LinearLayout>
 
 
@@ -208,24 +234,29 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:background="@drawable/bg_green_light"
                 android:layout_margin="@dimen/_10sdp">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <com.nayra.maraiina.custom_views.MyTextView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.nayra.maraiina.custom_views.MyBoldTextView
                         android:id="@+id/tv_total_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/total_price"
                         android:textColor="@color/green_very_dark"
                         android:layout_margin="@dimen/_5sdp"
-                        android:textStyle="bold"
-                        style="@style/Base.TextAppearance.AppCompat.Medium" />
+                            android:textStyle="bold" />
 
                     <com.nayra.maraiina.custom_views.MyTextView
                         android:id="@+id/tv_total_price_value"
@@ -236,20 +267,19 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+                    <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.nayra.maraiina.custom_views.MyTextView
+                        <com.nayra.maraiina.custom_views.MyBoldTextView
                         android:id="@+id/tv_delivery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/receive_order_in"
                         android:textColor="@color/green_very_dark"
                         android:layout_margin="@dimen/_5sdp"
-                        android:textStyle="bold"
-                        style="@style/Base.TextAppearance.AppCompat.Medium" />
+                            android:textStyle="bold" />
 
                     <com.nayra.maraiina.custom_views.MyTextView
                         android:id="@+id/tv_delivery_duration"
@@ -259,6 +289,16 @@
                         tools:text="@string/hours_num" />
 
                 </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/img_selected"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/no_image"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp" />
 
             </LinearLayout>
 

@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -33,6 +35,7 @@ import com.nayra.maraiina.model.Result;
 import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
 import com.nayra.maraiina.viewmodels.ProductDetailsViewModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -78,20 +81,17 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     LinearLayout packagingMethodLinearLayout;
 
 
+    @BindView(R.id.linearDistributionMethods)
+    LinearLayout distributionMethodLinearLayout;
+
     @BindView(R.id.rbCook)
     RadioButton cookRadioButton;
 
     @BindView(R.id.rbNoCook)
     RadioButton noCookRadioButton;
 
-    @BindView(R.id.tv_delivery)
-    MyTextView txtDelivery;
-
     @BindView(R.id.tv_delivery_duration)
     MyTextView txtDeliveryDuration;
-
-    @BindView(R.id.tv_total_price)
-    MyTextView txtTotalPrice;
 
     @BindView(R.id.tv_total_price_value)
     MyTextView txtTotalPriceValue;
@@ -104,6 +104,12 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
     @BindView(R.id.spCookingMethods)
     Spinner spCookingMethods;
+
+    @BindView(R.id.spDistributionMethods)
+    Spinner spDistributionMethods;
+
+    @BindView(R.id.img_selected)
+    ImageView imgView;
 
     private int selectedIndex = 0;
 
@@ -126,6 +132,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private int productId = 0;
 
     private String typeName = "";
+    private String distributionMethod = "";
+    private String img_url;
+
     //private boolean isCamel = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,6 +164,12 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         if (category_id == Constants.CAMEL_ID) {
             txtChooseWeight.setText(getResources().getString(R.string.choose_age));
         }
+
+        img_url = getIntent().getStringExtra(Constants.CATEGORY_IMAGE);
+        if (img_url != null && !img_url.isEmpty())
+            Picasso.get().load(img_url).into(imgView);
+        else
+            Picasso.get().load(R.drawable.no_image).into(imgView);
     }
 
     private void showOrHideCookingOption() {
@@ -162,11 +177,18 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         if (cityId == SharedPrefsUtil.ABUZABI && category_id != Constants.CAMEL_ID) {
             mainCookingMethodsLinearLayout.setVisibility(View.VISIBLE);
             txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
+        } else if (category_id == Constants.CAMEL_ID) {
+            distributionMethodLinearLayout.setVisibility(View.GONE);
+            packagingMethodLinearLayout.setVisibility(View.GONE);
+            mainCookingMethodsLinearLayout.setVisibility(View.GONE);
+            cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
+            isCooking = false;
         } else {
             isCooking = false;
             mainCookingMethodsLinearLayout.setVisibility(View.GONE);
             packagingMethodLinearLayout.setVisibility(View.VISIBLE);
             cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
+            distributionMethodLinearLayout.setVisibility(View.VISIBLE);
             txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
         }
     }
@@ -182,10 +204,15 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                 if (cityId == SharedPrefsUtil.ABUZABI) {
                     displayCookingMethods(methods.getCookingMethods());
                 }
-                displayPackagingMethods(methods.getPackagingMethods());
+                if (category_id != Constants.CAMEL_ID) {
+                    displayPackagingMethods(methods.getPackagingMethods());
+                    displayDistributionMethods();
+
+                }
                 displayCuttingMethods(methods.getCuttingMethods());
 
                 displayWeights(methods.getProducts());
+
             }
         });
     }
@@ -277,6 +304,25 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         });
     }
 
+    private void displayDistributionMethods() {
+        final String[] distributionsMethods = getResources().getStringArray(R.array.meetDistributions);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.row_spinner_dark, distributionsMethods);
+        spDistributionMethods.setAdapter(adapter);
+        spDistributionMethods.setSelection(0);
+        spDistributionMethods.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                distributionMethod = distributionsMethods[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
     private void initListeners() {
         cookSegmentedGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -301,6 +347,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                             packagingMethodLinearLayout.setVisibility(View.GONE);
                         }else{*/
                         packagingMethodLinearLayout.setVisibility(View.VISIBLE);
+                        distributionMethodLinearLayout.setVisibility(View.VISIBLE);
 
                         price -= 150;
                         txtTotalPriceValue.setText(String.valueOf(price));
@@ -323,9 +370,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             Utils.setTypeFace(txtPackagingMethod, Constants.KUFI_REGULAR);
             Utils.setTypeFace(cookRadioButton, Constants.KUFI_REGULAR);
             Utils.setTypeFace(noCookRadioButton, Constants.KUFI_REGULAR);
-            Utils.setTypeFace(txtDelivery, Constants.KUFI_BOLD_font);
+            // Utils.setTypeFace(txtDelivery, Constants.KUFI_BOLD_font);
             Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
-            Utils.setTypeFace(txtTotalPrice, Constants.KUFI_BOLD_font);
+            // Utils.setTypeFace(txtTotalPrice, Constants.KUFI_BOLD_font);
             Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);
         }
     }
@@ -344,6 +391,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         model.setCuttingMethod(cuttingMethod);
         model.setPackagingMethod(packagingMethod);
         model.setType(typeName);
+        model.setDistributionMethod(distributionMethod);
+        model.setImg_url(img_url);
+
         Log.e("nahmed", model.toString());
         Intent intent = new Intent(this, CustomerDetailsActivity.class);
         intent.putExtra(Constants.ORDER_DETAILS, model);

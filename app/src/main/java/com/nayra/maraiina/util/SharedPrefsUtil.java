@@ -16,6 +16,7 @@ public class SharedPrefsUtil {
     public static final String SELECTED_CITY_ID = "SELECTED_CITY_ID";
     public static final int ABUZABI = 2;
     public static final String SELECTED_CITY_INDEX = "SELECTED_CITY_INDEX";
+    public static final String SELECTED_LANGUAGE = "SELECTED_LANGUAGE";
 
     private static SharedPreferences prefs;
     private static SharedPreferences.Editor editor;
@@ -24,7 +25,7 @@ public class SharedPrefsUtil {
 
     public static final String SELECTED_COUNTRY_ID = "SELECTED_COUNTRY";
     public static final String SELECTED_COUNTRY_INDEX = "SELECTED_COUNTRY_INDEX";
-    public static final String SELECTED_LANGUAGE_INDEX = "SELECTED_LANGUAGE";
+    public static final String SELECTED_LANGUAGE_INDEX = "SELECTED_LANGUAGE_INDEX";
     public static final String IS_LOGGED_IN = "IS_LOGGED_IN";
 
     public static void init(final Context context) {

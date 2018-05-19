@@ -7,6 +7,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
@@ -16,6 +17,7 @@ import com.nayra.maraiina.model.CustomerDetails;
 import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,20 +53,17 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tvDeliveryDetails)
     MyTextView txtDeliveryDetails;
 
-    @BindView(R.id.tv_delivery)
-    MyTextView txtDelivery;
-
     @BindView(R.id.tv_delivery_duration)
     MyTextView txtDeliveryDuration;
-
-    @BindView(R.id.tv_total_price)
-    MyTextView txtTotalPrice;
 
     @BindView(R.id.tv_total_price_value)
     MyTextView txtTotalPriceValue;
 
     @BindView(R.id.btContinue)
     MyButton continueMyButton;
+
+    @BindView(R.id.img_selected_customer)
+    ImageView imgView;
 
     private OrderDetailsModel orderDetailsModel;
 
@@ -92,6 +91,13 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         } else {
             txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
         }
+
+        String img_url = orderDetailsModel.getImg_url();
+
+        if (img_url != null && !img_url.isEmpty())
+            Picasso.get().load(img_url).into(imgView);
+        else
+            Picasso.get().load(R.drawable.no_image).into(imgView);
     }
 
     private void setTypeFace() {
@@ -108,9 +114,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
             Utils.setTypeFace(txtDeliveryDetails, Constants.KUFI_REGULAR);
 
-            Utils.setTypeFace(txtDelivery, Constants.KUFI_BOLD_font);
             Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
-            Utils.setTypeFace(txtTotalPrice, Constants.KUFI_BOLD_font);
             Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);
 
             //  Utils.setTypeFace(continueMyButton, Constants.KUFI_REGULAR);
@@ -124,7 +128,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         String address = etxtAddress.getText().toString();
         String email = etxtEmail.getText().toString();
 
-        if (!name.isEmpty() && !phone.isEmpty() && phone.length() == 12 && !address.isEmpty() && (email.isEmpty() || Utils.isValidEmail(email))) {
+        if (!name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && (email.isEmpty() || Utils.isValidEmail(email))) {
             CustomerDetails customerDetails = new CustomerDetails();
             customerDetails.setName(name);
             customerDetails.setAddress(address);
@@ -146,9 +150,8 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             }
             if (phone.isEmpty()) {
                 etxtPhone.setError(getResources().getString(R.string.mandatory));
-            } else if (phone.length() != 12) {
-                etxtPhone.setError(getResources().getString(R.string.wrong_number));
             }
+
             if (address.isEmpty()) {
                 etxtAddress.setError(getResources().getString(R.string.mandatory));
             }

@@ -4,13 +4,14 @@
     android:layout_height="match_parent"
     android:background="@color/green_very_dark"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:paddingTop="@dimen/_10sdp">
 
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo_home"
+        android:src="@drawable/logo_toolbar"
         android:contentDescription="@string/desc"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_20sdp" />

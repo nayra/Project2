@@ -84,12 +84,12 @@ public class HomeFragment extends Fragment implements SubCategoryRecyclerViewCli
     }
 
     @Override
-    public void OnRecyclerViewClickListener(int catId, int subCatId, String type) {
-        mListener.onFragmentInteraction(catId, subCatId, type);
+    public void OnRecyclerViewClickListener(int catId, int subCatId, String type, String img_url) {
+        mListener.onFragmentInteraction(catId, subCatId, type, img_url);
     }
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(int catId, int subCat, String type);
+        void onFragmentInteraction(int catId, int subCat, String type, String img_url);
     }
 }

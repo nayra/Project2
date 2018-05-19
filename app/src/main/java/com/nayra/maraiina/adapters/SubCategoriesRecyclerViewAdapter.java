@@ -86,7 +86,8 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
                         subType = categoriesList.get(pos).getName();
                     }
                     String fullCategoryName = parentCategory + " " + subType;
-                    listener.OnRecyclerViewClickListener(catId, subCatId, fullCategoryName);
+                    String img_url = categoriesList.get(pos).getImageUrl();
+                    listener.OnRecyclerViewClickListener(catId, subCatId, fullCategoryName, img_url);
                 }
             });
         }

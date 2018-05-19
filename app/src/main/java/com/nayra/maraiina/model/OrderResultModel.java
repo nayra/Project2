@@ -46,4 +46,15 @@ public class OrderResultModel {
     public void setResult(String result) {
         this.result = result;
     }
+
+
+    @Override
+    public String toString() {
+        return "OrderResultModel{" +
+                "version='" + version + '\'' +
+                ", status_code=" + status_code +
+                ", error_msg='" + error_msg + '\'' +
+                ", result='" + result + '\'' +
+                '}';
+    }
 }

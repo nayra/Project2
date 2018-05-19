@@ -56,4 +56,5 @@
     <string name="about_our_slogan">مزرعة آمنة .. لحوم آمنة</string>
     <string name="about_agreement">نحن في مؤسسة الجزيرة الخضراء لتجارة المواشي و الاغنام ملتزمون بتحويل رؤيتنا الى واقع ملموس كمساهمة فعالة لخدمة المجتمع</string>
     <string name="drawer_item_about">About us</string>
+    <string name="distributionMethod">Distribution Method</string>
 </resources>

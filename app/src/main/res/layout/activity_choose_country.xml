@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
     tools:context=".views.ChooseCountryActivity"
     android:background="@drawable/bg">
 
@@ -17,9 +17,9 @@
 
         <ImageView
             android:id="@+id/tv_app_name"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/logo_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_logo"
             android:gravity="center_horizontal"
             android:layout_marginTop="@dimen/_100sdp"
             android:textColor="@android:color/white"
@@ -63,21 +63,25 @@
             android:gravity="center"
             android:layoutDirection="ltr"
             android:orientation="horizontal"
-            app:sc_tint_color="@color/green_dark">
+            app:sc_tint_color="@color/green_dark"
+            segmentedgroup:sc_corner_radius="20dp">
 
             <RadioButton
                 android:id="@+id/rb_en"
                 style="@style/MyRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/english" />
+                android:text="@string/english"
+                android:checked="true"
+                android:background="@drawable/rb_selector" />
 
             <RadioButton
                 android:id="@+id/rb_ar"
                 style="@style/MyRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/arabic" />
+                android:text="@string/arabic"
+                android:background="@drawable/rb_selector" />
         </info.hoang8f.android.segmented.SegmentedGroup>
 
         <com.nayra.maraiina.custom_views.MyButton

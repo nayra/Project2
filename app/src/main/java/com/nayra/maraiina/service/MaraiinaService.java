@@ -44,25 +44,23 @@ public interface MaraiinaService {
     PackagingMethodID:1
     ProductID:1
      */
+    @FormUrlEncoded
+    @POST("Orders/")
+    Call<OrderResultModel> postOrder(@Field("Address") String address, @Field("Lang") String lang, @Field("CityID") int cityId,
+                                     @Field("PhoneNumber") String phone, @Field("email") String email,
+                                     @Field("Firstname") String fName, @Field("LastName") String lName,
+                                     @Field("Latitude") String lat, @Field("Longitude") String lng,
+                                     @Field("CookingMethodID") int cookingMethodId, @Field("CuttingMethodID") int cuttingMethodId,
+                                     @Field("PackagingMethodID") int packagingMethodId, @Field("DestrupMethodID") String distributionMethodId,
+                                     @Field("ProductID") int productId, @Header("Authorization") String header);
 
     @FormUrlEncoded
     @POST("Orders/")
-    Call<OrderResultModel> postCookedOrder(@Field("Address") String address, @Field("CityID") int cityId,
-                                           @Field("PhoneNumber") String phone, @Field("email") String email,
-                                           @Field("Firstname") String firstName, @Field("LastName") String lastName,
-                                           @Field("Latitude") double lat, @Field("Longitude") double lng,
-                                           @Field("CookingMethodID") int cookingMethodId, @Field("ProductID") int productId,
-                                           @Header("Authorization") String authHeader);
-
-    @FormUrlEncoded
-    @POST("Orders/")
-    Call<OrderResultModel> postUnCookedOrder(@Field("Address") String address, @Field("CityID") int cityId,
-                                             @Field("PhoneNumber") String phone, @Field("email") String email,
-                                             @Field("Firstname") String firstName, @Field("LastName") String lastName,
-                                             @Field("Latitude") double lat, @Field("Longitude") double lng,
-                                             @Field("CuttingMethodID") int cuttingMethodId,
-                                             @Field("PackagingMethodID") int packagingMethodId, @Field("ProductID") int productId,
-                                             @Header("Authorization") String authHeader);
+    Call<OrderResultModel> postOrder(@Field("Address") String address, @Field("Lang") String lang, @Field("CityID") int cityId,
+                                     @Field("PhoneNumber") String phone, @Field("email") String email,
+                                     @Field("Firstname") String fName, @Field("LastName") String lName,
+                                     @Field("CookingMethodID") int cookingMethodId,
+                                     @Field("ProductID") int productId, @Header("Authorization") String header);
 
     @GET("offers/")
     Call<ResultOffersModel> getOffers();

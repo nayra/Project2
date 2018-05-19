@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="meetDistributions">
+        <item>Identical parts</item>
+        <item>Different parts</item>
+    </string-array>
+</resources>

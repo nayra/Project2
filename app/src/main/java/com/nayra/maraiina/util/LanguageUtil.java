@@ -34,6 +34,7 @@ public class LanguageUtil {
             res.updateConfiguration(conf, dm);
 
             SharedPrefsUtil.setInteger(SharedPrefsUtil.SELECTED_LANGUAGE_INDEX, language_index);
+            SharedPrefsUtil.setString(SharedPrefsUtil.SELECTED_LANGUAGE, lang);
 
             Intent refresh = new Intent(context, ChooseCountryActivity.class);
             context.startActivity(refresh);

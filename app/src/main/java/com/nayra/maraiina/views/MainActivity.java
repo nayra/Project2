@@ -160,12 +160,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
 
     @Override
-    public void onFragmentInteraction(int catId, int subId, String type) {
+    public void onFragmentInteraction(int catId, int subId, String type, String img_url) {
         Intent intent = new Intent(this, OrderDetailsActivity.class);
         intent.putExtra(Constants.CATEGORY_ID, catId);
         intent.putExtra(Constants.SUBCATEGORY_ID, subId);
         intent.putExtra(Constants.TYPE_NAME, type);
-
+        intent.putExtra(Constants.CATEGORY_IMAGE, img_url);
         startActivity(intent);
     }
 

@@ -6,11 +6,13 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.util.Log;
 
+import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.MyApplication;
 import com.nayra.maraiina.model.CategoryModel;
 import com.nayra.maraiina.model.CityModel;
 import com.nayra.maraiina.model.CountryModel;
 import com.nayra.maraiina.model.OffersModel;
+import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.model.OrderResultModel;
 import com.nayra.maraiina.model.ProductAndMethodsResultModel;
 import com.nayra.maraiina.model.Result;
@@ -22,6 +24,7 @@ import com.nayra.maraiina.model.ResultSuggestion;
 import com.nayra.maraiina.model.SuggestionModel;
 import com.nayra.maraiina.util.ConnectivityCheck;
 import com.nayra.maraiina.util.ProgressDialogUtil;
+import com.nayra.maraiina.util.SharedPrefsUtil;
 
 import java.util.ArrayList;
 
@@ -143,18 +146,37 @@ public class MaraiinaRepository {
         return data;
     }
 
-    public static LiveData<OrderResultModel> postCookedOrder(String address, int cityId, String phone, String email, String fName,
-                                                             String LName, double lat, double lng, int cookingMethodId, int productId, String header) {
-        final MutableLiveData<OrderResultModel> result = new MediatorLiveData<>();
+    public static LiveData<OrderResultModel> postOrder(OrderDetailsModel orderDetailsModel) {
+        MutableLiveData<OrderResultModel> result = new MediatorLiveData<>();
 
         Context context = MyApplication.getmInstance().getContext();
 
         if (ConnectivityCheck.isConnected(context)) {
-            ApiConnection.getRetrofit().postCookedOrder(address, cityId, phone, email, fName, LName, lat, lng, cookingMethodId, productId, header).enqueue(new Callback<OrderResultModel>() {
+            String address = orderDetailsModel.getCustomerDetails().getAddress();
+            String phone = orderDetailsModel.getCustomerDetails().getPhone();
+            String email = orderDetailsModel.getCustomerDetails().getEmail();
+            String name = orderDetailsModel.getCustomerDetails().getName();
+
+            int cookingMethodId = orderDetailsModel.getCookingId();
+            int cuttingMethodId = orderDetailsModel.getCuttingId();
+            int packagingMethodId = orderDetailsModel.getPackagingId();
+
+            int productId = orderDetailsModel.getProductId();
+
+            int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
+
+            String distributionMethod = orderDetailsModel.getDistributionMethod();
+
+            String lang = SharedPrefsUtil.getString(SharedPrefsUtil.SELECTED_LANGUAGE);
+
+            ApiConnection.getRetrofit().postOrder(address, lang, cityId, phone, email, name,
+                    "", "2.1", "2.3", cookingMethodId, cuttingMethodId, packagingMethodId,
+                    distributionMethod, productId, Constants.auth)
+                    .enqueue(new Callback<OrderResultModel>() {
                 @Override
                 public void onResponse(Call<OrderResultModel> call, Response<OrderResultModel> response) {
-                    if (response != null && response.body() != null && response.body().getResult() != null) {
-                        Log.d(TAG, response.body().getResult().toString());
+                    if (response != null && response.body() != null) {
+                        Log.d(TAG, response.body().toString());
                         result.setValue(response.body());
                     }
                 }
@@ -166,38 +188,57 @@ public class MaraiinaRepository {
             });
         } else {
             Log.e(TAG, "No internet connectivity");
+            ProgressDialogUtil.dismiss();
         }
         return result;
     }
 
-    public static LiveData<OrderResultModel> postUnCookedOrder(String address, int cityId, String phone, String email, String fName, String lName, double lat, double lng, int cuttingId, int packagingId, int productId, String header) {
-
-        final MutableLiveData<OrderResultModel> result = new MediatorLiveData<>();
+    public static LiveData<OrderResultModel> postCookedOrder(OrderDetailsModel orderDetailsModel) {
+        MutableLiveData<OrderResultModel> result = new MediatorLiveData<>();
 
         Context context = MyApplication.getmInstance().getContext();
 
         if (ConnectivityCheck.isConnected(context)) {
-            ApiConnection.getRetrofit().postUnCookedOrder(address, cityId, phone, email, fName, "", 2.1, 2.3, cuttingId, packagingId, productId, header).enqueue(new Callback<OrderResultModel>() {
-                @Override
-                public void onResponse(Call<OrderResultModel> call, Response<OrderResultModel> response) {
-                    if (response != null && response.body() != null && response.body().getResult() != null) {
-                        Log.d(TAG, response.body().getResult().toString());
-                        result.setValue(response.body());
-                    } else {
-                        ProgressDialogUtil.dismiss();
-                    }
-                }
+            String address = orderDetailsModel.getCustomerDetails().getAddress();
+            String phone = orderDetailsModel.getCustomerDetails().getPhone();
+            String email = orderDetailsModel.getCustomerDetails().getEmail();
+            String name = orderDetailsModel.getCustomerDetails().getName();
 
-                @Override
-                public void onFailure(Call<OrderResultModel> call, Throwable t) {
-                    Log.e(TAG, t.toString());
-                }
-            });
+            int cookingMethodId = orderDetailsModel.getCookingId();
+            //int cuttingMethodId = orderDetailsModel.getCuttingId();
+            //int packagingMethodId = orderDetailsModel.getPackagingId();
+
+            int productId = orderDetailsModel.getProductId();
+
+            int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
+
+            //String distributionMethod = orderDetailsModel.getDistributionMethod();
+
+            String lang = SharedPrefsUtil.getString(SharedPrefsUtil.SELECTED_LANGUAGE);
+
+            ApiConnection.getRetrofit().postOrder(address, lang, cityId, phone, email, name,
+                    "", cookingMethodId, productId, Constants.auth)
+                    .enqueue(new Callback<OrderResultModel>() {
+                        @Override
+                        public void onResponse(Call<OrderResultModel> call, Response<OrderResultModel> response) {
+                            if (response != null && response.body() != null) {
+                                Log.d(TAG, response.body().toString());
+                                result.setValue(response.body());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<OrderResultModel> call, Throwable t) {
+                            Log.e(TAG, t.toString());
+                        }
+                    });
         } else {
             Log.e(TAG, "No internet connectivity");
+            ProgressDialogUtil.dismiss();
         }
         return result;
     }
+
 
     public static LiveData<ArrayList<OffersModel>> getOffers() {
         final MutableLiveData<ArrayList<OffersModel>> result = new MediatorLiveData<>();

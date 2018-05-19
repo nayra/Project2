@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
@@ -131,7 +132,7 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
     void confirmOrder() {
         ProgressDialogUtil.show(this);
         SendOrderDetailsViewModel _viewModel = ViewModelProviders.of(this).get(SendOrderDetailsViewModel.class);
-        LiveData<OrderResultModel> orderResultModelLiveData = _viewModel.postOrdersDetails(orderDetailsModel, Constants.auth);
+        LiveData<OrderResultModel> orderResultModelLiveData = _viewModel.postOrdersDetails(orderDetailsModel);
         orderResultModelLiveData.observe(this, new Observer<OrderResultModel>() {
             @Override
             public void onChanged(@Nullable OrderResultModel orderResultModel) {
@@ -139,11 +140,15 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
                     ProgressDialogUtil.dismiss();
                     Log.e("nahmed", orderResultModel.toString());
 
-                    Intent intent = new Intent(ReviewOrderDetailsActivity.this, ReferenceNumberActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra(Constants.REF_NO, orderResultModel.getResult());
-                    startActivity(intent);
-                    finish();
+                    if (orderResultModel.getError_msg() == null || orderResultModel.getError_msg().isEmpty()) {
+                        Intent intent = new Intent(ReviewOrderDetailsActivity.this, ReferenceNumberActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.putExtra(Constants.REF_NO, orderResultModel.getResult());
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(ReviewOrderDetailsActivity.this, orderResultModel.getError_msg(), Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });

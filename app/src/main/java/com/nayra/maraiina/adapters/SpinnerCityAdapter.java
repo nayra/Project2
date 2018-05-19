@@ -47,7 +47,7 @@ public class SpinnerCityAdapter extends ArrayAdapter<CityModel> {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = layoutInflater.inflate(R.layout.row_spinner, null);
+        view = layoutInflater.inflate(R.layout.row_spinner_dark, null);
 
         MyTextView names = view.findViewById(R.id.textView);
 
@@ -63,7 +63,7 @@ public class SpinnerCityAdapter extends ArrayAdapter<CityModel> {
 
     @Override
     public View getDropDownView(int position, View view, ViewGroup parent) {
-        view = layoutInflater.inflate(R.layout.row_spinner, null);
+        view = layoutInflater.inflate(R.layout.row_spinner_dark, null);
 
         MyTextView names = view.findViewById(R.id.textView);
 
