@@ -17,11 +17,9 @@ public class SendOrderDetailsViewModel extends ViewModel {
     public LiveData<OrderResultModel> postOrdersDetails(OrderDetailsModel model) {
         LiveData<OrderResultModel> orderResultModelLiveData;
         Log.e("n", model.toString());
-        if (model.isDoYouWantCooking()) {
-            orderResultModelLiveData = MaraiinaRepository.postCookedOrder(model);
-        } else {
-            orderResultModelLiveData = MaraiinaRepository.postOrder(model);
-        }
+
+        orderResultModelLiveData = MaraiinaRepository.postOrder(model);
+
         return orderResultModelLiveData;
     }
 }

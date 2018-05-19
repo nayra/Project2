@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Maraiina</string>
+    <string name="app_name">Maraeena</string>
     <string name="type_name">type name</string>
 
     <string name="welcome_in_maraiina">Welcome in application Maraiina</string>
@@ -47,14 +47,19 @@
     <string name="four_hours">4 hours</string>
     <string name="your_ref_no">Your reference number is</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="about_title">الجزيرة الخضراء لتجارة المواشى و الاغنام</string>
-    <string name="about_objective">الرسالة</string>
-    <string name="about_objective_details">تقديم خدمات بيع و استيراد المواشي و الاغنام و ادارة المسالخ في دولة الامارات العربية المتحدة وفق اعلى معايير السلامة و الاستدامة من خلال التطوير و التدريب المستمر</string>
-    <string name="about_slogan">شعارنا</string>
-    <string name="about_our_slogan">مزرعة آمنة .. لحوم آمنة</string>
-    <string name="about_agreement">نحن في مؤسسة الجزيرة الخضراء لتجارة المواشي و الاغنام ملتزمون بتحويل رؤيتنا الى واقع ملموس كمساهمة فعالة لخدمة المجتمع</string>
+    <string name="about_title">Green Island Livestock and Sheep Trading</string>
+
+    <string name="about_vision">VISION</string>
+    <string name="about_vision_details">Green Island to achieved goal of \"Safe Farm .. Safe Meat\" permanently</string>
+
+    <string name="about_mission">MISSION</string>
+    <string name="about_mission_details">To provide the sale, import and export of livestock and sheep and slaoughterhouses management in the United Arab Emirates according to the highest standards of safety and sustainability,through continuous development and training.</string>
+
+    <string name="about_slogan"></string>
+    <string name="about_our_slogan">Safe Farm.. Safe Meat</string>
+
+    <string name="about_agreement">We in Green Island strive to provide good service in the UAE with the highest standered of quality. We are committed to convert our vision into reality as an effective contribution in community service</string>
+
     <string name="drawer_item_about">About us</string>
     <string name="distributionMethod">Distribution Method</string>
 </resources>

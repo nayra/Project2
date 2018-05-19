@@ -44,22 +44,44 @@ public interface MaraiinaService {
     PackagingMethodID:1
     ProductID:1
      */
+
+    /*
+    Address:Address
+AreaID:1
+CityID:1
+PhoneNumber:9715
+email:n@gmail.com
+Firstname:ddd
+LastName:LastName
+Latitude:2.2
+Longitude:2.3
+CookingMethodID:0
+//CuttingMethodID:1
+//PackagingMethodID:1
+ProductID:1
+Lang:ar
+CuttingMethodOther:fffff
+DestrupMethodID:Different parts
+     */
     @FormUrlEncoded
     @POST("Orders/")
     Call<OrderResultModel> postOrder(@Field("Address") String address, @Field("Lang") String lang, @Field("CityID") int cityId,
+                                     @Field("AreaID") int areaId,
                                      @Field("PhoneNumber") String phone, @Field("email") String email,
                                      @Field("Firstname") String fName, @Field("LastName") String lName,
-                                     @Field("Latitude") String lat, @Field("Longitude") String lng,
+                                     @Field("Latitude") double lat, @Field("Longitude") double lng,
                                      @Field("CookingMethodID") int cookingMethodId, @Field("CuttingMethodID") int cuttingMethodId,
                                      @Field("PackagingMethodID") int packagingMethodId, @Field("DestrupMethodID") String distributionMethodId,
-                                     @Field("ProductID") int productId, @Header("Authorization") String header);
+                                     @Field("ProductID") int productId,
+                                     @Field("CuttingMethodOther") String otherCutting,
+                                     @Header("Authorization") String header);
 
     @FormUrlEncoded
     @POST("Orders/")
     Call<OrderResultModel> postOrder(@Field("Address") String address, @Field("Lang") String lang, @Field("CityID") int cityId,
                                      @Field("PhoneNumber") String phone, @Field("email") String email,
                                      @Field("Firstname") String fName, @Field("LastName") String lName,
-                                     @Field("CookingMethodID") int cookingMethodId,
+                                     @Field("CookingMethodID") int cookingMethodId, @Field("CuttingMethodOther") String otherCutting,
                                      @Field("ProductID") int productId, @Header("Authorization") String header);
 
     @GET("offers/")

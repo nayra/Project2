@@ -47,12 +47,20 @@
 
     <string name="desc">descripton</string>
     <string name="about_title">الجزيرة الخضراء لتجارة المواشى و الاغنام</string>
-    <string name="about_objective">الرسالة</string>
-    <string name="about_objective_details">تقديم خدمات بيع و استيراد المواشي و الاغنام و ادارة المسالخ في دولة الامارات العربية المتحدة وفق اعلى معايير السلامة و الاستدامة من خلال التطوير و التدريب المستمر</string>
+
+    <string name="about_vision">الرؤية</string>
+    <string name="about_vision_details">تحقيق الهدف المنشود مزرعه آمنه .. لحوم آمنه</string>
+
+    <string name="about_mission">الرساله</string>
+    <string name="about_mission_details">تقديم خدمات بيع و استيراد المواشي و الاغنام و ادارة المسالخ في دولة الامارات العربية المتحدة وفق اعلى معايير السلامة و الاستدامة من خلال التطوير و التدريب المستمر</string>
+
     <string name="about_slogan">شعارنا</string>
     <string name="about_our_slogan">مزرعة آمنة .. لحوم آمنة</string>
+
+
     <string name="about_agreement">نحن في مؤسسة الجزيرة الخضراء لتجارة المواشي و الاغنام ملتزمون بتحويل رؤيتنا الى واقع ملموس كمساهمة فعالة لخدمة المجتمع</string>
-    <string name="drawer_item_about">عننا</string>
+
+    <string name="drawer_item_about">عنا</string>
     <string name="distributionMethod">طريقة التوزيع</string>
 
 </resources>

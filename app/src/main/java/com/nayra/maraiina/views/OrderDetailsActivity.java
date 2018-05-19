@@ -295,6 +295,12 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                 } else {
                     cuttingMethod = cuttingMethods.get(i).getName();
                 }
+
+                if (cuttingMethodID == 0) {
+
+                } else {
+
+                }
             }
 
             @Override
@@ -329,6 +335,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
                     case R.id.rbCook:
+                        mainCookingMethodsLinearLayout.setVisibility(View.VISIBLE);
                         cookingMethodLinearLayout.setVisibility(View.VISIBLE);
                         cuttingMethodLinearLayout.setVisibility(View.GONE);
                         packagingMethodLinearLayout.setVisibility(View.GONE);
@@ -341,6 +348,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                         isCooking = true;
                         break;
                     case R.id.rbNoCook:
+                        mainCookingMethodsLinearLayout.setVisibility(View.GONE);
                         cookingMethodLinearLayout.setVisibility(View.GONE);
                         cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
                         /*if(isCamel) {

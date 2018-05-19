@@ -24,20 +24,43 @@
             android:layout_marginTop="@dimen/_20sdp" />
 
 
+        64.00px = 64.00sp = 10.16mm = 0.40in = 28.80pt
+        tvdpi @ 64.00dp = 85.20px = 64.00sp = 10.16mm = 0.40in = 28.80pt
+        hdpi @ 64.00dp = 96.00px = 64.00sp = 10.16mm = 0.40in = 28.80pt
+        xhdpi @ 64.00dp = 128.00px = 64.00sp = 10.16mm = 0.40in = 28.80pt
+        xxhdpi @ 64.00dp = 192.00px = 64.00sp = 10.16mm = 0.40in = 28.80pt
+        xxxhdpi @ 64.00dp = 256.00px
+
         <com.nayra.maraiina.custom_views.MyBoldTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="@string/about_objective"
+            android:text="@string/about_vision"
             android:textStyle="bold"
             android:textColor="@color/green_very_dark"
             android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_20sdp" />
+            android:layout_marginBottom="@dimen/_10sdp" />
 
         <com.nayra.maraiina.custom_views.MyTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/about_objective_details"
+            android:text="@string/about_vision_details"
+            android:gravity="center" />
+
+        <com.nayra.maraiina.custom_views.MyBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/about_mission"
+            android:textStyle="bold"
+            android:textColor="@color/green_very_dark"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_mission_details"
             android:gravity="center" />
 
         <com.nayra.maraiina.custom_views.MyBoldTextView

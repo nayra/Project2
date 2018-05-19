@@ -169,10 +169,41 @@ public class MaraiinaRepository {
 
             String lang = SharedPrefsUtil.getString(SharedPrefsUtil.SELECTED_LANGUAGE);
 
-            ApiConnection.getRetrofit().postOrder(address, lang, cityId, phone, email, name,
-                    "", "2.1", "2.3", cookingMethodId, cuttingMethodId, packagingMethodId,
-                    distributionMethod, productId, Constants.auth)
-                    .enqueue(new Callback<OrderResultModel>() {
+            /*@Field("Address") String address, @Field("Lang") String lang, @Field("CityID") int cityId,
+            @Field("AreaID") int areaId ,
+            @Field("PhoneNumber") String phone, @Field("email") String email,
+            @Field("Firstname") String fName, @Field("LastName") String lName,
+            @Field("Latitude") String lat, @Field("Longitude") String lng,
+            @Field("CookingMethodID") int cookingMethodId, @Field("CuttingMethodID") int cuttingMethodId,
+            @Field("PackagingMethodID") int packagingMethodId, @Field("DestrupMethodID") String distributionMethodId,
+            @Field("ProductID") int productId,
+            @Field("CuttingMethodOther") String otherCutting,
+            @Header("Authorization") String header*/
+
+            /*
+            Address:Address
+AreaID:1
+CityID:1
+PhoneNumber:9715
+email:n@gmail.com
+Firstname:ddd
+LastName:LastName
+Latitude:2.2
+Longitude:2.3
+CookingMethodID:0
+//CuttingMethodID:1
+//PackagingMethodID:1
+ProductID:1
+Lang:ar
+CuttingMethodOther:fffff
+             */
+            Call<OrderResultModel> call = ApiConnection.getRetrofit().postOrder(address, lang, cityId, 1, phone, email, name, "", 2.1, 2.3,
+                    cookingMethodId, cuttingMethodId, packagingMethodId, distributionMethod, productId, "", Constants.auth);
+
+            Log.e("ORDER", call.request().header("Authorization"));
+            Log.e("ORDER", call.request().body().toString());
+
+            call.enqueue(new Callback<OrderResultModel>() {
                 @Override
                 public void onResponse(Call<OrderResultModel> call, Response<OrderResultModel> response) {
                     if (response != null && response.body() != null) {
@@ -217,7 +248,7 @@ public class MaraiinaRepository {
             String lang = SharedPrefsUtil.getString(SharedPrefsUtil.SELECTED_LANGUAGE);
 
             ApiConnection.getRetrofit().postOrder(address, lang, cityId, phone, email, name,
-                    "", cookingMethodId, productId, Constants.auth)
+                    "", cookingMethodId, "", productId, Constants.auth)
                     .enqueue(new Callback<OrderResultModel>() {
                         @Override
                         public void onResponse(Call<OrderResultModel> call, Response<OrderResultModel> response) {
