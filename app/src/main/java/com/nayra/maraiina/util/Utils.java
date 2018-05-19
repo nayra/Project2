@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.Window;
@@ -93,5 +94,10 @@ public class Utils {
     public static void setTypeFace(final MyErrorEditText myRadioButton, final int type) {
         final Typeface typeface = MyApplication.getmInstance().getTypeFace(type);
         myRadioButton.setTypeface(typeface);
+    }
+
+    public static void setTypeFace(final AppCompatEditText mEditTexxt, final int type) {
+        final Typeface typeface = MyApplication.getmInstance().getTypeFace(type);
+        mEditTexxt.setTypeface(typeface);
     }
 }

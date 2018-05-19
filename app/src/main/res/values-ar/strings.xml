@@ -62,5 +62,6 @@
 
     <string name="drawer_item_about">عنا</string>
     <string name="distributionMethod">طريقة التوزيع</string>
+    <string name="hint_other_cutting_method">أخرى</string>
 
 </resources>

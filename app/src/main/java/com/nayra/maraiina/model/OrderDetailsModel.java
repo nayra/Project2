@@ -6,7 +6,7 @@ import android.os.Parcelable;
 public class OrderDetailsModel implements Parcelable {
     private int cookingId, cuttingId, packagingId, price, productId;
     private boolean doYouWantCooking;
-    private String Weight, cookingMethod, packagingMethod, cuttingMethod, type, distributionMethod, img_url;
+    private String Weight, cookingMethod, packagingMethod, cuttingMethod, type, distributionMethod, img_url, otherCuttingMethod;
 
     private CustomerDetails customerDetails;
 
@@ -125,6 +125,14 @@ public class OrderDetailsModel implements Parcelable {
         this.img_url = img_url;
     }
 
+    public String getOtherCuttingMethod() {
+        return otherCuttingMethod;
+    }
+
+    public void setOtherCuttingMethod(String otherCuttingMethod) {
+        this.otherCuttingMethod = otherCuttingMethod;
+    }
+
 
     @Override
     public int describeContents() {
@@ -146,6 +154,7 @@ public class OrderDetailsModel implements Parcelable {
         dest.writeString(this.type);
         dest.writeString(this.distributionMethod);
         dest.writeString(this.img_url);
+        dest.writeString(this.otherCuttingMethod);
         dest.writeParcelable(this.customerDetails, flags);
     }
 
@@ -163,6 +172,7 @@ public class OrderDetailsModel implements Parcelable {
         this.type = in.readString();
         this.distributionMethod = in.readString();
         this.img_url = in.readString();
+        this.otherCuttingMethod = in.readString();
         this.customerDetails = in.readParcelable(CustomerDetails.class.getClassLoader());
     }
 
@@ -194,6 +204,7 @@ public class OrderDetailsModel implements Parcelable {
                 ", type='" + type + '\'' +
                 ", distributionMethod='" + distributionMethod + '\'' +
                 ", img_url='" + img_url + '\'' +
+                ", otherCuttingMethod='" + otherCuttingMethod + '\'' +
                 ", customerDetails=" + customerDetails +
                 '}';
     }

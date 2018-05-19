@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -110,6 +111,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
     @BindView(R.id.img_selected)
     ImageView imgView;
+
+    @BindView(R.id.etOtherCuttingMethod)
+    AppCompatEditText etxtOtherCuttingMethod;
 
     private int selectedIndex = 0;
 
@@ -297,9 +301,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                 }
 
                 if (cuttingMethodID == 0) {
-
+                    etxtOtherCuttingMethod.setVisibility(View.VISIBLE);
                 } else {
-
+                    etxtOtherCuttingMethod.setVisibility(View.GONE);
                 }
             }
 
@@ -382,6 +386,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
             // Utils.setTypeFace(txtTotalPrice, Constants.KUFI_BOLD_font);
             Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);
+            Utils.setTypeFace(etxtOtherCuttingMethod, Constants.KUFI_REGULAR);
         }
     }
 
