@@ -1,94 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     android:orientation="vertical"
-    tools:context=".views.AboutFragment"
-    android:background="@drawable/bg">
+    tools:context=".views.AboutFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/_5sdp">
+        android:layout_height="match_parent"
+        android:background="#55FFFFFF">
 
-
-        <com.nayra.maraiina.custom_views.MyBoldTextView
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/about_title"
-            android:textStyle="bold"
-            android:textColor="@color/green_very_dark"
-            android:layout_marginTop="@dimen/_20sdp" />
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="vertical">
 
 
-        64.00px = 64.00sp = 10.16mm = 0.40in = 28.80pt
-        tvdpi @ 64.00dp = 85.20px = 64.00sp = 10.16mm = 0.40in = 28.80pt
-        hdpi @ 64.00dp = 96.00px = 64.00sp = 10.16mm = 0.40in = 28.80pt
-        xhdpi @ 64.00dp = 128.00px = 64.00sp = 10.16mm = 0.40in = 28.80pt
-        xxhdpi @ 64.00dp = 192.00px = 64.00sp = 10.16mm = 0.40in = 28.80pt
-        xxxhdpi @ 64.00dp = 256.00px
-
-        <com.nayra.maraiina.custom_views.MyBoldTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/about_vision"
-            android:textStyle="bold"
-            android:textColor="@color/green_very_dark"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_10sdp" />
-
-        <com.nayra.maraiina.custom_views.MyTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_vision_details"
-            android:gravity="center" />
-
-        <com.nayra.maraiina.custom_views.MyBoldTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/about_mission"
-            android:textStyle="bold"
-            android:textColor="@color/green_very_dark"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_10sdp" />
-
-        <com.nayra.maraiina.custom_views.MyTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_mission_details"
-            android:gravity="center" />
-
-        <com.nayra.maraiina.custom_views.MyBoldTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/about_slogan"
-            android:textStyle="bold"
-            android:textColor="@color/green_very_dark"
-            android:layout_marginTop="@dimen/_20sdp" />
-
-        <com.nayra.maraiina.custom_views.MyTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            android:text="@string/about_our_slogan"
-            android:gravity="center"
-            android:textColor="@color/green_dark"
-            android:layout_marginBottom="@dimen/_10sdp" />
+            <com.nayra.maraiina.custom_views.MyBoldTextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center_horizontal"
+                android:text="@string/about_title"
+                android:textColor="@color/green_very_dark"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.nayra.maraiina.custom_views.MyTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_agreement"
-            android:gravity="center" />
+            <com.nayra.maraiina.custom_views.MyBoldTextView
+                android:id="@+id/tvVision"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_horizontal"
+                android:text="@string/about_vision"
+                android:textColor="@color/green_very_dark"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <com.nayra.maraiina.custom_views.MyTextView
+                android:id="@+id/theVision"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/about_vision_details"
+                app:layout_constraintTop_toBottomOf="@+id/tvVision" />
+
+            <com.nayra.maraiina.custom_views.MyBoldTextView
+                android:id="@+id/tvMission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_horizontal"
+                android:text="@string/about_mission"
+                android:textColor="@color/green_very_dark"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/theVision" />
+
+            <com.nayra.maraiina.custom_views.MyTextView
+                android:id="@+id/tvTheMission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/about_mission_details"
+                app:layout_constraintTop_toBottomOf="@+id/tvMission" />
+
+            <com.nayra.maraiina.custom_views.MyBoldTextView
+                android:id="@+id/Slogan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_horizontal"
+                android:text="@string/about_slogan"
+                android:textColor="@color/green_very_dark"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/tvTheMission" />
+
+            <com.nayra.maraiina.custom_views.MyTextView
+                android:id="@+id/tvSlogan"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@string/about_our_slogan"
+                android:textColor="@color/green_dark"
+                app:layout_constraintTop_toBottomOf="@+id/Slogan" />
 
 
-    </LinearLayout>
+            <com.nayra.maraiina.custom_views.MyTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/about_agreement"
+                app:layout_constraintTop_toBottomOf="@+id/tvSlogan" />
 
-</ScrollView>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</LinearLayout>

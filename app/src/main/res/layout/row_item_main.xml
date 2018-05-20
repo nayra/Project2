@@ -23,7 +23,7 @@
             android:id="@+id/rcv_cat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_40sdp"
             android:orientation="horizontal"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="@dimen/_5sdp"
@@ -41,9 +41,11 @@
             android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
             android:text="@string/type_name"
+            android:gravity="center"
             android:textColor="@android:color/white"
             android:src="@color/green_very_dark"
             android:elevation="20dp"
             android:background="@drawable/bg_oval_very_dark_green"
-            android:padding="@dimen/_10sdp"/>
+            android:padding="@dimen/_10sdp"
+            android:minWidth="@dimen/_100sdp" />
 </RelativeLayout>
