@@ -10,8 +10,8 @@
     <com.nayra.maraiina.custom_views.MyBoldTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="@string/choose_type"
         android:textColor="@color/grey_dark"
