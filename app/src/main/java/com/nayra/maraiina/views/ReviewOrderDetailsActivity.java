@@ -87,7 +87,7 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
         txtAddressValue.setText(orderDetailsModel.getCustomerDetails().getAddress());
         txtPhoneValue.setText(orderDetailsModel.getCustomerDetails().getPhone());
 
-        txtTotalPriceValue.setText(String.valueOf(orderDetailsModel.getPrice()));
+        txtTotalPriceValue.setText(getResources().getString(R.string.fees, orderDetailsModel.getPrice()));
 
         int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
         if (cityId == SharedPrefsUtil.ABUZABI) {

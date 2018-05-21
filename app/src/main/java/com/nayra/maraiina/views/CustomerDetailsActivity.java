@@ -65,6 +65,9 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     @BindView(R.id.img_selected_customer)
     ImageView imgView;
 
+    @BindView(R.id.tvTypeName)
+    MyTextView txtTypeName;
+
     private OrderDetailsModel orderDetailsModel;
 
     @Override
@@ -84,7 +87,8 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     }
 
     private void setPriceAndDuration() {
-        txtTotalPriceValue.setText(String.valueOf(orderDetailsModel.getPrice()));
+        txtTotalPriceValue.setText(getResources().getString(R.string.fees, orderDetailsModel.getPrice()));
+        txtTypeName.setText(orderDetailsModel.getType());
         int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
         if (cityId == SharedPrefsUtil.ABUZABI) {
             txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));

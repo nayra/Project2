@@ -72,6 +72,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     @BindView(R.id.tvCuttingMethod)
     MyTextView txtCuttingMethod;
 
+    @BindView(R.id.tvTypeName)
+    MyTextView txtTypeName;
+
     @BindView(R.id.LinearCookingMethod)
     LinearLayout cookingMethodLinearLayout;
 
@@ -165,6 +168,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         sub_category_id = getIntent().getIntExtra(Constants.SUBCATEGORY_ID, 0);
         typeName = getIntent().getStringExtra(Constants.TYPE_NAME);
 
+        txtTypeName.setText(typeName);
+
         if (category_id == Constants.CAMEL_ID) {
             txtChooseWeight.setText(getResources().getString(R.string.choose_age));
         }
@@ -172,7 +177,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         img_url = getIntent().getStringExtra(Constants.CATEGORY_IMAGE);
         if (img_url != null && !img_url.isEmpty()) {
             Picasso.get().load(img_url).into(imgView);
-
         }
         else
             Picasso.get().load(R.drawable.no_image).into(imgView);
@@ -239,7 +243,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             if (cityId == SharedPrefsUtil.ABUZABI && cookRadioButton.isChecked()) {
                 price += 150;
             }
-            txtTotalPriceValue.setText(String.valueOf(price));
+            txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
         }
 
     }
@@ -346,10 +350,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                         cuttingMethodLinearLayout.setVisibility(View.GONE);
                         packagingMethodLinearLayout.setVisibility(View.GONE);
                         cookRadioButton.setChecked(true);
-                        txtTotalPriceValue.setText(String.valueOf(price));
 
                         price += 150;
-                        txtTotalPriceValue.setText(String.valueOf(price));
+                        txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
 
                         isCooking = true;
                         break;
@@ -364,7 +367,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                         distributionMethodLinearLayout.setVisibility(View.VISIBLE);
 
                         price -= 150;
-                        txtTotalPriceValue.setText(String.valueOf(price));
+                        txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
 
                         //}
                         noCookRadioButton.setChecked(true);
@@ -424,7 +427,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         if (cookRadioButton.isChecked()) {
             price += 150;
         }
-        txtTotalPriceValue.setText(String.valueOf(price));
+        txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
     }
 
 }
