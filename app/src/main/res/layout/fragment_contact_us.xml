@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.ContactUsFragment"
+    android:background="@drawable/bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="#44ffffff">
+
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/about_agreement"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="@dimen/_10sdp" />
+
+        <com.nayra.maraiina.custom_views.MyBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_address"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            style="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <com.nayra.maraiina.custom_views.MyBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_phone"
+            android:textColor="@android:color/white"
+            android:gravity="center" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_number"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/_10sdp" />
+
+
+        <com.nayra.maraiina.custom_views.MyBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_title"
+            android:textColor="@android:color/white"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/_10sdp">
+
+            <com.nayra.maraiina.custom_views.MyErrorEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:hint="@string/hint_email"
+                android:layout_margin="@dimen/_5sdp"
+                android:inputType="textEmailAddress" />
+
+            <com.nayra.maraiina.custom_views.MyErrorEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:hint="@string/hint_phone"
+                android:layout_margin="@dimen/_5sdp"
+                android:inputType="phone"
+                android:textDirection="locale" />
+
+            <com.nayra.maraiina.custom_views.MyErrorEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:hint="@string/hint_subject"
+                android:layout_margin="@dimen/_5sdp"
+                android:inputType="text" />
+
+            <com.nayra.maraiina.custom_views.MyErrorEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:background="@android:color/white"
+                android:hint="@string/details"
+                android:layout_margin="@dimen/_5sdp"
+                android:gravity="center_horizontal"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
