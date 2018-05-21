@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         result = new DrawerBuilder()
                 .withActivity(this)
-                .withToolbar(toolbar)
                 .withHeader(R.layout.header_menu)
                 .withSliderBackgroundColor(ContextCompat.getColor(this, R.color.green_very_dark))
                 .withHeaderDivider(true)
@@ -82,6 +81,16 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                     }
                 })
                 .build();
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (result.isDrawerOpen())
+                    result.closeDrawer();
+                else
+                    result.openDrawer();
+            }
+        });
     }
 
     public void menuNavigation(int pos) {

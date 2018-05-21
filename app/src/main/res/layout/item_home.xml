@@ -15,6 +15,7 @@
         android:layout_height="@dimen/_100sdp"
         android:src="@drawable/no_image"
         android:layout_margin="@dimen/_5sdp"
+        android:scaleType="fitXY"
         android:layout_gravity="center_horizontal" />
 
     <com.nayra.maraiina.custom_views.MyTextView

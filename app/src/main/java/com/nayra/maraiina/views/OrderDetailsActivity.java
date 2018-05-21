@@ -170,8 +170,11 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         }
 
         img_url = getIntent().getStringExtra(Constants.CATEGORY_IMAGE);
-        if (img_url != null && !img_url.isEmpty())
+        if (img_url != null && !img_url.isEmpty()) {
+            img_url = "http://waziffty.org" + img_url;
             Picasso.get().load(img_url).into(imgView);
+
+        }
         else
             Picasso.get().load(R.drawable.no_image).into(imgView);
     }

@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rcv_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.MainActivity"
-    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".views.MainActivity">
 
-</android.support.v7.widget.RecyclerView>
+    <com.nayra.maraiina.custom_views.MyBoldTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="@string/choose_type"
+        android:textColor="@color/grey_dark"
+        style="@style/Base.TextAppearance.AppCompat.Medium" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:orientation="vertical"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

@@ -52,8 +52,10 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
         }
 
         String img_url = categoryModel.getImageUrl();
-        if (img_url != null && !img_url.isEmpty())
+        if (img_url != null && !img_url.isEmpty()) {
+            img_url = "http://waziffty.org" + img_url;
             Picasso.get().load(img_url).into(holder.imageView);
+        }
         else
             Picasso.get().load(R.drawable.no_image).into(holder.imageView);
     }

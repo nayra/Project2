@@ -208,7 +208,8 @@
                     android:layout_height="100dp"
                     android:src="@drawable/no_image"
                     android:layout_gravity="center"
-                    android:layout_margin="5dp" />
+                    android:layout_margin="5dp"
+                    android:scaleType="fitXY" />
 
             </LinearLayout>
 
