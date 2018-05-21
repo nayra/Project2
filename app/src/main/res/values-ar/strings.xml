@@ -61,8 +61,14 @@
     <string name="about_agreement">نحن في مؤسسة الجزيرة الخضراء لتجارة المواشي و الاغنام ملتزمون بتحويل رؤيتنا الى واقع ملموس كمساهمة فعالة لخدمة المجتمع</string>
 
     <string name="drawer_item_about">نبذة عنا</string>
+    <string name="drawer_item_contact">اتصل بنا</string>
     <string name="distributionMethod">طريقة التوزيع</string>
     <string name="hint_other_cutting_method">أخرى</string>
     <string name="choose_type">اختر النوع</string>
+    <string name="contact_address">العنوان : مسلك الشهامه ابو ظبي</string>
+    <string name="contact_title">يمكنك ايضا مراسلتنا عن طريق ملء البيانات التاليه</string>
+    <string name="hint_subject_title">عنوان الرسالة</string>
+
+    <string name="contact_number">+971-2-5668115 / +971-50-3710035</string>
 
 </resources>

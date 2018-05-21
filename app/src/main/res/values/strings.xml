@@ -61,7 +61,14 @@
     <string name="about_agreement">We in Green Island strive to provide good service in the UAE with the highest standered of quality. We are committed to convert our vision into reality as an effective contribution in community service</string>
 
     <string name="drawer_item_about">About us</string>
+    <string name="drawer_item_contact">Contact us</string>
     <string name="distributionMethod">Distribution Method</string>
     <string name="hint_other_cutting_method">other</string>
     <string name="choose_type">Choose type</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="contact_address">العنوان : مسلك الشهامه ابو ظبي</string>
+    <string name="contact_number">+971-2-5668115 / +971-50-3710035</string>
+    <string name="contact_title">يمكنك ايضا مراسلتنا عن طريق ملء البيانات التاليه</string>
+    <string name="hint_subject_title">Subject</string>
 </resources>

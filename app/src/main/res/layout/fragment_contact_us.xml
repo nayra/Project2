@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:gravity="center"
         android:layout_margin="@dimen/_5sdp"
-        android:background="#44ffffff">
+        android:background="#55ffffff">
 
 
         <com.nayra.maraiina.custom_views.MyTextView
@@ -21,7 +21,8 @@
             android:gravity="center"
             android:text="@string/about_agreement"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="@dimen/_10sdp" />
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp" />
 
         <com.nayra.maraiina.custom_views.MyBoldTextView
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
             android:text="@string/contact_address"
             android:textColor="@android:color/white"
             android:gravity="center"
-            style="@style/Base.TextAppearance.AppCompat.Medium" />
+            android:layout_marginTop="@dimen/_10sdp" />
 
         <com.nayra.maraiina.custom_views.MyBoldTextView
             android:layout_width="match_parent"
@@ -60,41 +61,82 @@
             android:orientation="vertical"
             android:layout_margin="@dimen/_10sdp">
 
-            <com.nayra.maraiina.custom_views.MyErrorEditText
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_Name_hint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:hint="@string/hint_email"
-                android:layout_margin="@dimen/_5sdp"
-                android:inputType="textEmailAddress" />
+                android:hint="@string/hint_name">
 
-            <com.nayra.maraiina.custom_views.MyErrorEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tiet_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:hint="@string/hint_phone"
-                android:layout_margin="@dimen/_5sdp"
-                android:inputType="phone"
-                android:textDirection="locale" />
+                android:hint="@string/hint_email">
 
-            <com.nayra.maraiina.custom_views.MyErrorEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tiet_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_Phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:hint="@string/hint_subject"
-                android:layout_margin="@dimen/_5sdp"
-                android:inputType="text" />
+                android:hint="@string/hint_phone">
 
-            <com.nayra.maraiina.custom_views.MyErrorEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tiet_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/til_subject"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:background="@android:color/white"
-                android:hint="@string/details"
-                android:layout_margin="@dimen/_5sdp"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_subject">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tiet_subject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tiet_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:inputType="text" />
+                android:hint="@string/details"
+                android:inputType="text"
+                android:minHeight="@dimen/_200sdp" />
 
         </LinearLayout>
+
+        <com.nayra.maraiina.custom_views.MyButton
+            android:id="@+id/btSendContactUs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/send"
+            android:background="@drawable/bg_green_very_dark_button"
+            android:layout_margin="@dimen/_10sdp"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 

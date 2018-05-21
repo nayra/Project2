@@ -121,6 +121,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 toolbar.setTitle(getResources().getString(R.string.drawer_item_about));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, aboutFragment, AboutFragment.class.getSimpleName());
                 break;
+            case 5:
+                ContactUsFragment contactUsFragment = new ContactUsFragment();
+                toolbar.setTitle(getResources().getString(R.string.drawer_item_contact));
+                FragmentUtils.replaceFragment(R.id.frame_container, this, contactUsFragment, ContactUsFragment.class.getSimpleName());
+                break;
             default:
                 HomeFragment defaultFragment = new HomeFragment();
                 toolbar.setTitle("");
@@ -139,10 +144,13 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         final CustomDrawerItem item4 = initMenuItem(R.string.drawer_item_about, R.color.green_very_dark, 4);
 
+        final CustomDrawerItem item5 = initMenuItem(R.string.drawer_item_contact, R.color.green_very_dark, 5);
+
         drawerItems[0] = item1;
         drawerItems[1] = item2;
         drawerItems[2] = item3;
         drawerItems[3] = item4;
+        drawerItems[4] = item5;
 
         lastSelectedItem = item1;
 

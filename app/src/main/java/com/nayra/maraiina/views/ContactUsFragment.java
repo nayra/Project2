@@ -1,5 +1,6 @@
 package com.nayra.maraiina.views;
 
+
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -13,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.model.SuggestionModel;
 import com.nayra.maraiina.util.ProgressDialogUtil;
@@ -24,7 +24,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SuggestionsFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ContactUsFragment extends Fragment {
 
     @BindView(R.id.til_subject)
     TextInputLayout subjectHint;
@@ -54,29 +57,21 @@ public class SuggestionsFragment extends Fragment {
     TextInputEditText etEmail;
 
 
+    public ContactUsFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_suggestions, container, false);
+        View view = inflater.inflate(R.layout.fragment_contact_us, container, false);
         ButterKnife.bind(this, view);
-
-        setTypeFace();
         return view;
     }
 
-    private void setTypeFace() {
-        Utils.setTypeFace(subjectHint, Constants.KUFI_REGULAR);
-        Utils.setTypeFace(emailHint, Constants.KUFI_REGULAR);
-        Utils.setTypeFace(phoneHint, Constants.KUFI_REGULAR);
-        Utils.setTypeFace(etDetails, Constants.KUFI_REGULAR);
-        Utils.setTypeFace(etSubject, Constants.KUFI_REGULAR);
-        Utils.setTypeFace(etPhone, Constants.KUFI_REGULAR);
-        Utils.setTypeFace(etEmail, Constants.KUFI_REGULAR);
-        Utils.setTypeFace(etName, Constants.KUFI_REGULAR);
-        Utils.setTypeFace(nameHint, Constants.KUFI_REGULAR);
-    }
 
-    @OnClick(R.id.btSendSuggestion)
+    @OnClick(R.id.btSendContactUs)
     void sendSuggestion() {
         String name = etName.getText().toString();
         String email = etEmail.getText().toString();
@@ -127,6 +122,5 @@ public class SuggestionsFragment extends Fragment {
 
         }
     }
-
 
 }
