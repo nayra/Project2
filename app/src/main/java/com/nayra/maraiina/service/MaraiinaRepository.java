@@ -56,11 +56,12 @@ public class MaraiinaRepository {
                 @Override
                 public void onFailure(Call<ResultCountryModel> call, Throwable t) {
                     Log.e(TAG, t.toString());
-                    getCountries();
+                    ProgressDialogUtil.dismiss();
                 }
             });
         } else {
             Log.e(TAG, "No internet connectivity");
+            ProgressDialogUtil.dismiss();
         }
         return data;
     }
@@ -83,10 +84,12 @@ public class MaraiinaRepository {
                 @Override
                 public void onFailure(Call<ResultCategoryModel> call, Throwable t) {
                     Log.e(TAG, t.toString());
+                    ProgressDialogUtil.dismiss();
                 }
             });
         } else {
             Log.e(TAG, "No internet connectivity");
+            ProgressDialogUtil.dismiss();
         }
         return data;
     }
@@ -110,10 +113,12 @@ public class MaraiinaRepository {
                 @Override
                 public void onFailure(Call<ProductAndMethodsResultModel> call, Throwable t) {
                     Log.e(TAG, t.toString());
+                    ProgressDialogUtil.dismiss();
                 }
             });
         } else {
             Log.e(TAG, "No internet connectivity");
+            ProgressDialogUtil.dismiss();
         }
 
         return data;
@@ -136,11 +141,13 @@ public class MaraiinaRepository {
 
                 @Override
                 public void onFailure(Call<ResultCityModel> call, Throwable t) {
+                    ProgressDialogUtil.dismiss();
                     Log.e(TAG, t.toString());
-                    getCountries();
+                    //getCountries();
                 }
             });
         } else {
+            ProgressDialogUtil.dismiss();
             Log.e(TAG, "No internet connectivity");
         }
         return data;
@@ -215,6 +222,7 @@ CuttingMethodOther:fffff
                 @Override
                 public void onFailure(Call<OrderResultModel> call, Throwable t) {
                     Log.e(TAG, t.toString());
+                    ProgressDialogUtil.dismiss();
                 }
             });
         } else {
@@ -261,6 +269,7 @@ CuttingMethodOther:fffff
                         @Override
                         public void onFailure(Call<OrderResultModel> call, Throwable t) {
                             Log.e(TAG, t.toString());
+                            ProgressDialogUtil.dismiss();
                         }
                     });
         } else {

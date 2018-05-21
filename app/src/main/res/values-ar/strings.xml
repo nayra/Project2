@@ -7,7 +7,7 @@
     <string name="choose_country">اختر الإمارة</string>
     <string name="continue_to_app">متابعة</string>
     <string name="drawer_item_home">الرئيسية</string>
-    <string name="drawer_item_offers">العروض</string>
+    <string name="drawer_item_offers">المنتجات الجديدة</string>
 
     <string name="doUwantCook">هل تريد الطبخ</string>
     <string name="yes">نعم</string>
@@ -34,7 +34,7 @@
     <string name="confirm_order">إتمام الطلب</string>
     <string name="details">التفاصيل</string>
     <string name="send">إرسال</string>
-    <string name="drawer_item_complains_and_suggestions">الاقتراحات</string>
+    <string name="drawer_item_complains_and_suggestions">اراء و اشعارات</string>
     <string name="thank_you">شكرا لك</string>
     <string name="not_valid_email">بريد الكتروني غير صحيح</string>
     <string name="wrong_number">رقم غير صحيح</string>
@@ -60,7 +60,7 @@
 
     <string name="about_agreement">نحن في مؤسسة الجزيرة الخضراء لتجارة المواشي و الاغنام ملتزمون بتحويل رؤيتنا الى واقع ملموس كمساهمة فعالة لخدمة المجتمع</string>
 
-    <string name="drawer_item_about">عنا</string>
+    <string name="drawer_item_about">نبذة عنا</string>
     <string name="distributionMethod">طريقة التوزيع</string>
     <string name="hint_other_cutting_method">أخرى</string>
     <string name="choose_type">اختر النوع</string>

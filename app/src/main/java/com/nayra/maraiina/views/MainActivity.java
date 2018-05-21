@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.imgBtnToolbar)
+    ImageButton menuImageButton;
 
     private Drawer result;
     private CustomDrawerItem[] drawerItems = new CustomDrawerItem[6];
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 })
                 .build();
 
-        toolbar.setOnClickListener(new View.OnClickListener() {
+        menuImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (result.isDrawerOpen())
@@ -97,25 +100,30 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         switch (pos) {
             case 1:
                 HomeFragment fragment = new HomeFragment();
+                toolbar.setTitle("");
                 FragmentUtils.replaceFragment(R.id.frame_container, this, fragment, HomeFragment.class.getSimpleName());
                 break;
 
             case 2:
                 OffersFragment offersFragment = new OffersFragment();
+                toolbar.setTitle(getResources().getString(R.string.drawer_item_offers));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, offersFragment, OffersFragment.class.getSimpleName());
                 break;
 
             case 3:
                 SuggestionsFragment suggestionsFragment = new SuggestionsFragment();
+                toolbar.setTitle(getResources().getString(R.string.drawer_item_complains_and_suggestions));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, suggestionsFragment, SuggestionsFragment.class.getSimpleName());
                 break;
 
             case 4:
                 AboutFragment aboutFragment = new AboutFragment();
+                toolbar.setTitle(getResources().getString(R.string.drawer_item_about));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, aboutFragment, AboutFragment.class.getSimpleName());
                 break;
             default:
                 HomeFragment defaultFragment = new HomeFragment();
+                toolbar.setTitle("");
                 FragmentUtils.replaceFragment(R.id.frame_container, this, defaultFragment, HomeFragment.class.getSimpleName());
                 break;
 

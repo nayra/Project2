@@ -8,7 +8,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="drawer_item_home">Home</string>
-    <string name="drawer_item_offers">Offers</string>
+    <string name="drawer_item_offers">New Products</string>
 
     <string name="doUwantCook">Do you want to cook ?</string>
     <string name="yes">Yes</string>
@@ -39,7 +39,7 @@
     <string name="confirm_order">Confirm Order</string>
     <string name="details">Details</string>
     <string name="send">Send</string>
-    <string name="drawer_item_complains_and_suggestions">Suggestions</string>
+    <string name="drawer_item_complains_and_suggestions">Feedback and Notifications</string>
     <string name="thank_you">Thank you</string>
     <string name="not_valid_email">Not valid email</string>
     <string name="wrong_number">Not valid phone</string>
