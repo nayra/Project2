@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:orientation="vertical"
-    tools:context=".views.AboutFragment">
+    tools:context=".views.AboutFragment"
+    android:gravity="center">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#55FFFFFF">
+        android:background="#88FFFFFF">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,6 +20,18 @@
             android:layout_margin="@dimen/_5sdp"
             android:orientation="vertical">
 
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <com.nayra.maraiina.custom_views.MyBoldTextView
                 android:id="@+id/title"
@@ -29,7 +42,7 @@
                 android:text="@string/about_title"
                 android:textColor="@color/green_very_dark"
                 android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/logo" />
 
 
             <com.nayra.maraiina.custom_views.MyBoldTextView

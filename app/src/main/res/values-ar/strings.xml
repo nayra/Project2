@@ -14,7 +14,7 @@
     <string name="no">لا</string>
     <string name="choose_weight">اختر الوزن</string>
     <string name="choose_age">اختر العمر</string>
-    <string name="total_price">اجمالي السعر</string>
+    <string name="total_price">السعر</string>
     <string name="receive_order_in">التوصيل في خلال</string>
     <string name="hours_num">%1$d ساعة</string>
     <string name="fees">%1$d درهم</string>

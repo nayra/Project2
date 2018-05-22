@@ -15,7 +15,7 @@
     <string name="no">No</string>
     <string name="choose_weight">Choose weight</string>
     <string name="choose_age">Choose age</string>
-    <string name="total_price">Total price</string>
+    <string name="total_price">price</string>
     <string name="receive_order_in">Receive order in</string>
     <string name="hours_num">%1$d hours</string>
     <string name="fees">%1$d AED</string>
