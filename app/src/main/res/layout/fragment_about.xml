@@ -9,6 +9,7 @@
     tools:context=".views.AboutFragment"
     android:gravity="center">
 
+    <include layout="@layout/header_main" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

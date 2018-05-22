@@ -14,7 +14,7 @@
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_80sdp"
         android:src="@drawable/no_image"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_margin="5dp"
         android:scaleType="fitXY"
         android:layout_gravity="center_horizontal" />
 
@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:text="@string/type_name"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/green_very_dark"
-        android:padding="@dimen/_10sdp" />
+        android:textColor="@color/green_very_dark" />
 
 </LinearLayout>

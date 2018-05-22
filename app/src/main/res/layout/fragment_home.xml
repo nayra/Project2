@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".views.MainActivity">
 
+    <include layout="@layout/header_main" />
     <com.nayra.maraiina.custom_views.MyBoldTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
