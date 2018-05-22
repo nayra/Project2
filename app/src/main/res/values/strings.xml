@@ -67,8 +67,8 @@
     <string name="choose_type">Choose type</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="contact_address">العنوان : مسلك الشهامه ابو ظبي</string>
+    <string name="contact_address">Al Shahama Slaughterhouse</string>
     <string name="contact_number">+971-2-5668115 / +971-50-3710035</string>
-    <string name="contact_title">يمكنك ايضا مراسلتنا عن طريق ملء البيانات التاليه</string>
+    <string name="contact_title">You can also send to us here</string>
     <string name="hint_subject_title">Subject</string>
 </resources>
