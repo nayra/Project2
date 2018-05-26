@@ -174,6 +174,9 @@ public class MaraiinaRepository {
 
             String distributionMethod = orderDetailsModel.getDistributionMethod();
 
+            double lat = orderDetailsModel.getCustomerDetails().getLat();
+            double lng = orderDetailsModel.getCustomerDetails().getLng();
+
             String lang = SharedPrefsUtil.getString(SharedPrefsUtil.SELECTED_LANGUAGE);
 
             /*@Field("Address") String address, @Field("Lang") String lang, @Field("CityID") int cityId,
@@ -204,7 +207,7 @@ ProductID:1
 Lang:ar
 CuttingMethodOther:fffff
              */
-            Call<OrderResultModel> call = ApiConnection.getRetrofit().postOrder(address, lang, cityId, 1, phone, email, name, "", 2.1, 2.3,
+            Call<OrderResultModel> call = ApiConnection.getRetrofit().postOrder(address, lang, cityId, 1, phone, email, name, "", lat, lng,
                     cookingMethodId, cuttingMethodId, packagingMethodId, distributionMethod, productId, "", Constants.auth);
 
             Log.e("ORDER", call.request().header("Authorization"));

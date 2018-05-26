@@ -11,6 +11,7 @@ public class OrderDetailsModel implements Parcelable {
     private CustomerDetails customerDetails;
 
     public OrderDetailsModel() {
+        customerDetails = new CustomerDetails();
     }
 
     public int getCookingId() {

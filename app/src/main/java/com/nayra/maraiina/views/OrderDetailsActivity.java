@@ -118,6 +118,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     @BindView(R.id.etOtherCuttingMethod)
     AppCompatEditText etxtOtherCuttingMethod;
 
+    @BindView(R.id.tvDistributionDesc)
+    MyTextView txtDescDistribution;
+
     private int selectedIndex = 0;
 
     private int selected_language_index = 0;
@@ -141,6 +144,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private String typeName = "";
     private String distributionMethod = "";
     private String img_url;
+    private String[] distributionsMethods;
+    private String[] distributionDescriptionDishes;
+    private String[] distributionDescriptionBags;
 
     //private boolean isCamel = false;
     @Override
@@ -152,6 +158,14 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
 
         ButterKnife.bind(this);
+
+        distributionsMethods = getResources().getStringArray(R.array.meetDistributions);
+
+        distributionDescriptionDishes = getResources().getStringArray(R.array.meetDistributionsDescDishes);
+        distributionDescriptionBags = getResources().getStringArray(R.array.meetDistributionsDescBags);
+
+        distributionMethod = distributionsMethods[0];
+
 
         checkCategory();
         setTypeFace();
@@ -283,6 +297,20 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                 } else {
                     packagingMethod = packagingMethods.get(i).getName();
                 }
+
+                if (packagingMethod.contains(getResources().getString(R.string.dishes))) {
+                    if (distributionMethod.compareTo(distributionsMethods[0]) == 0) {
+                        txtDescDistribution.setText(distributionDescriptionDishes[0]);
+                    } else {
+                        txtDescDistribution.setText(distributionDescriptionDishes[1]);
+                    }
+                } else {
+                    if (distributionMethod.compareTo(distributionsMethods[0]) == 0) {
+                        txtDescDistribution.setText(distributionDescriptionBags[0]);
+                    } else {
+                        txtDescDistribution.setText(distributionDescriptionBags[1]);
+                    }
+                }
             }
 
             @Override
@@ -321,8 +349,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     }
 
     private void displayDistributionMethods() {
-        final String[] distributionsMethods = getResources().getStringArray(R.array.meetDistributions);
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.row_spinner_dark, distributionsMethods);
         spDistributionMethods.setAdapter(adapter);
         spDistributionMethods.setSelection(0);
@@ -330,6 +356,10 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 distributionMethod = distributionsMethods[i];
+                if (packagingMethod.contains(getResources().getString(R.string.dishes)))
+                    txtDescDistribution.setText(distributionDescriptionDishes[i]);
+                else
+                    txtDescDistribution.setText(distributionDescriptionBags[i]);
             }
 
             @Override

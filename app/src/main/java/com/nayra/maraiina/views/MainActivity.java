@@ -17,6 +17,7 @@ import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.MyApplication;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.CustomDrawerItem;
+import com.nayra.maraiina.custom_views.MyBoldTextView;
 import com.nayra.maraiina.util.FragmentUtils;
 
 import butterknife.BindView;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     @BindView(R.id.imgBtnToolbar)
     ImageButton menuImageButton;
+
+    @BindView(R.id.tvToolbarTitle)
+    MyBoldTextView toolbar_title;
 
     private Drawer result;
     private CustomDrawerItem[] drawerItems = new CustomDrawerItem[6];
@@ -100,35 +104,40 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         switch (pos) {
             case 1:
                 HomeFragment fragment = new HomeFragment();
-                toolbar.setTitle("");
+                toolbar_title.setText("");
                 FragmentUtils.replaceFragment(R.id.frame_container, this, fragment, HomeFragment.class.getSimpleName());
                 break;
 
             case 2:
                 OffersFragment offersFragment = new OffersFragment();
-                toolbar.setTitle(getResources().getString(R.string.drawer_item_offers));
+                toolbar_title.setText(getResources().getString(R.string.drawer_item_offers));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, offersFragment, OffersFragment.class.getSimpleName());
                 break;
 
             case 3:
                 SuggestionsFragment suggestionsFragment = new SuggestionsFragment();
-                toolbar.setTitle(getResources().getString(R.string.drawer_item_complains_and_suggestions));
+                toolbar_title.setText(getResources().getString(R.string.drawer_item_complains_and_suggestions));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, suggestionsFragment, SuggestionsFragment.class.getSimpleName());
                 break;
 
             case 4:
-                AboutFragment aboutFragment = new AboutFragment();
-                toolbar.setTitle(getResources().getString(R.string.drawer_item_about));
-                FragmentUtils.replaceFragment(R.id.frame_container, this, aboutFragment, AboutFragment.class.getSimpleName());
+                AboutUsFragment aboutUsFragment = new AboutUsFragment();
+                toolbar_title.setText(getResources().getString(R.string.drawer_item_about));
+                FragmentUtils.replaceFragment(R.id.frame_container, this, aboutUsFragment, AboutUsFragment.class.getSimpleName());
                 break;
             case 5:
                 ContactUsFragment contactUsFragment = new ContactUsFragment();
-                toolbar.setTitle(getResources().getString(R.string.drawer_item_contact));
+                toolbar_title.setText(getResources().getString(R.string.drawer_item_contact));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, contactUsFragment, ContactUsFragment.class.getSimpleName());
+                break;
+            case 6:
+                AboutApplicationFragment aboutApplicationFragment = new AboutApplicationFragment();
+                toolbar_title.setText(getResources().getString(R.string.drawer_item_about_application));
+                FragmentUtils.replaceFragment(R.id.frame_container, this, aboutApplicationFragment, AboutApplicationFragment.class.getSimpleName());
                 break;
             default:
                 HomeFragment defaultFragment = new HomeFragment();
-                toolbar.setTitle("");
+                toolbar_title.setText("");
                 FragmentUtils.replaceFragment(R.id.frame_container, this, defaultFragment, HomeFragment.class.getSimpleName());
                 break;
 
@@ -146,11 +155,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         final CustomDrawerItem item5 = initMenuItem(R.string.drawer_item_contact, R.color.green_very_dark, 5);
 
+        final CustomDrawerItem item6 = initMenuItem(R.string.drawer_item_about_application, R.color.green_very_dark, 6);
+
         drawerItems[0] = item1;
         drawerItems[1] = item2;
         drawerItems[2] = item3;
         drawerItems[3] = item4;
         drawerItems[4] = item5;
+        drawerItems[5] = item6;
 
         lastSelectedItem = item1;
 

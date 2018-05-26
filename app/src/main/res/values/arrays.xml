@@ -4,4 +4,15 @@
         <item>Identical parts</item>
         <item>Different parts</item>
     </string-array>
+
+    <string-array name="meetDistributionsDescDishes">
+        <item>Each part of the meat in a separate dish for example: hands with separate dishes as well as each part of the sacrificial dish separately</item>
+        <item>Each dish contains a variety of different parts of the meat</item>
+    </string-array>
+
+    <string-array name="meetDistributionsDescBags">
+        <item>Each part of the meat in a separate bag for example: the hands separate bags as well as each part of the sachet separate bags</item>
+        <item>Each bag contains a variety of different parts of the meat</item>
+    </string-array>
+
 </resources>

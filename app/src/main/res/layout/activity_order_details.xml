@@ -229,7 +229,18 @@
                             android:layout_height="wrap_content"
                             style="@style/mySpinnerItemStyle"
                             android:layoutDirection="locale"
-                            android:layout_margin="@dimen/_10sdp"></Spinner>
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"></Spinner>
+
+                        <com.nayra.maraiina.custom_views.MyTextView
+                            android:id="@+id/tvDistributionDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#cccccc"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp" />
 
                     </LinearLayout>
                 </LinearLayout>

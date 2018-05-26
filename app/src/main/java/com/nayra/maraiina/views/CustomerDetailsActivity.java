@@ -1,6 +1,8 @@
 package com.nayra.maraiina.views;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -18,6 +20,10 @@ import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,6 +75,9 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     MyTextView txtTypeName;
 
     private OrderDetailsModel orderDetailsModel;
+    private final int map_request_code = 100;
+
+    private double lat = Constants.DEF_LAT, lng = Constants.DEF_LNG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +93,43 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         orderDetailsModel = intent.getParcelableExtra(Constants.ORDER_DETAILS);
 
         setPriceAndDuration();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == map_request_code && resultCode == RESULT_OK && data != null) {
+            lat = data.getDoubleExtra(Constants.LATITUDE, Constants.DEF_LAT);
+            lng = data.getDoubleExtra(Constants.LONGITUDE, Constants.DEF_LNG);
+
+            /*Address address = getAddress(lat, lng);
+
+            if (address != null) {
+                int mMaxxAddressLines = address.getMaxAddressLineIndex();
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i = 0; i <= mMaxxAddressLines; i++) {
+                    stringBuilder.append(address.getAddressLine(i));
+                }
+                etxtAddress.setText(stringBuilder);
+            }*/
+        }
+    }
+
+    public Address getAddress(double latitude, double longitude) {
+        Geocoder geocoder;
+        List<Address> addresses;
+        String lang = SharedPrefsUtil.getString(SharedPrefsUtil.SELECTED_LANGUAGE);
+        geocoder = new Geocoder(this, new Locale(lang));
+
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+
+            if (addresses != null && addresses.size() > 0)
+                return addresses.get(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void setPriceAndDuration() {
@@ -132,14 +178,17 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         String address = etxtAddress.getText().toString();
         String email = etxtEmail.getText().toString();
 
+        if (lat != 0.0 && lng != 0.0 && address.isEmpty()) {
+            address = String.valueOf(lat) + "," + String.valueOf(lng);
+        }
         if (!name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && (email.isEmpty() || Utils.isValidEmail(email))) {
             CustomerDetails customerDetails = new CustomerDetails();
             customerDetails.setName(name);
             customerDetails.setAddress(address);
             customerDetails.setEmail(email);
             customerDetails.setPhone(phone);
-            customerDetails.setLat(2.2);
-            customerDetails.setLng(2.3);
+            customerDetails.setLat(lat);
+            customerDetails.setLng(lng);
 
             Log.e("nahmed", customerDetails.toString());
 
@@ -164,5 +213,11 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                 etxtEmail.setError(getResources().getString(R.string.not_valid_email));
             }
         }
+    }
+
+    @OnClick(R.id.btShowMap)
+    public void showMap() {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivityForResult(intent, map_request_code);
     }
 }

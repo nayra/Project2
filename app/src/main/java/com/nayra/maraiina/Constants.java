@@ -28,4 +28,8 @@ public class Constants {
     public static final String TYPE_NAME = "TypeName";
     public static final String REF_NO = "reference_number";
     public static final String CATEGORY_IMAGE = "CATEGORY_IMAGE";
+    public static final String LATITUDE = "latitude";
+    public static final String LONGITUDE = "longitude";
+    public static final double DEF_LAT = 0.0;
+    public static final double DEF_LNG = 0.0;
 }

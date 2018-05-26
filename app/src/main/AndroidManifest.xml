@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -15,8 +16,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".views.SplashActivity"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,14 +35,19 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".views.CustomerDetailsActivity"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".views.ReviewOrderDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".views.ReferenceNumberActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.MapActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_api_key" />
     </application>
 
 </manifest>
