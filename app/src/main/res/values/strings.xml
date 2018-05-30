@@ -67,6 +67,7 @@
     <string name="drawer_item_contact">Contact us</string>
     <string name="distributionMethod">Distribution Method</string>
     <string name="hint_other_cutting_method">other</string>
+    <string name="hint_email_customer">Email<font color='#FF0000'>*</font></string>
     <string name="choose_type">Choose type</string>
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 android {
     signingConfigs {
         release {
-            keyAlias 'key0'
+            keyAlias 'nahmed'
             keyPassword '123456'
-            storeFile file('/Users/nayrael-sayed/Documents/maraiina')
+            storeFile file('/Users/nayrael-sayed/Documents/KeyStore/maraeena')
             storePassword '123456'
         }
     }
@@ -18,6 +19,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
+        manifestPlaceholders = [
+                onesignal_app_id: '2016c5c2-b11e-49e3-98a7-f5809546026c',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
+        ]
     }
     buildTypes {
         release {
@@ -52,8 +58,8 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:support-v4:27.1.1'
     /* testImplementation 'junit:junit:4.12'
-                androidTestImplementation 'com.android.support.test:runner:1.0.1'
-                androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'*/
+                    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+                    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'*/
     // Architecture Components
     implementation 'android.arch.lifecycle:extensions:1.1.0'
     implementation 'android.arch.lifecycle:common-java8:1.1.0'
@@ -80,5 +86,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:11.6.2'
 
     implementation 'com.github.k0shk0sh:PermissionHelper:1.1.0'
-
+    implementation 'com.google.firebase:firebase-core:15.0.2'
+    implementation 'com.onesignal:OneSignal:[3.9.1, 3.99.99]'
+    //implementation 'com.google.android.gms:play-services-maps:15.0.1'
 }

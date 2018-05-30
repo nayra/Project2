@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -19,6 +20,7 @@ import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.CustomDrawerItem;
 import com.nayra.maraiina.custom_views.MyBoldTextView;
 import com.nayra.maraiina.util.FragmentUtils;
+import com.nayra.maraiina.util.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,12 +39,15 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     private Drawer result;
     private CustomDrawerItem[] drawerItems = new CustomDrawerItem[6];
     private CustomDrawerItem lastSelectedItem;
+    private int open = 1;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        open = getIntent().getIntExtra("menu", 1);
 
         initToolbar();
         initMenu();
@@ -65,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 .withSliderBackgroundColor(ContextCompat.getColor(this, R.color.green_very_dark))
                 .withHeaderDivider(true)
                 .withDisplayBelowStatusBar(true)
+                .withDrawerGravity(Gravity.START)
                 .addDrawerItems(
                         drawerItems
                 )
@@ -166,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         lastSelectedItem = item1;
 
-        menuNavigation(1);
+        menuNavigation(open);
     }
 
     private CustomDrawerItem initMenuItem(int name, int color, int id) {
@@ -212,6 +218,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     }
 
     private void back() {
-        finish();
+        Utils.displayNextActivityFinish(this, ChooseCountryActivity.class);
     }
 }

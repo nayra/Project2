@@ -4,7 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
 
+import com.nayra.maraiina.notifications.MaraeenaNotificationOpenedHandler;
 import com.nayra.maraiina.util.TypeFactory;
+import com.onesignal.OneSignal;
 
 public class MyApplication extends Application {
 
@@ -16,6 +18,11 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .setNotificationOpenedHandler(new MaraeenaNotificationOpenedHandler(this))
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
         context = this;
         mInstance = this;
     }

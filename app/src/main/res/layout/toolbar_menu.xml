@@ -11,8 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layoutDirection="locale"
         android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/imgBtnToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:backgroundTint="@android:color/white" />
 
         <com.nayra.maraiina.custom_views.MyBoldTextView
             android:id="@+id/tvToolbarTitle"
@@ -23,14 +31,6 @@
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp" />
 
-        <ImageButton
-            android:id="@+id/imgBtnToolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/icon"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:backgroundTint="@android:color/white" />
 
     </LinearLayout>
 

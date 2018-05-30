@@ -5,17 +5,15 @@ buildscript {
     repositories {
         google()
         jcenter()
-
+        maven { url 'https://plugins.gradle.org/m2/'}
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
-        
-
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.10.1, 0.99.99]'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
-
 allprojects {
     repositories {
         google()
@@ -23,6 +21,7 @@ allprojects {
         maven {
             url 'http://dl.bintray.com/raphaelbussa/maven'
         }
+        maven { url 'https://maven.google.com' }
     }
 }
 
