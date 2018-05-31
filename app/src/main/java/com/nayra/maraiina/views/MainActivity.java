@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     private Drawer result;
     private CustomDrawerItem[] drawerItems = new CustomDrawerItem[6];
     private CustomDrawerItem lastSelectedItem;
-    private int open = 1;
+    //private int open = 1;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        open = getIntent().getIntExtra("menu", 1);
+        //open = getIntent().getIntExtra("menu", 1);
 
         initToolbar();
         initMenu();
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
         lastSelectedItem = item1;
 
-        menuNavigation(open);
+        menuNavigation(1);
     }
 
     private CustomDrawerItem initMenuItem(int name, int color, int id) {

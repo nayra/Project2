@@ -1,3 +1,4 @@
+/*
 package com.nayra.maraiina.notifications;
 
 import android.content.Context;
@@ -16,7 +17,8 @@ public class MaraeenaNotificationOpenedHandler implements OneSignal.Notification
 
     @Override
     public void notificationOpened(OSNotificationOpenResult result) {
-        /*OSNotificationAction.ActionType actionType = result.action.type;
+        */
+/*OSNotificationAction.ActionType actionType = result.action.type;
         JSONObject data = result.notification.payload.additionalData;
         String customKey;
 
@@ -28,10 +30,14 @@ public class MaraeenaNotificationOpenedHandler implements OneSignal.Notification
 
         if (actionType == OSNotificationAction.ActionType.ActionTaken)
             Log.i("OneSignalExample", "Button pressed with id: " + result.action.actionID);
-*/
+*//*
+ */
+/*
         Intent intent = new Intent(mContext, MainActivity.class);
         intent.putExtra("menu", 2);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        mContext.startActivity(intent);
+        mContext.startActivity(intent);*//*
+
     }
 }
+*/

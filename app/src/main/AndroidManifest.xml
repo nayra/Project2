@@ -53,10 +53,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_api_key" />
 
-        <meta-data
+        <!--<meta-data
             android:name="com.onesignal.NotificationOpened.DEFAULT"
             android:value="DISABLE" />
-
+-->
         <service
             android:name=".notifications.MaraeenaNotificationExtender"
             android:permission="android.permission.BIND_JOB_SERVICE"
