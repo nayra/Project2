@@ -223,8 +223,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         productOptions.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(@Nullable Result methods) {
-                Log.e("nahmed", methods.toString());
-
                 if (cityId == SharedPrefsUtil.ABUZABI) {
                     displayCookingMethods(methods.getCookingMethods());
                 }

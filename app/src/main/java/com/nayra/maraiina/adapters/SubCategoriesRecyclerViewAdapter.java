@@ -71,7 +71,7 @@ public class SubCategoriesRecyclerViewAdapter extends RecyclerView.Adapter<SubCa
         @BindView(R.id.subCatImg)
         ImageView imageView;
 
-        public MyViewHolder(View view) {
+        private MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(new View.OnClickListener() {

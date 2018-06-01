@@ -16,11 +16,7 @@ import android.widget.RadioButton;
 import com.nayra.maraiina.MyApplication;
 import com.nayra.maraiina.custom_views.MyErrorEditText;
 import com.nayra.maraiina.custom_views.MyTextView;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-/**
+/*
  * Created by nayrael-sayed on 2/13/18.
  */
 
@@ -63,12 +59,12 @@ public class Utils {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    public static String getDate(long milliSeconds, String dateFormat) {
+    /*public static String getDate(long milliSeconds, String dateFormat) {
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(milliSeconds);
         return formatter.format(calendar.getTime());
-    }
+    }*/
 
 
     public static void setTypeFace(final MyTextView myTextView, final int type) {

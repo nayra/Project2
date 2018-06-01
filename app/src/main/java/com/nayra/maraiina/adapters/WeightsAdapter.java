@@ -72,7 +72,7 @@ public class WeightsAdapter extends RecyclerView.Adapter<WeightsAdapter.MyViewHo
         @BindView(R.id.tv_weight)
         public MyTextView title;
 
-        public MyViewHolder(View view) {
+        private MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(new View.OnClickListener() {

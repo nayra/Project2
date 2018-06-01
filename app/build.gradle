@@ -11,6 +11,7 @@ android {
         }
     }
     compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.nayra.maraiina"
         minSdkVersion 17
@@ -58,11 +59,11 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:support-v4:27.1.1'
     /* testImplementation 'junit:junit:4.12'
-                    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-                    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'*/
+                        androidTestImplementation 'com.android.support.test:runner:1.0.1'
+                        androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'*/
     // Architecture Components
-    implementation 'android.arch.lifecycle:extensions:1.1.0'
-    implementation 'android.arch.lifecycle:common-java8:1.1.0'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    implementation 'android.arch.lifecycle:common-java8:1.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
     // retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
@@ -83,10 +84,16 @@ dependencies {
     implementation 'info.hoang8f:android-segmented:1.0.6'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.android.support:exifinterface:27.1.1'
-    implementation 'com.google.android.gms:play-services-maps:11.6.2'
-
+    implementation 'com.google.android.gms:play-services-maps:12.0.1'
     implementation 'com.github.k0shk0sh:PermissionHelper:1.1.0'
-    implementation 'com.google.firebase:firebase-core:15.0.2'
-    implementation 'com.onesignal:OneSignal:[3.9.1, 3.99.99]'
+    //implementation 'com.onesignal:OneSignal:3.4.3@aar'
+    //implementation 'com.google.firebase:firebase-core:15.0.2'
+    implementation ('com.onesignal:OneSignal:[3.8.2, 3.99.99]'){
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.google.android.gms', module: 'play-services-gcm'
+        exclude group: 'com.google.android.gms', module: 'play-services-analytics'
+        exclude group: 'com.google.android.gms', module: 'play-services-location'
+    }
     //implementation 'com.google.android.gms:play-services-maps:15.0.1'
+    //implementation 'com.onesignal:OneSignal:3.9.1'
 }

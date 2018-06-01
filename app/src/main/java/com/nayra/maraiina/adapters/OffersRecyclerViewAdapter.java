@@ -61,7 +61,7 @@ public class OffersRecyclerViewAdapter extends RecyclerView.Adapter<OffersRecycl
         @BindView(R.id.imgOffer)
         ImageView img;
 
-        public MyViewHolder(View view) {
+        private MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
 

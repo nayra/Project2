@@ -19,25 +19,19 @@ import android.widget.Toast;
 
 public class LocationTrack extends Service implements LocationListener {
 
-    private final Context mContext;
-
-
-    boolean checkGPS = false;
-
-
-    boolean checkNetwork = false;
-
-    boolean canGetLocation = false;
-
-    Location loc;
-    double latitude;
-    double longitude;
+    private Context mContext;
+    private boolean checkGPS = false;
+    private boolean checkNetwork = false;
+    private boolean canGetLocation = false;
+    private Location loc;
+    private double latitude;
+    private double longitude;
 
 
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
 
 
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 60;
     protected LocationManager locationManager;
 
     public LocationTrack(Context mContext) {
@@ -52,13 +46,14 @@ public class LocationTrack extends Service implements LocationListener {
                     .getSystemService(LOCATION_SERVICE);
 
             // get GPS status
-            checkGPS = locationManager
-                    .isProviderEnabled(LocationManager.GPS_PROVIDER);
+            if(locationManager != null) {
+                checkGPS = locationManager
+                        .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-            // get network provider status
-            checkNetwork = locationManager
-                    .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
+                // get network provider status
+                checkNetwork = locationManager
+                        .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            }
             if (!checkGPS && !checkNetwork) {
                 Toast.makeText(mContext, "No Service Provider is available", Toast.LENGTH_SHORT).show();
             } else {

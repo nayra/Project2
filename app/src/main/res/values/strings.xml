@@ -22,8 +22,8 @@
 
     <string name="english">English</string>
     <string name="arabic">اللغة العربية</string>
-    <string name="desc">descripton</string>
-    <string name="Loading">Loading ...</string>
+    <string name="desc">description</string>
+    <string name="Loading">Loading</string>
     <string name="CookingMethod">Cooking Method</string>
     <string name="CuttingMethod">Cutting Method</string>
     <string name="PackagingMethod">Packaging Method</string>
@@ -72,7 +72,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="contact_address">Al Shahama Slaughterhouse</string>
-    <string name="contact_number">+971-2-5668115 / +971-50-3710035</string>
+    <string name="contact_number">+971&#8211;2&#8211;5668115 / +971&#8211;50&#8211;3710035</string>
     <string name="contact_title">You can also send to us here</string>
     <string name="hint_subject_title">Subject</string>
     <string name="map_api_key" translatable="false">AIzaSyB9sfG4LNXZcqrKXk4HzNGGL_P9lztUBPM</string>

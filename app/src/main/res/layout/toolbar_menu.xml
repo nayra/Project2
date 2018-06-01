@@ -20,13 +20,13 @@
             android:background="@drawable/icon"
             android:layout_marginRight="@dimen/_5sdp"
             android:layout_marginLeft="@dimen/_5sdp"
-            android:backgroundTint="@android:color/white" />
+            android:backgroundTint="@android:color/white"
+            android:contentDescription="@string/desc"/>
 
         <com.nayra.maraiina.custom_views.MyBoldTextView
             android:id="@+id/tvToolbarTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp" />

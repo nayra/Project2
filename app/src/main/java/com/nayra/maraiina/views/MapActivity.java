@@ -66,7 +66,12 @@ public class MapActivity extends AppCompatActivity implements OnPermissionCallba
     public void onMapClick(LatLng latLng) {
         latitude = latLng.latitude;
         longitude = latLng.longitude;
-        setMarkerLocation();
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        map.clear();
+        //map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        map.addMarker(markerOptions);
     }
 
     @Override

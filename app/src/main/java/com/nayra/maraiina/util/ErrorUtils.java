@@ -1,3 +1,4 @@
+/*
 package com.nayra.maraiina.util;
 
 import android.content.Context;
@@ -7,9 +8,11 @@ import android.graphics.drawable.Drawable;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.MyErrorEditText;
 
+*/
 /**
  * Created by nayrael-sayed on 2/16/18.
- */
+ *//*
+
 
 public class ErrorUtils {
 
@@ -31,3 +34,4 @@ public class ErrorUtils {
         editText.setError("", null);
     }
 }
+*/

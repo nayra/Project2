@@ -18,7 +18,7 @@
     <string name="receive_order_in">التوصيل في خلال</string>
     <string name="hours_num">%1$d ساعة</string>
     <string name="fees">%1$d درهم</string>
-    <string name="Loading">تحميل ...</string>
+    <string name="Loading">تحميل</string>
     <string name="CookingMethod">طريقة الطبخ</string>
     <string name="CuttingMethod">طريقة التقطيع</string>
     <string name="PackagingMethod">طريقة التغليف</string>
@@ -74,7 +74,7 @@
     <string name="contact_title">يمكنك ايضا مراسلتنا عن طريق ملء البيانات التاليه</string>
     <string name="hint_subject_title">عنوان الرسالة</string>
 
-    <string name="contact_number">+971-2-5668115 / +971-50-3710035</string>
+    <string name="contact_number">+97125668115 / +971503710035</string>
     <string name="done">تم</string>
     <string name="locate_address_on_map">حدد مكانك على الخريطة</string>
     <string name="drawer_item_about_application">عن التطبيق</string>

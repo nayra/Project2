@@ -1,10 +1,8 @@
 package com.nayra.maraiina.views;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -98,14 +96,11 @@ public class SuggestionsFragment extends Fragment {
             ProgressDialogUtil.show(getActivity());
             SendSuggestionViewModel _ViewModel = ViewModelProviders.of(this).get(SendSuggestionViewModel.class);
             LiveData<Boolean> booleanLiveData = _ViewModel.sendSuggestion(suggestionModel);
-            booleanLiveData.observe(this, new Observer<Boolean>() {
-                @Override
-                public void onChanged(@Nullable Boolean isSent) {
-                    if (isSent) {
-                        ProgressDialogUtil.dismiss();
-                        Toast.makeText(getActivity(), getString(R.string.thank_you), Toast.LENGTH_LONG).show();
-                        ((MainActivity) getActivity()).menuNavigation(1);
-                    }
+            booleanLiveData.observe(this, isSent -> {
+                if (isSent) {
+                    ProgressDialogUtil.dismiss();
+                    Toast.makeText(getActivity(), getString(R.string.thank_you), Toast.LENGTH_LONG).show();
+                    ((MainActivity) getActivity()).menuNavigation(1);
                 }
             });
         } else {

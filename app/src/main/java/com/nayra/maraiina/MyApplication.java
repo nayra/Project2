@@ -3,8 +3,9 @@ package com.nayra.maraiina;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.view.View;
 
-import com.nayra.maraiina.notifications.MaraeenaNotificationOpenedHandler;
+import com.nayra.maraiina.notifications.MaraeenaNotificationExtender;
 import com.nayra.maraiina.util.TypeFactory;
 import com.onesignal.OneSignal;
 
@@ -18,11 +19,12 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        OneSignal.startInit(this).init();
+        /*
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-                .setNotificationOpenedHandler(new MaraeenaNotificationOpenedHandler(this))
                 .unsubscribeWhenNotificationsAreDisabled(true)
-                .init();
+                .init();*/
         context = this;
         mInstance = this;
     }
@@ -93,5 +95,10 @@ public class MyApplication extends Application {
         }
 
         return mTypeFactory.getKufiRegularTypeface();
+    }
+
+    public void onUserTappedProvidePrivacyConsent() {
+        //will initialize the OneSignal SDK and enable push notifications
+        OneSignal.provideUserConsent(true);
     }
 }

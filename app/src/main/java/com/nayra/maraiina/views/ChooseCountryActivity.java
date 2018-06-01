@@ -16,7 +16,6 @@ import com.nayra.maraiina.R;
 import com.nayra.maraiina.adapters.SpinnerCityAdapter;
 import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.model.CityModel;
-import com.nayra.maraiina.model.CountryModel;
 import com.nayra.maraiina.util.LanguageUtil;
 import com.nayra.maraiina.util.ProgressDialogUtil;
 import com.nayra.maraiina.util.SharedPrefsUtil;
@@ -48,8 +47,6 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_choose_city)
     MyTextView txtChooseCity;
-
-    private LiveData<ArrayList<CountryModel>> countryModels;
 
     private int selectedLanguage;
     private LiveData<ArrayList<CityModel>> citiesArray;

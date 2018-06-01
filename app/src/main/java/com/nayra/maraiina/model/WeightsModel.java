@@ -1,3 +1,4 @@
+/*
 package com.nayra.maraiina.model;
 
 public class WeightsModel {
@@ -5,3 +6,4 @@ public class WeightsModel {
     private String unit;
     private boolean isSelected;
 }
+*/
