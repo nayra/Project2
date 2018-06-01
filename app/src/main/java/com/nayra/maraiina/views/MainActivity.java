@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -18,7 +17,6 @@ import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.MyApplication;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.CustomDrawerItem;
-import com.nayra.maraiina.custom_views.MyBoldTextView;
 import com.nayra.maraiina.util.FragmentUtils;
 import com.nayra.maraiina.util.Utils;
 
@@ -30,11 +28,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.imgBtnToolbar)
+    /*@BindView(R.id.imgBtnToolbar)
     ImageButton menuImageButton;
 
     @BindView(R.id.tvToolbarTitle)
-    MyBoldTextView toolbar_title;
+    MyBoldTextView toolbar_title;*/
 
     private Drawer result;
     private CustomDrawerItem[] drawerItems = new CustomDrawerItem[6];
@@ -58,6 +56,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     private void initToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setNavigationIcon(R.drawable.icon);
+        toolbar.setTitle("");
+        toolbar.setNavigationOnClickListener(view -> {
+            if (result.isDrawerOpen())
+                result.closeDrawer();
+            else
+                result.openDrawer();
+        });
     }
 
     private void initMenu() {
@@ -95,55 +101,40 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 })
                 .build();
 
-        menuImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (result.isDrawerOpen())
-                    result.closeDrawer();
-                else
-                    result.openDrawer();
-            }
-        });
+
     }
 
     public void menuNavigation(int pos) {
         switch (pos) {
             case 1:
                 HomeFragment fragment = new HomeFragment();
-                toolbar_title.setText("");
                 FragmentUtils.replaceFragment(R.id.frame_container, this, fragment, HomeFragment.class.getSimpleName());
                 break;
 
             case 2:
                 OffersFragment offersFragment = new OffersFragment();
-                toolbar_title.setText(getResources().getString(R.string.drawer_item_offers));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, offersFragment, OffersFragment.class.getSimpleName());
                 break;
 
             case 3:
                 SuggestionsFragment suggestionsFragment = new SuggestionsFragment();
-                toolbar_title.setText(getResources().getString(R.string.drawer_item_complains_and_suggestions));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, suggestionsFragment, SuggestionsFragment.class.getSimpleName());
                 break;
 
             case 4:
                 AboutUsFragment aboutUsFragment = new AboutUsFragment();
-                toolbar_title.setText(getResources().getString(R.string.drawer_item_about));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, aboutUsFragment, AboutUsFragment.class.getSimpleName());
                 break;
             case 5:
                 ContactUsFragment contactUsFragment = new ContactUsFragment();
-                toolbar_title.setText(getResources().getString(R.string.drawer_item_contact));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, contactUsFragment, ContactUsFragment.class.getSimpleName());
                 break;
             case 6:
                 AboutApplicationFragment aboutApplicationFragment = new AboutApplicationFragment();
-                toolbar_title.setText(getResources().getString(R.string.drawer_item_about_application));
                 FragmentUtils.replaceFragment(R.id.frame_container, this, aboutApplicationFragment, AboutApplicationFragment.class.getSimpleName());
                 break;
             default:
                 HomeFragment defaultFragment = new HomeFragment();
-                toolbar_title.setText("");
                 FragmentUtils.replaceFragment(R.id.frame_container, this, defaultFragment, HomeFragment.class.getSimpleName());
                 break;
 

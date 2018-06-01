@@ -102,7 +102,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             lat = data.getDoubleExtra(Constants.LATITUDE, Constants.DEF_LAT);
             lng = data.getDoubleExtra(Constants.LONGITUDE, Constants.DEF_LNG);
 
-            /*Address address = getAddress(lat, lng);
+            Address address = getAddress(lat, lng);
 
             if (address != null) {
                 int mMaxxAddressLines = address.getMaxAddressLineIndex();
@@ -111,7 +111,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                     stringBuilder.append(address.getAddressLine(i));
                 }
                 etxtAddress.setText(stringBuilder);
-            }*/
+            }
         }
     }
 

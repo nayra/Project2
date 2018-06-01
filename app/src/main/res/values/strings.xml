@@ -42,7 +42,7 @@
     <string name="confirm_order">Confirm Order</string>
     <string name="details">Details</string>
     <string name="send">Send</string>
-    <string name="drawer_item_complains_and_suggestions">Feedback and Notifications</string>
+    <string name="drawer_item_complains_and_suggestions">Feedback</string>
     <string name="thank_you">Thank you</string>
     <string name="not_valid_email">Not valid email</string>
     <string name="wrong_number">Not valid phone</string>
@@ -88,4 +88,5 @@
     <string name="drawer_item_about_application">About Application</string>
     <string name="dishes">dishes</string>
     <string name="we_will_contact_u">We will contact you soon</string>
+    <string name="press_on_map">Press on map to select your location</string>
 </resources>

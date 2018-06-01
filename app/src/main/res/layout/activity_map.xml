@@ -6,6 +6,12 @@
     android:orientation="vertical"
     tools:context=".views.MapActivity">
 
+    <com.nayra.maraiina.custom_views.MyBoldTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/press_on_map"
+        android:padding="@dimen/_5sdp"
+        android:gravity="center" />
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"

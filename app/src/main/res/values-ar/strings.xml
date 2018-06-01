@@ -39,7 +39,7 @@
     <string name="confirm_order">إتمام الطلب</string>
     <string name="details">التفاصيل</string>
     <string name="send">إرسال</string>
-    <string name="drawer_item_complains_and_suggestions">اراء و اشعارات</string>
+    <string name="drawer_item_complains_and_suggestions">اراء</string>
     <string name="thank_you">شكرا لك</string>
     <string name="not_valid_email">بريد الكتروني غير صحيح</string>
     <string name="wrong_number">رقم غير صحيح</string>
@@ -70,16 +70,17 @@
     <string name="distributionMethod">طريقة التوزيع</string>
     <string name="hint_other_cutting_method">أخرى</string>
     <string name="choose_type">اختر النوع</string>
-    <string name="contact_address">العنوان : مسلك الشهامه ابو ظبي</string>
+    <string name="contact_address">العنوان : مسلخ الشهامه ابو ظبي</string>
     <string name="contact_title">يمكنك ايضا مراسلتنا عن طريق ملء البيانات التاليه</string>
     <string name="hint_subject_title">عنوان الرسالة</string>
 
-    <string name="contact_number">+97125668115 / +971503710035</string>
+    <string name="contact_number">+971&#8211;2&#8211;5668115 / +971&#8211;50&#8211;3710035</string>
     <string name="done">تم</string>
     <string name="locate_address_on_map">حدد مكانك على الخريطة</string>
     <string name="drawer_item_about_application">عن التطبيق</string>
     <string name="dishes">اطباق</string>
     <string name="we_will_contact_u">نشكركم على الطلب وسوف يتم التواصل بكم قريبا</string>
+    <string name="press_on_map">انقر على الخريطة لتحديد عنوان التوصيل</string>
 
 
 </resources>

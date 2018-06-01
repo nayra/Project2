@@ -6,33 +6,36 @@
     android:background="@color/green_very_dark"
     app:theme="@style/ToolBarStyle"
     android:gravity="center">
+    <!--
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/imgBtnToolbar"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/icon"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:backgroundTint="@android:color/white"
-            android:contentDescription="@string/desc"/>
+            android:orientation="horizontal"
+            android:gravity="center">
 
-        <com.nayra.maraiina.custom_views.MyBoldTextView
-            android:id="@+id/tvToolbarTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginRight="@dimen/_5sdp" />
+            <ImageButton
+                android:id="@+id/imgBtnToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:backgroundTint="@android:color/white"
+                android:contentDescription="@string/desc"/>
+
+            <com.nayra.maraiina.custom_views.MyBoldTextView
+                android:id="@+id/tvToolbarTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+    -->
 
 
 </android.support.v7.widget.Toolbar>
