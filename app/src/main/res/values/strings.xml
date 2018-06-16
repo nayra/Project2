@@ -53,7 +53,7 @@
     <string name="about_title">Green Island Livestock and Sheep Trading</string>
 
     <string name="about_vision">VISION</string>
-    <string name="about_vision_details">Green Island to achieved goal of \"Safe Farm .. Safe Meat\" permanently</string>
+    <string name="about_vision_details">Green Island to achieved goal of \"Safe Farm .. Safe Meat\" permanently .</string>
 
     <string name="about_mission">MISSION</string>
     <string name="about_mission_details">To provide the sale, import and export of livestock and sheep and slaoughterhouses management in the United Arab Emirates according to the highest standards of safety and sustainability,through continuous development and training.</string>
@@ -61,7 +61,7 @@
     <string name="about_slogan"></string>
     <string name="about_our_slogan">Safe Farm.. Safe Meat</string>
 
-    <string name="about_agreement">We in Green Island strive to provide good service in the UAE with the highest standered of quality. We are committed to convert our vision into reality as an effective contribution in community service</string>
+    <string name="about_agreement">We in Green Island strive to provide good service in the UAE with the highest standered of quality. We are committed to convert our vision into reality as an effective contribution in community service.</string>
 
     <string name="drawer_item_about">About us</string>
     <string name="drawer_item_contact">Contact us</string>
