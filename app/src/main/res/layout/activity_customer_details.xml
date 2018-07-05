@@ -207,7 +207,7 @@
                                 android:id="@+id/tv_delivery"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/receive_order_in"
+                                android:text="@string/contact_u"
                                 android:textColor="@color/green_very_dark"
                                 android:layout_margin="@dimen/_5sdp"
                                 android:textStyle="bold" />

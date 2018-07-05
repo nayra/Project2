@@ -59,8 +59,8 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tvDeliveryDetails)
     MyTextView txtDeliveryDetails;
 
-    @BindView(R.id.tv_delivery_duration)
-    MyTextView txtDeliveryDuration;
+    /*@BindView(R.id.tv_delivery_duration)
+    MyTextView txtDeliveryDuration;*/
 
     @BindView(R.id.tv_total_price_value)
     MyTextView txtTotalPriceValue;
@@ -135,12 +135,12 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     private void setPriceAndDuration() {
         txtTotalPriceValue.setText(getResources().getString(R.string.fees, orderDetailsModel.getPrice()));
         txtTypeName.setText(orderDetailsModel.getType());
-        int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
-        if (cityId == SharedPrefsUtil.ABUZABI) {
+        //int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
+        /*if (cityId == SharedPrefsUtil.ABUZABI) {
             txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
         } else {
             txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
-        }
+        }*/
 
         String img_url = orderDetailsModel.getImg_url();
 
@@ -164,7 +164,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
             Utils.setTypeFace(txtDeliveryDetails, Constants.KUFI_REGULAR);
 
-            Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
+            //Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
             Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);
 
             //  Utils.setTypeFace(continueMyButton, Constants.KUFI_REGULAR);

@@ -16,7 +16,6 @@ import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.model.OrderResultModel;
 import com.nayra.maraiina.util.ProgressDialogUtil;
-import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
 import com.nayra.maraiina.viewmodels.SendOrderDetailsViewModel;
 
@@ -55,8 +54,8 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tvDesc)
     MyTextView txtDescription;
 
-    @BindView(R.id.tv_delivery)
-    MyTextView txtDelivery;
+    /*@BindView(R.id.tv_delivery)
+    MyTextView txtDelivery;*/
 
     @BindView(R.id.tv_delivery_duration)
     MyTextView txtDeliveryDuration;
@@ -89,12 +88,12 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
 
         txtTotalPriceValue.setText(getResources().getString(R.string.fees, orderDetailsModel.getPrice()));
 
-        int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
+        /*int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
         if (cityId == SharedPrefsUtil.ABUZABI) {
             txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
         } else {
             txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
-        }
+        }*/
 
         String desc = orderDetailsModel.getType() + " ";
 
@@ -122,7 +121,7 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
 
         Utils.setTypeFace(txtDescription, Constants.KUFI_BOLD_font);
 
-        Utils.setTypeFace(txtDelivery, Constants.KUFI_BOLD_font);
+        //Utils.setTypeFace(txtDelivery, Constants.KUFI_BOLD_font);
         Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
         Utils.setTypeFace(txtTotalPrice, Constants.KUFI_BOLD_font);
         Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);

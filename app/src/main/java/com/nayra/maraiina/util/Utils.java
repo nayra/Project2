@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import com.nayra.maraiina.MyApplication;
 import com.nayra.maraiina.custom_views.MyErrorEditText;
 import com.nayra.maraiina.custom_views.MyTextView;
+import com.nayra.maraiina.views.NoInternetConnectionActivity;
 /*
  * Created by nayrael-sayed on 2/13/18.
  */
@@ -38,6 +39,13 @@ public class Utils {
         currentActivity.overridePendingTransition(0, 0);
         currentActivity.finish();
 
+    }
+
+    public static void displayNoInternetConnectionActivity(final AppCompatActivity currentActivity) {
+        final Intent i = new Intent(currentActivity, NoInternetConnectionActivity.class);
+        currentActivity.startActivity(i);
+        currentActivity.overridePendingTransition(0, 0);
+        currentActivity.finish();
     }
 
     public static void displayNextActivity(final AppCompatActivity currentActivity,

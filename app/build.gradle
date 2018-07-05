@@ -21,9 +21,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
         manifestPlaceholders = [
-                onesignal_app_id: '2016c5c2-b11e-49e3-98a7-f5809546026c',
+                onesignal_app_id               : '2016c5c2-b11e-49e3-98a7-f5809546026c',
                 // Project number pulled from dashboard, local value is ignored.
-                onesignal_google_project_number: 'REMOTE'
+                onesignal_google_project_number: 'REMOTE',
+                HOCKEYAPP_APP_ID               : "0fcf0298b2404d1e906ac6ec8b0a70bd"
         ]
     }
     buildTypes {
@@ -88,7 +89,7 @@ dependencies {
     implementation 'com.github.k0shk0sh:PermissionHelper:1.1.0'
     //implementation 'com.onesignal:OneSignal:3.4.3@aar'
     //implementation 'com.google.firebase:firebase-core:15.0.2'
-    implementation ('com.onesignal:OneSignal:[3.8.2, 3.99.99]'){
+    implementation('com.onesignal:OneSignal:[3.8.2, 3.99.99]') {
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.google.android.gms', module: 'play-services-gcm'
         exclude group: 'com.google.android.gms', module: 'play-services-analytics'
@@ -96,4 +97,7 @@ dependencies {
     }
     //implementation 'com.google.android.gms:play-services-maps:15.0.1'
     //implementation 'com.onesignal:OneSignal:3.9.1'
+
+    implementation 'net.hockeyapp.android:HockeySDK:5.1.0'
+
 }

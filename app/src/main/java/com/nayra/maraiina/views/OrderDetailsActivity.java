@@ -94,8 +94,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     @BindView(R.id.rbNoCook)
     RadioButton noCookRadioButton;
 
-    @BindView(R.id.tv_delivery_duration)
-    MyTextView txtDeliveryDuration;
+    /*@BindView(R.id.tv_delivery_duration)
+    MyTextView txtDeliveryDuration;*/
 
     @BindView(R.id.tv_total_price_value)
     MyTextView txtTotalPriceValue;
@@ -200,7 +200,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
         if (cityId == SharedPrefsUtil.ABUZABI && category_id != Constants.CAMEL_ID) {
             mainCookingMethodsLinearLayout.setVisibility(View.VISIBLE);
-            txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
+            //txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
         } else if (category_id == Constants.CAMEL_ID) {
             distributionMethodLinearLayout.setVisibility(View.GONE);
             packagingMethodLinearLayout.setVisibility(View.GONE);
@@ -213,7 +213,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             packagingMethodLinearLayout.setVisibility(View.VISIBLE);
             cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
             distributionMethodLinearLayout.setVisibility(View.VISIBLE);
-            txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
+            //txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
         }
     }
 
@@ -416,7 +416,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             Utils.setTypeFace(cookRadioButton, Constants.KUFI_REGULAR);
             Utils.setTypeFace(noCookRadioButton, Constants.KUFI_REGULAR);
             // Utils.setTypeFace(txtDelivery, Constants.KUFI_BOLD_font);
-            Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
+            // Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
             // Utils.setTypeFace(txtTotalPrice, Constants.KUFI_BOLD_font);
             Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);
             Utils.setTypeFace(etxtOtherCuttingMethod, Constants.KUFI_REGULAR);

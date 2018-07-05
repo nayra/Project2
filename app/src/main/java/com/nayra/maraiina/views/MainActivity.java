@@ -20,6 +20,9 @@ import com.nayra.maraiina.custom_views.CustomDrawerItem;
 import com.nayra.maraiina.util.FragmentUtils;
 import com.nayra.maraiina.util.Utils;
 
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         initToolbar();
         initMenu();
 
+        checkForUpdates();
         //Utils.displayNextActivity(this , OrderDetailsActivity.class);
     }
 
@@ -210,5 +214,37 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     private void back() {
         Utils.displayNextActivityFinish(this, ChooseCountryActivity.class);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // ... your own onResume implementation
+        checkForCrashes();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterManagers();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterManagers();
+    }
+
+    private void checkForCrashes() {
+        CrashManager.register(this);
+    }
+
+    private void checkForUpdates() {
+        // Remove this for store builds!
+        UpdateManager.register(this);
+    }
+
+    private void unregisterManagers() {
+        UpdateManager.unregister();
     }
 }

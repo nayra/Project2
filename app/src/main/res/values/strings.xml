@@ -81,6 +81,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="app_developed_by" translatable="false">This application developed by</string>
+    <string name="app_developed_by_matteo" translatable="false">Developed By Matteo Works</string>
     <string name="matteo_works" translatable="false">Matteo Works</string>
     <string name="phone_number_about_application" translatable="false">+971 52 272 3747</string>
     <string name="email_address_about_application" translatable="false">Email: info@matteoworks.com</string>
@@ -88,5 +89,6 @@
     <string name="drawer_item_about_application">About Application</string>
     <string name="dishes">dishes</string>
     <string name="we_will_contact_u">We will contact you soon</string>
+    <string name="contact_u">We will contact you soon</string>
     <string name="press_on_map">Press on map to select your location</string>
 </resources>

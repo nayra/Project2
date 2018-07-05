@@ -114,7 +114,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="تست"
-                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:textColor="@color/green_very_dark" />
 
                 <LinearLayout
@@ -127,7 +129,8 @@
                         style="@style/Base.TextAppearance.AppCompat.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:text="@string/total_price"
                         android:textColor="@color/green_very_dark"
                         android:textStyle="bold" />
@@ -136,7 +139,8 @@
                         android:id="@+id/tv_total_price_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         tools:text="@string/fees" />
 
                 </LinearLayout>
@@ -152,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:text="@string/receive_order_in"
+                        android:text="@string/contact_u"
                         android:textColor="@color/green_very_dark"
                         android:textStyle="bold" />
 

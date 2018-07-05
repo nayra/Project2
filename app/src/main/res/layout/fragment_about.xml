@@ -12,7 +12,8 @@
     <include layout="@layout/header_main" />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="#88FFFFFF">
 
         <android.support.constraint.ConstraintLayout
@@ -122,4 +123,11 @@
 
     </ScrollView>
 
+    <com.nayra.maraiina.custom_views.MyTextView
+        android:id="@+id/tv_website_matteo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_developed_by_matteo"
+        android:background="#88FFFFFF"
+        android:padding="@dimen/_5sdp" />
 </LinearLayout>
