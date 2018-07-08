@@ -102,6 +102,7 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
     private void fillCitiesSpinner() {
         ProgressDialogUtil.show(this);
+        Utils.setCallerClass(this);
         GetCitiesViewModel viewModel = ViewModelProviders.of(this).get(GetCitiesViewModel.class);
         citiesArray = viewModel.getCityArrayListLiveData();
         citiesArray.observe(this, cities -> {

@@ -48,13 +48,32 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        Utils.setCallerClass(this);
         //open = getIntent().getIntExtra("menu", 1);
 
         initToolbar();
         initMenu();
 
+        navigateToMenuItem();
+
         checkForUpdates();
         //Utils.displayNextActivity(this , OrderDetailsActivity.class);
+    }
+
+    private void navigateToMenuItem() {
+        Intent intent = getIntent();
+        int item_num = intent.getIntExtra(Constants.MENU_ITEM_NUMBER, -1);
+
+        if (item_num != -1) {
+            setItemSelected(drawerItems[item_num - 1]);
+            result.updateItem(drawerItems[item_num - 1]);
+
+            lastSelectedItem = setItemNotSelected(lastSelectedItem);
+            result.updateItem(lastSelectedItem);
+
+            lastSelectedItem = drawerItems[item_num - 1];
+            menuNavigation(item_num);
+        }
     }
 
     private void initToolbar() {
@@ -143,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 break;
 
         }
+
     }
 
     private void initAllMenuItems() {

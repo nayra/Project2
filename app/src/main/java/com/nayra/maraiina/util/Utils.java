@@ -22,6 +22,30 @@ import com.nayra.maraiina.views.NoInternetConnectionActivity;
  */
 
 public class Utils {
+    private static Activity currentActivity;
+    private static int menu_item_index = 1;
+    private static int categoryId;
+    private static int subCategoryId;
+
+    private static String type_name;
+    private static String category_img;
+
+    public static int getMenu_item_index() {
+        return menu_item_index;
+    }
+
+    public static void setMenu_item_index(int menu_item_index) {
+        Utils.menu_item_index = menu_item_index;
+    }
+
+    public static void setCallerClass(Activity callerClass) {
+        Utils.currentActivity = callerClass;
+    }
+
+    public static Activity getCurrentActivity() {
+        return currentActivity;
+    }
+
     public static void setFullScreen(Activity activity) {
         activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
         activity.getWindow().setFlags(
@@ -41,8 +65,9 @@ public class Utils {
 
     }
 
-    public static void displayNoInternetConnectionActivity(final AppCompatActivity currentActivity) {
+    public static void displayNoInternetConnectionActivity() {
         final Intent i = new Intent(currentActivity, NoInternetConnectionActivity.class);
+        //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         currentActivity.startActivity(i);
         currentActivity.overridePendingTransition(0, 0);
         currentActivity.finish();
@@ -103,5 +128,37 @@ public class Utils {
     public static void setTypeFace(final AppCompatEditText mEditTexxt, final int type) {
         final Typeface typeface = MyApplication.getmInstance().getTypeFace(type);
         mEditTexxt.setTypeface(typeface);
+    }
+
+    public static int getCategoryId() {
+        return categoryId;
+    }
+
+    public static int getSubCategoryId() {
+        return subCategoryId;
+    }
+
+    public static void setCategoryId(int categoryId) {
+        Utils.categoryId = categoryId;
+    }
+
+    public static void setSubCategoryId(int subCategoryId) {
+        Utils.subCategoryId = subCategoryId;
+    }
+
+    public static String getType_name() {
+        return type_name;
+    }
+
+    public static void setType_name(String type_name) {
+        Utils.type_name = type_name;
+    }
+
+    public static String getCategory_img() {
+        return category_img;
+    }
+
+    public static void setCategory_img(String category_img) {
+        Utils.category_img = category_img;
     }
 }

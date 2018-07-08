@@ -121,8 +121,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     @BindView(R.id.tvDistributionDesc)
     MyTextView txtDescDistribution;
 
-    private int selectedIndex = 0;
-
     private int selected_language_index = 0;
     private LiveData<Result> productOptions;
 
@@ -218,22 +216,30 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     }
 
     private void getProductsDetails() {
+        Utils.setCallerClass(this);
+        Utils.setCategoryId(category_id);
+        Utils.setSubCategoryId(sub_category_id);
+        Utils.setType_name(typeName);
+        Utils.setCategory_img(img_url);
+
         ProductDetailsViewModel productDetailsViewModel = ViewModelProviders.of(this).get(ProductDetailsViewModel.class);
         productOptions = productDetailsViewModel.getMethodsModelLiveData(sub_category_id);
         productOptions.observe(this, new Observer<Result>() {
             @Override
             public void onChanged(@Nullable Result methods) {
-                if (cityId == SharedPrefsUtil.ABUZABI) {
-                    displayCookingMethods(methods.getCookingMethods());
-                }
-                if (category_id != Constants.CAMEL_ID) {
-                    displayPackagingMethods(methods.getPackagingMethods());
-                    displayDistributionMethods();
+                if (methods != null) {
+                    if (cityId == SharedPrefsUtil.ABUZABI) {
+                        displayCookingMethods(methods.getCookingMethods());
+                    }
+                    if (category_id != Constants.CAMEL_ID) {
+                        displayPackagingMethods(methods.getPackagingMethods());
+                        displayDistributionMethods();
 
-                }
-                displayCuttingMethods(methods.getCuttingMethods());
+                    }
+                    displayCuttingMethods(methods.getCuttingMethods());
 
-                displayWeights(methods.getProducts());
+                    displayWeights(methods.getProducts());
+                }
 
             }
         });
@@ -423,6 +429,10 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         }
     }
 
+    @OnClick(R.id.bt_add_more_orders)
+    void addMoreOrders() {
+        finish();
+    }
     @OnClick(R.id.btContinue)
     void continueInfo() {
         OrderDetailsModel model = new OrderDetailsModel();

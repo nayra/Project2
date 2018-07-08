@@ -1,5 +1,6 @@
 package com.nayra.maraiina.service;
 
+import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.MutableLiveData;
@@ -25,6 +26,7 @@ import com.nayra.maraiina.model.SuggestionModel;
 import com.nayra.maraiina.util.ConnectivityCheck;
 import com.nayra.maraiina.util.ProgressDialogUtil;
 import com.nayra.maraiina.util.SharedPrefsUtil;
+import com.nayra.maraiina.util.Utils;
 
 import java.util.ArrayList;
 
@@ -35,7 +37,7 @@ import retrofit2.Response;
 
 public class MaraiinaRepository {
     private static final String TAG = MaraiinaRepository.class.getSimpleName();
-    private static LiveData<ArrayList<OffersModel>> offers;
+    private static Activity lastActivity;
 
     public static LiveData<ArrayList<CountryModel>> getCountries() {
         final MutableLiveData<ArrayList<CountryModel>> data = new MutableLiveData<>();
@@ -89,6 +91,7 @@ public class MaraiinaRepository {
             });
         } else {
             Log.e(TAG, "No internet connectivity");
+            Utils.displayNoInternetConnectionActivity();
             ProgressDialogUtil.dismiss();
         }
         return data;
@@ -118,6 +121,7 @@ public class MaraiinaRepository {
             });
         } else {
             Log.e(TAG, "No internet connectivity");
+            Utils.displayNoInternetConnectionActivity();
             ProgressDialogUtil.dismiss();
         }
 
@@ -148,6 +152,7 @@ public class MaraiinaRepository {
             });
         } else {
             ProgressDialogUtil.dismiss();
+            Utils.displayNoInternetConnectionActivity();
             Log.e(TAG, "No internet connectivity");
         }
         return data;
@@ -230,6 +235,7 @@ CuttingMethodOther:fffff
             });
         } else {
             Log.e(TAG, "No internet connectivity");
+            Utils.displayNoInternetConnectionActivity();
             ProgressDialogUtil.dismiss();
         }
         return result;
@@ -307,6 +313,7 @@ CuttingMethodOther:fffff
             });
         } else {
             ProgressDialogUtil.dismiss();
+            Utils.displayNoInternetConnectionActivity();
             Log.e(TAG, "No internet connectivity");
         }
         return result;
@@ -340,6 +347,7 @@ CuttingMethodOther:fffff
             });
         } else {
             ProgressDialogUtil.dismiss();
+            Utils.displayNoInternetConnectionActivity();
             isSent.setValue(false);
             Log.e(TAG, "No internet connectivity");
         }

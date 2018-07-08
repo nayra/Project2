@@ -33,4 +33,5 @@ public class Constants {
     public static final String LONGITUDE = "longitude";
     public static final double DEF_LAT = 0.0;
     public static final double DEF_LNG = 0.0;
+    public static final String MENU_ITEM_NUMBER = "MENU_ITEM_NUMBER";
 }

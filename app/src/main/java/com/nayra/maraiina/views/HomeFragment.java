@@ -18,6 +18,7 @@ import com.nayra.maraiina.adapters.CategoriesRecyclerViewAdapter;
 import com.nayra.maraiina.interfaces.SubCategoryRecyclerViewClickListener;
 import com.nayra.maraiina.model.CategoryModel;
 import com.nayra.maraiina.util.ProgressDialogUtil;
+import com.nayra.maraiina.util.Utils;
 import com.nayra.maraiina.viewmodels.GetCategoriesViewModel;
 
 import java.util.ArrayList;
@@ -51,6 +52,10 @@ public class HomeFragment extends Fragment implements SubCategoryRecyclerViewCli
 
 
         ProgressDialogUtil.show(getActivity());
+
+        Utils.setCallerClass(getActivity());
+        Utils.setMenu_item_index(1);
+
         GetCategoriesViewModel getCategoriesViewModel = ViewModelProviders.of(this).get(GetCategoriesViewModel.class);
         categoryModelArrayList = getCategoriesViewModel.getCategoriesArrayListLiveData();
         categoryModelArrayList.observe(this, new Observer<ArrayList<CategoryModel>>() {

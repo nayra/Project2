@@ -130,6 +130,7 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
     @OnClick(R.id.btConfirmOrder)
     void confirmOrder() {
         ProgressDialogUtil.show(this);
+        Utils.setCallerClass(this);
         SendOrderDetailsViewModel _viewModel = ViewModelProviders.of(this).get(SendOrderDetailsViewModel.class);
         LiveData<OrderResultModel> orderResultModelLiveData = _viewModel.postOrdersDetails(orderDetailsModel);
         orderResultModelLiveData.observe(this, new Observer<OrderResultModel>() {

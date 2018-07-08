@@ -17,6 +17,7 @@ import com.nayra.maraiina.R;
 import com.nayra.maraiina.adapters.OffersRecyclerViewAdapter;
 import com.nayra.maraiina.model.OffersModel;
 import com.nayra.maraiina.util.ProgressDialogUtil;
+import com.nayra.maraiina.util.Utils;
 import com.nayra.maraiina.viewmodels.GetOffersViewModel;
 
 import java.util.ArrayList;
@@ -49,6 +50,8 @@ public class OffersFragment extends Fragment {
 
     private void displayOffers() {
         ProgressDialogUtil.show(getActivity());
+        Utils.setCallerClass(getActivity());
+        Utils.setMenu_item_index(2);
         GetOffersViewModel _ViewModel = ViewModelProviders.of(this).get(GetOffersViewModel.class);
         LiveData<ArrayList<OffersModel>> modelOffers = _ViewModel.getOffers();
         modelOffers.observe(this, new Observer<ArrayList<OffersModel>>() {

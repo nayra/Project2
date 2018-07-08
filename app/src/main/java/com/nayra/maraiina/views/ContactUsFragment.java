@@ -91,6 +91,9 @@ public class ContactUsFragment extends Fragment {
             suggestionModel.setTitle(subject);
 
             ProgressDialogUtil.show(getActivity());
+            Utils.setCallerClass(getActivity());
+            Utils.setMenu_item_index(5);
+
             SendSuggestionViewModel _ViewModel = ViewModelProviders.of(this).get(SendSuggestionViewModel.class);
             LiveData<Boolean> booleanLiveData = _ViewModel.sendSuggestion(suggestionModel);
             booleanLiveData.observe(this, new Observer<Boolean>() {
