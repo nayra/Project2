@@ -1,6 +1,5 @@
 package com.nayra.maraiina.service;
 
-import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.MutableLiveData;
@@ -37,7 +36,6 @@ import retrofit2.Response;
 
 public class MaraiinaRepository {
     private static final String TAG = MaraiinaRepository.class.getSimpleName();
-    private static Activity lastActivity;
 
     public static LiveData<ArrayList<CountryModel>> getCountries() {
         final MutableLiveData<ArrayList<CountryModel>> data = new MutableLiveData<>();
