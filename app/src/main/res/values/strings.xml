@@ -92,4 +92,9 @@
     <string name="contact_u">We will contact you soon</string>
     <string name="press_on_map">Press on map to select your location</string>
     <string name="no_internet_connection">No Internet connection found. Check your connection or try again</string>
+
+    <string name="warning">Are you sure you want to go back?</string>
+    <string name="are_u_sure">If you go back, your orders will be deleted.</string>
+    <string name="further_queries">For further queries, please be in touch with our customer care team.</string>
+
 </resources>

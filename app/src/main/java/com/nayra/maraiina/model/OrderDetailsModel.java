@@ -3,15 +3,31 @@ package com.nayra.maraiina.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class OrderDetailsModel implements Parcelable {
-    private int cookingId, cuttingId, packagingId, price, productId;
-    private boolean doYouWantCooking;
-    private String Weight, cookingMethod, packagingMethod, cuttingMethod, type, distributionMethod, img_url, otherCuttingMethod;
+import com.google.gson.annotations.SerializedName;
 
-    private CustomerDetails customerDetails;
+public class OrderDetailsModel implements Parcelable {
+    @SerializedName("CookingMethodID")
+    private int cookingId;
+    @SerializedName("CuttingMethodID")
+    private int cuttingId;
+    @SerializedName("PackagingMethodID")
+    private int packagingId;
+    private int price;
+    @SerializedName("ProductID")
+    private int productId;
+
+    private boolean doYouWantCooking;
+    private String Weight, cookingMethod, packagingMethod, cuttingMethod, type;
+    @SerializedName("DestrupMethodID")
+    private String distributionMethod;
+    private String img_url;
+    @SerializedName("CuttingMethodOther")
+    private String otherCuttingMethod;
+
+    //private CustomerDetails customerDetails;
 
     public OrderDetailsModel() {
-        customerDetails = new CustomerDetails();
+
     }
 
     public int getCookingId() {
@@ -70,13 +86,13 @@ public class OrderDetailsModel implements Parcelable {
         this.productId = productId;
     }
 
-    public CustomerDetails getCustomerDetails() {
+    /*public CustomerDetails getCustomerDetails() {
         return customerDetails;
     }
 
     public void setCustomerDetails(CustomerDetails customerDetails) {
         this.customerDetails = customerDetails;
-    }
+    }*/
 
     public String getCookingMethod() {
         return cookingMethod;
@@ -156,7 +172,6 @@ public class OrderDetailsModel implements Parcelable {
         dest.writeString(this.distributionMethod);
         dest.writeString(this.img_url);
         dest.writeString(this.otherCuttingMethod);
-        dest.writeParcelable(this.customerDetails, flags);
     }
 
     protected OrderDetailsModel(Parcel in) {
@@ -174,7 +189,6 @@ public class OrderDetailsModel implements Parcelable {
         this.distributionMethod = in.readString();
         this.img_url = in.readString();
         this.otherCuttingMethod = in.readString();
-        this.customerDetails = in.readParcelable(CustomerDetails.class.getClassLoader());
     }
 
     public static final Creator<OrderDetailsModel> CREATOR = new Creator<OrderDetailsModel>() {
@@ -206,7 +220,6 @@ public class OrderDetailsModel implements Parcelable {
                 ", distributionMethod='" + distributionMethod + '\'' +
                 ", img_url='" + img_url + '\'' +
                 ", otherCuttingMethod='" + otherCuttingMethod + '\'' +
-                ", customerDetails=" + customerDetails +
                 '}';
     }
 }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/_5sdp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_green_light"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/_5sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:id="@+id/tvDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="تست"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:textColor="@color/green_very_dark" />
+
+        <ImageButton
+            android:id="@+id/imgBtnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_delete"
+            android:layout_gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:layout_margin="@dimen/_5sdp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:id="@+id/tv_total_price"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:text="@string/total_price"
+            android:textColor="@color/green_very_dark"
+            android:textStyle="bold" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:id="@+id/tv_total_price_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            tools:text="@string/fees" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:id="@+id/tv_delivery"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:text="@string/contact_u"
+            android:textColor="@color/green_very_dark"
+            android:textStyle="bold" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:id="@+id/tv_delivery_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            tools:text="@string/hours_num" />
+
+    </LinearLayout>
+
+</LinearLayout>

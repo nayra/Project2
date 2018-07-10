@@ -17,11 +17,11 @@ import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.MyApplication;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.CustomDrawerItem;
+import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.util.FragmentUtils;
 import com.nayra.maraiina.util.Utils;
 
-import net.hockeyapp.android.CrashManager;
-import net.hockeyapp.android.UpdateManager;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +40,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     private Drawer result;
     private CustomDrawerItem[] drawerItems = new CustomDrawerItem[6];
     private CustomDrawerItem lastSelectedItem;
+    private int REQUEST_CODE = 200;
     //private int open = 1;
+
+    private ArrayList<OrderDetailsModel> myOrders = new ArrayList<>();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -55,9 +58,17 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         initMenu();
 
         navigateToMenuItem();
-
-        checkForUpdates();
         //Utils.displayNextActivity(this , OrderDetailsActivity.class);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && data != null && requestCode == REQUEST_CODE) {
+            myOrders = data.getParcelableArrayListExtra(Constants.ORDERS_LIST);
+        } else {
+            myOrders = new ArrayList<>();
+        }
     }
 
     private void navigateToMenuItem() {
@@ -224,7 +235,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         intent.putExtra(Constants.SUBCATEGORY_ID, subId);
         intent.putExtra(Constants.TYPE_NAME, type);
         intent.putExtra(Constants.CATEGORY_IMAGE, img_url);
-        startActivity(intent);
+        if (myOrders == null)
+            myOrders = new ArrayList<>();
+        intent.putParcelableArrayListExtra(Constants.ORDERS_LIST, myOrders);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     @Override
@@ -234,37 +248,5 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     private void back() {
         Utils.displayNextActivityFinish(this, ChooseCountryActivity.class);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        // ... your own onResume implementation
-        checkForCrashes();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        unregisterManagers();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        unregisterManagers();
-    }
-
-    private void checkForCrashes() {
-        CrashManager.register(this);
-    }
-
-    private void checkForUpdates() {
-        // Remove this for store builds!
-        UpdateManager.register(this);
-    }
-
-    private void unregisterManagers() {
-        UpdateManager.unregister();
     }
 }

@@ -7,25 +7,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
+import com.nayra.maraiina.adapters.OrdersRecyclerViewAdapter;
 import com.nayra.maraiina.custom_views.MyTextView;
+import com.nayra.maraiina.interfaces.DeleteOrderListener;
+import com.nayra.maraiina.model.CustomerDetails;
 import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.model.OrderResultModel;
 import com.nayra.maraiina.util.ProgressDialogUtil;
 import com.nayra.maraiina.util.Utils;
 import com.nayra.maraiina.viewmodels.SendOrderDetailsViewModel;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ReviewOrderDetailsActivity extends AppCompatActivity {
+public class ReviewOrderDetailsActivity extends AppCompatActivity implements DeleteOrderListener {
 
-    private OrderDetailsModel orderDetailsModel;
+    private ArrayList<OrderDetailsModel> orderDetailsModel;
+
+    private CustomerDetails customerDetails;
 
     @BindView(R.id.tvNameTitle)
     MyTextView txtNameTitle;
@@ -51,11 +59,15 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tvEmailalue)
     MyTextView txtEmailValue;
 
-    @BindView(R.id.tvDesc)
+    @BindView(R.id.rcv_orders)
+    RecyclerView ordersRecyclerView;
+    private OrdersRecyclerViewAdapter adapter;
+
+    /*@BindView(R.id.tvDesc)
     MyTextView txtDescription;
 
-    /*@BindView(R.id.tv_delivery)
-    MyTextView txtDelivery;*/
+    *//*@BindView(R.id.tv_delivery)
+    MyTextView txtDelivery;*//*
 
     @BindView(R.id.tv_delivery_duration)
     MyTextView txtDeliveryDuration;
@@ -64,7 +76,7 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
     MyTextView txtTotalPrice;
 
     @BindView(R.id.tv_total_price_value)
-    MyTextView txtTotalPriceValue;
+    MyTextView txtTotalPriceValue;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +85,8 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        orderDetailsModel = getIntent().getParcelableExtra(Constants.ORDER_DETAILS);
+        orderDetailsModel = getIntent().getParcelableArrayListExtra(Constants.ORDERS_LIST);
+        customerDetails = getIntent().getParcelableExtra(Constants.CUSTOMER_DETAILS);
 
         setTypeFace();
 
@@ -81,12 +94,15 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
     }
 
     private void displayData() {
-        txtNameValue.setText(orderDetailsModel.getCustomerDetails().getName());
-        txtEmailValue.setText(orderDetailsModel.getCustomerDetails().getEmail());
-        txtAddressValue.setText(orderDetailsModel.getCustomerDetails().getAddress());
-        txtPhoneValue.setText(orderDetailsModel.getCustomerDetails().getPhone());
+        txtNameValue.setText(customerDetails.getName());
+        txtEmailValue.setText(customerDetails.getEmail());
+        txtAddressValue.setText(customerDetails.getAddress());
+        txtPhoneValue.setText(customerDetails.getPhone());
 
-        txtTotalPriceValue.setText(getResources().getString(R.string.fees, orderDetailsModel.getPrice()));
+        adapter = new OrdersRecyclerViewAdapter(this, orderDetailsModel, this);
+        ordersRecyclerView.setAdapter(adapter);
+
+        //txtTotalPriceValue.setText(getResources().getString(R.string.fees, orderDetailsModel.getPrice()));
 
         /*int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
         if (cityId == SharedPrefsUtil.ABUZABI) {
@@ -95,7 +111,7 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
             txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
         }*/
 
-        String desc = orderDetailsModel.getType() + " ";
+        /*String desc = orderDetailsModel.getType() + " ";
 
         if (orderDetailsModel.isDoYouWantCooking()) {
             desc += orderDetailsModel.getCookingMethod() + " ";
@@ -105,7 +121,7 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
 
         desc += orderDetailsModel.getWeight();
 
-        txtDescription.setText(desc);
+        txtDescription.setText(desc);*/
     }
 
     private void setTypeFace() {
@@ -118,13 +134,13 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
         Utils.setTypeFace(txtPhoneValue, Constants.KUFI_BOLD_font);
         Utils.setTypeFace(txtEmailValue, Constants.KUFI_BOLD_font);
         Utils.setTypeFace(txtAddressValue, Constants.KUFI_BOLD_font);
-
+/*
         Utils.setTypeFace(txtDescription, Constants.KUFI_BOLD_font);
 
         //Utils.setTypeFace(txtDelivery, Constants.KUFI_BOLD_font);
         Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
         Utils.setTypeFace(txtTotalPrice, Constants.KUFI_BOLD_font);
-        Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);
+        Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);*/
     }
 
     @OnClick(R.id.btConfirmOrder)
@@ -132,7 +148,7 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
         ProgressDialogUtil.show(this);
         Utils.setCallerClass(this);
         SendOrderDetailsViewModel _viewModel = ViewModelProviders.of(this).get(SendOrderDetailsViewModel.class);
-        LiveData<OrderResultModel> orderResultModelLiveData = _viewModel.postOrdersDetails(orderDetailsModel);
+        LiveData<OrderResultModel> orderResultModelLiveData = _viewModel.postOrdersDetails(orderDetailsModel, customerDetails);
         orderResultModelLiveData.observe(this, new Observer<OrderResultModel>() {
             @Override
             public void onChanged(@Nullable OrderResultModel orderResultModel) {
@@ -154,4 +170,13 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void deleteOrder(int pos) {
+        if (orderDetailsModel != null) {
+            if (orderDetailsModel.size() > pos) {
+                orderDetailsModel.remove(pos);
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
 }

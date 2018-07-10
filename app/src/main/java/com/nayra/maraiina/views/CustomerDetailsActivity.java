@@ -22,6 +22,7 @@ import com.nayra.maraiina.util.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -74,7 +75,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tvTypeName)
     MyTextView txtTypeName;
 
-    private OrderDetailsModel orderDetailsModel;
+    private ArrayList<OrderDetailsModel> orderDetailsModel;
     private final int map_request_code = 100;
 
     private double lat = Constants.DEF_LAT, lng = Constants.DEF_LNG;
@@ -90,7 +91,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         setTypeFace();
 
         Intent intent = getIntent();
-        orderDetailsModel = intent.getParcelableExtra(Constants.ORDER_DETAILS);
+        orderDetailsModel = intent.getParcelableArrayListExtra(Constants.ORDERS_LIST);
 
         setPriceAndDuration();
     }
@@ -133,8 +134,8 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     }
 
     private void setPriceAndDuration() {
-        txtTotalPriceValue.setText(getResources().getString(R.string.fees, orderDetailsModel.getPrice()));
-        txtTypeName.setText(orderDetailsModel.getType());
+        txtTotalPriceValue.setText(getResources().getString(R.string.fees, orderDetailsModel.get(0).getPrice()));
+        txtTypeName.setText(orderDetailsModel.get(0).getType());
         //int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
         /*if (cityId == SharedPrefsUtil.ABUZABI) {
             txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
@@ -142,7 +143,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
         }*/
 
-        String img_url = orderDetailsModel.getImg_url();
+        String img_url = orderDetailsModel.get(0).getImg_url();
 
         if (img_url != null && !img_url.isEmpty())
             Picasso.get().load(img_url).into(imgView);
@@ -192,10 +193,11 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
             Log.e("nahmed", customerDetails.toString());
 
-            orderDetailsModel.setCustomerDetails(customerDetails);
+            //orderDetailsModel.get(0).setCustomerDetails(customerDetails);
 
             Intent intent = new Intent(this, ReviewOrderDetailsActivity.class);
-            intent.putExtra(Constants.ORDER_DETAILS, orderDetailsModel);
+            intent.putExtra(Constants.CUSTOMER_DETAILS, customerDetails);
+            intent.putParcelableArrayListExtra(Constants.ORDERS_LIST, orderDetailsModel);
             startActivity(intent);
         } else {
             if (name.isEmpty()) {

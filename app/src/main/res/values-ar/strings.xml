@@ -83,5 +83,11 @@
     <string name="contact_u">سوف يتم التواصل بكم قريبا</string>
     <string name="press_on_map">انقر على الخريطة لتحديد عنوان التوصيل</string>
 
+    <string name="no_internet_connection">لا يوجد اتصال بشبكة الانترنت .. برجاء المحاولة في وقت لاحق</string>
+
+    <string name="warning">هل انت متأكد من الرجوع ؟</string>
+    <string name="are_u_sure">إذا أكملت سيتم مسح بيانات طلباتك.</string>
+    <string name="further_queries">لمزيد من الاستفسارات ، يرجى الاتصال بفريق خدمة العملاء لدينا.</string>
+
 
 </resources>

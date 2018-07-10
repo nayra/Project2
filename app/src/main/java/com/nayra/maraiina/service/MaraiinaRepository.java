@@ -14,6 +14,7 @@ import com.nayra.maraiina.model.CountryModel;
 import com.nayra.maraiina.model.OffersModel;
 import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.model.OrderResultModel;
+import com.nayra.maraiina.model.OrderToBeSent;
 import com.nayra.maraiina.model.ProductAndMethodsResultModel;
 import com.nayra.maraiina.model.Result;
 import com.nayra.maraiina.model.ResultCategoryModel;
@@ -24,7 +25,6 @@ import com.nayra.maraiina.model.ResultSuggestion;
 import com.nayra.maraiina.model.SuggestionModel;
 import com.nayra.maraiina.util.ConnectivityCheck;
 import com.nayra.maraiina.util.ProgressDialogUtil;
-import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
 
 import java.util.ArrayList;
@@ -156,9 +156,39 @@ public class MaraiinaRepository {
         return data;
     }
 
-    public static LiveData<OrderResultModel> postOrder(OrderDetailsModel orderDetailsModel) {
+    public static LiveData<OrderResultModel> postMultipleOrders(OrderToBeSent json) {
         MutableLiveData<OrderResultModel> result = new MediatorLiveData<>();
 
+        Context context = MyApplication.getmInstance().getContext();
+
+        if (ConnectivityCheck.isConnected(context)) {
+            Call<OrderResultModel> call = ApiConnection.getRetrofit().postMultipleOrder(json, Constants.auth, Constants.content_type);
+            call.enqueue(new Callback<OrderResultModel>() {
+                @Override
+                public void onResponse(Call<OrderResultModel> call, Response<OrderResultModel> response) {
+                    if (response != null && response.body() != null) {
+                        Log.d(TAG, response.body().toString());
+                        result.setValue(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<OrderResultModel> call, Throwable t) {
+                    Log.e(TAG, t.toString());
+                    ProgressDialogUtil.dismiss();
+                }
+            });
+        } else {
+            Log.e(TAG, "No internet connectivity");
+            Utils.displayNoInternetConnectionActivity();
+            ProgressDialogUtil.dismiss();
+        }
+
+        return result;
+    }
+    public static LiveData<OrderResultModel> postOrder(OrderDetailsModel orderDetailsModel) {
+        MutableLiveData<OrderResultModel> result = new MediatorLiveData<>();
+/*
         Context context = MyApplication.getmInstance().getContext();
 
         if (ConnectivityCheck.isConnected(context)) {
@@ -182,34 +212,6 @@ public class MaraiinaRepository {
 
             String lang = SharedPrefsUtil.getString(SharedPrefsUtil.SELECTED_LANGUAGE);
 
-            /*@Field("Address") String address, @Field("Lang") String lang, @Field("CityID") int cityId,
-            @Field("AreaID") int areaId ,
-            @Field("PhoneNumber") String phone, @Field("email") String email,
-            @Field("Firstname") String fName, @Field("LastName") String lName,
-            @Field("Latitude") String lat, @Field("Longitude") String lng,
-            @Field("CookingMethodID") int cookingMethodId, @Field("CuttingMethodID") int cuttingMethodId,
-            @Field("PackagingMethodID") int packagingMethodId, @Field("DestrupMethodID") String distributionMethodId,
-            @Field("ProductID") int productId,
-            @Field("CuttingMethodOther") String otherCutting,
-            @Header("Authorization") String header*/
-
-            /*
-            Address:Address
-AreaID:1
-CityID:1
-PhoneNumber:9715
-email:n@gmail.com
-Firstname:ddd
-LastName:LastName
-Latitude:2.2
-Longitude:2.3
-CookingMethodID:0
-//CuttingMethodID:1
-//PackagingMethodID:1
-ProductID:1
-Lang:ar
-CuttingMethodOther:fffff
-             */
             Call<OrderResultModel> call = ApiConnection.getRetrofit().postOrder(address, lang, cityId, 1, phone, email, name, "", lat, lng,
                     cookingMethodId, cuttingMethodId, packagingMethodId, distributionMethod, productId, "", Constants.auth);
 
@@ -235,11 +237,11 @@ CuttingMethodOther:fffff
             Log.e(TAG, "No internet connectivity");
             Utils.displayNoInternetConnectionActivity();
             ProgressDialogUtil.dismiss();
-        }
+        }*/
         return result;
     }
 
-    public static LiveData<OrderResultModel> postCookedOrder(OrderDetailsModel orderDetailsModel) {
+   /* public static LiveData<OrderResultModel> postCookedOrder(OrderDetailsModel orderDetailsModel) {
         MutableLiveData<OrderResultModel> result = new MediatorLiveData<>();
 
         Context context = MyApplication.getmInstance().getContext();
@@ -285,7 +287,7 @@ CuttingMethodOther:fffff
         }
         return result;
     }
-
+*/
 
     public static LiveData<ArrayList<OffersModel>> getOffers() {
         final MutableLiveData<ArrayList<OffersModel>> result = new MediatorLiveData<>();

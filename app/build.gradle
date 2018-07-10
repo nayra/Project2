@@ -98,6 +98,7 @@ dependencies {
     //implementation 'com.google.android.gms:play-services-maps:15.0.1'
     //implementation 'com.onesignal:OneSignal:3.9.1'
 
-    implementation 'net.hockeyapp.android:HockeySDK:5.1.0'
+    implementation 'com.github.hassanusman:CircularDialogs:1.2'
+
 
 }

@@ -1,6 +1,7 @@
 package com.nayra.maraiina.service;
 
 import com.nayra.maraiina.model.OrderResultModel;
+import com.nayra.maraiina.model.OrderToBeSent;
 import com.nayra.maraiina.model.ProductAndMethodsResultModel;
 import com.nayra.maraiina.model.ResultCategoryModel;
 import com.nayra.maraiina.model.ResultCityModel;
@@ -9,6 +10,7 @@ import com.nayra.maraiina.model.ResultOffersModel;
 import com.nayra.maraiina.model.ResultSuggestion;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -100,4 +102,6 @@ Description:fdffsf
                                           @Field("Email") String email, @Field("PhoneNumber") String phone,
                                           @Field("Description") String desc);
 
+    @POST("Orders")
+    Call<OrderResultModel> postMultipleOrder(@Body OrderToBeSent json, @Header("Authorization") String header, @Header("Content-Type") String contentType);
 }

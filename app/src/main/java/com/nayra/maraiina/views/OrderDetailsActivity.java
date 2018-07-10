@@ -3,9 +3,12 @@ package com.nayra.maraiina.views;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
@@ -121,6 +124,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     @BindView(R.id.tvDistributionDesc)
     MyTextView txtDescDistribution;
 
+    private static ArrayList<OrderDetailsModel> myOrdersList;
+
     private int selected_language_index = 0;
     private LiveData<Result> productOptions;
 
@@ -179,6 +184,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         category_id = getIntent().getIntExtra(Constants.CATEGORY_ID, 0);
         sub_category_id = getIntent().getIntExtra(Constants.SUBCATEGORY_ID, 0);
         typeName = getIntent().getStringExtra(Constants.TYPE_NAME);
+        myOrdersList = getIntent().getParcelableArrayListExtra(Constants.ORDERS_LIST);
 
         txtTypeName.setText(typeName);
 
@@ -431,6 +437,27 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
     @OnClick(R.id.bt_add_more_orders)
     void addMoreOrders() {
+        Intent result = new Intent();
+        OrderDetailsModel model = new OrderDetailsModel();
+        model.setCookingId(cookingMethodID);
+        model.setCuttingId(cuttingMethodID);
+        model.setPackagingId(packagingMethodID);
+        model.setDoYouWantCooking(isCooking);
+        model.setPrice(price);
+        model.setWeight(weightOrAge);
+        model.setProductId(productId);
+        model.setCookingMethod(cookingMethod);
+        model.setCuttingMethod(cuttingMethod);
+        model.setPackagingMethod(packagingMethod);
+        model.setType(typeName);
+        model.setDistributionMethod(distributionMethod);
+        model.setImg_url(img_url);
+
+        if (myOrdersList != null && !myOrdersList.contains(model)) {
+            myOrdersList.add(model);
+        }
+        result.putParcelableArrayListExtra(Constants.ORDERS_LIST, myOrdersList);
+        setResult(RESULT_OK, result);
         finish();
     }
     @OnClick(R.id.btContinue)
@@ -450,9 +477,10 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         model.setDistributionMethod(distributionMethod);
         model.setImg_url(img_url);
 
+        myOrdersList.add(model);
         Log.e("nahmed", model.toString());
         Intent intent = new Intent(this, CustomerDetailsActivity.class);
-        intent.putExtra(Constants.ORDER_DETAILS, model);
+        intent.putParcelableArrayListExtra(Constants.ORDERS_LIST, myOrdersList);
         startActivity(intent);
     }
 
@@ -468,4 +496,30 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle(getResources().getString(R.string.warning))
+                .setMessage(getResources().getString(R.string.are_u_sure))
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        setResult(RESULT_CANCELED);
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
 }

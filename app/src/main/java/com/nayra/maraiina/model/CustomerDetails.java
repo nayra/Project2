@@ -3,10 +3,31 @@ package com.nayra.maraiina.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class CustomerDetails implements Parcelable {
-    private String name, email, phone, address;
+import com.google.gson.annotations.SerializedName;
 
-    private double lat, lng;
+import java.util.ArrayList;
+
+public class CustomerDetails implements Parcelable {
+
+    @SerializedName("Firstname")
+    private String name;
+    @SerializedName("email")
+    private String email;
+    @SerializedName("PhoneNumber")
+    private String phone;
+    @SerializedName("Address")
+    private String address;
+
+    @SerializedName("cityID")
+    private int cityId;
+
+    @SerializedName("Latitude")
+    private double lat;
+    @SerializedName("Longitude")
+    private double lng;
+
+    @SerializedName("Details")
+    private ArrayList<OrderDetailsModel> ordersList;
 
     public String getName() {
         return name;
@@ -56,6 +77,26 @@ public class CustomerDetails implements Parcelable {
         this.lng = lng;
     }
 
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
+    public ArrayList<OrderDetailsModel> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(ArrayList<OrderDetailsModel> ordersList) {
+        this.ordersList = ordersList;
+    }
+
+
+    public CustomerDetails() {
+    }
+
     @Override
     public String toString() {
         return "CustomerDetails{" +
@@ -63,10 +104,13 @@ public class CustomerDetails implements Parcelable {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", cityId=" + cityId +
                 ", lat=" + lat +
                 ", lng=" + lng +
+                ", ordersList=" + ordersList +
                 '}';
     }
+
 
     @Override
     public int describeContents() {
@@ -79,11 +123,10 @@ public class CustomerDetails implements Parcelable {
         dest.writeString(this.email);
         dest.writeString(this.phone);
         dest.writeString(this.address);
+        dest.writeInt(this.cityId);
         dest.writeDouble(this.lat);
         dest.writeDouble(this.lng);
-    }
-
-    public CustomerDetails() {
+        dest.writeTypedList(this.ordersList);
     }
 
     protected CustomerDetails(Parcel in) {
@@ -91,8 +134,10 @@ public class CustomerDetails implements Parcelable {
         this.email = in.readString();
         this.phone = in.readString();
         this.address = in.readString();
+        this.cityId = in.readInt();
         this.lat = in.readDouble();
         this.lng = in.readDouble();
+        this.ordersList = in.createTypedArrayList(OrderDetailsModel.CREATOR);
     }
 
     public static final Creator<CustomerDetails> CREATOR = new Creator<CustomerDetails>() {
