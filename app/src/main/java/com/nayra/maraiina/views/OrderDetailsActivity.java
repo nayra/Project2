@@ -51,6 +51,8 @@ import info.hoang8f.android.segmented.SegmentedGroup;
 
 public class OrderDetailsActivity extends AppCompatActivity implements WeightsRecyclerViewClickListener {
 
+    private static final int REQUEST = 500;
+    private static int REQUEST_CODE = 200;
     @BindView(R.id.linearMainCookingMethods)
     LinearLayout mainCookingMethodsLinearLayout;
 
@@ -150,7 +152,6 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private String[] distributionsMethods;
     private String[] distributionDescriptionDishes;
     private String[] distributionDescriptionBags;
-    private static int REQUEST_CODE = 500;
 
     private boolean isBack = false;
 
@@ -511,8 +512,11 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         startActivityForResult(intent, REQUEST_CODE);
     }
 
-    showMyOrders() {
-
+    @OnClick({R.id.bt_my_orders})
+    void showMyOrders() {
+        Intent intent = new Intent(this, MyOrdersActivity.class);
+        intent.putParcelableArrayListExtra(Constants.ORDERS_LIST, myOrdersList);
+        startActivityForResult(intent, REQUEST);
     }
 
     @Override
@@ -520,6 +524,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
             isBack = true;
+        } else if (requestCode == REQUEST && data != null) {
+            myOrdersList = data.getParcelableArrayListExtra(Constants.ORDERS_LIST);
         }
     }
 
