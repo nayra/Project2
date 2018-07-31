@@ -1,5 +1,6 @@
 package com.nayra.maraiina.views;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -9,17 +10,13 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
-import com.nayra.maraiina.custom_views.MyButton;
-import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.model.CustomerDetails;
 import com.nayra.maraiina.model.OrderDetailsModel;
 import com.nayra.maraiina.util.SharedPrefsUtil;
 import com.nayra.maraiina.util.Utils;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,13 +54,13 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.tvDeliveryDetails)
-    MyTextView txtDeliveryDetails;
+    /*@BindView(R.id.tvDeliveryDetails)
+    MyTextView txtDeliveryDetails;*/
 
     /*@BindView(R.id.tv_delivery_duration)
     MyTextView txtDeliveryDuration;*/
 
-    @BindView(R.id.tv_total_price_value)
+    /*@BindView(R.id.tv_total_price_value)
     MyTextView txtTotalPriceValue;
 
     @BindView(R.id.btContinue)
@@ -74,7 +71,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.tvTypeName)
     MyTextView txtTypeName;
-
+*/
     private ArrayList<OrderDetailsModel> orderDetailsModel;
     private final int map_request_code = 100;
 
@@ -93,7 +90,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         orderDetailsModel = intent.getParcelableArrayListExtra(Constants.ORDERS_LIST);
 
-        setPriceAndDuration();
+        //setPriceAndDuration();
     }
 
     @Override
@@ -106,9 +103,9 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             Address address = getAddress(lat, lng);
 
             if (address != null) {
-                int mMaxxAddressLines = address.getMaxAddressLineIndex();
+                int mMaxAddressLines = address.getMaxAddressLineIndex();
                 StringBuilder stringBuilder = new StringBuilder();
-                for (int i = 0; i <= mMaxxAddressLines; i++) {
+                for (int i = 0; i <= mMaxAddressLines; i++) {
                     stringBuilder.append(address.getAddressLine(i));
                 }
                 etxtAddress.setText(stringBuilder);
@@ -133,15 +130,15 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         return null;
     }
 
-    private void setPriceAndDuration() {
+    /*private void setPriceAndDuration() {
         txtTotalPriceValue.setText(getResources().getString(R.string.fees, orderDetailsModel.get(0).getPrice()));
         txtTypeName.setText(orderDetailsModel.get(0).getType());
         //int cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
-        /*if (cityId == SharedPrefsUtil.ABUZABI) {
+        *//*if (cityId == SharedPrefsUtil.ABUZABI) {
             txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
         } else {
             txtDeliveryDuration.setText(getResources().getString(R.string.four_hours));
-        }*/
+        }*//*
 
         String img_url = orderDetailsModel.get(0).getImg_url();
 
@@ -149,7 +146,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             Picasso.get().load(img_url).into(imgView);
         else
             Picasso.get().load(R.drawable.no_image).into(imgView);
-    }
+    }*/
 
     private void setTypeFace() {
         int selected_language = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_LANGUAGE_INDEX);
@@ -163,10 +160,10 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             Utils.setTypeFace(etxtAddress, Constants.KUFI_BOLD_font);
             Utils.setTypeFace(etxtEmail, Constants.KUFI_BOLD_font);
 
-            Utils.setTypeFace(txtDeliveryDetails, Constants.KUFI_REGULAR);
+            //Utils.setTypeFace(txtDeliveryDetails, Constants.KUFI_REGULAR);
 
             //Utils.setTypeFace(txtDeliveryDuration, Constants.KUFI_REGULAR);
-            Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);
+            //Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);
 
             //  Utils.setTypeFace(continueMyButton, Constants.KUFI_REGULAR);
         }
@@ -221,5 +218,11 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     public void showMap() {
         Intent intent = new Intent(this, MapActivity.class);
         startActivityForResult(intent, map_request_code);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(Activity.RESULT_OK);
+        finish();
     }
 }

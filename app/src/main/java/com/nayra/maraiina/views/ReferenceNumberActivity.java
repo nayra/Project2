@@ -2,6 +2,7 @@ package com.nayra.maraiina.views;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
@@ -33,6 +34,7 @@ public class ReferenceNumberActivity extends AppCompatActivity {
         setTypeFace();
 
         String refNo = getIntent().getStringExtra(Constants.REF_NO);
+        Log.e("refNo", refNo);
         txtRefNo.setText(refNo);
     }
 

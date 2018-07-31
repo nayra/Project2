@@ -59,7 +59,8 @@
             android:name="net.hockeyapp.android.appIdentifier"
             android:value="${HOCKEYAPP_APP_ID}" />
 
-        <activity android:name=".views.NoInternetConnectionActivity"></activity>
+        <activity android:name=".views.NoInternetConnectionActivity" />
+        <activity android:name=".views.MyOrdersActivity"></activity>
     </application>
 
 </manifest>

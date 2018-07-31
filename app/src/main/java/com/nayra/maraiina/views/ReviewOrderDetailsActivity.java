@@ -3,9 +3,12 @@ package com.nayra.maraiina.views;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -145,29 +148,52 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity implements Del
 
     @OnClick(R.id.btConfirmOrder)
     void confirmOrder() {
-        ProgressDialogUtil.show(this);
-        Utils.setCallerClass(this);
-        SendOrderDetailsViewModel _viewModel = ViewModelProviders.of(this).get(SendOrderDetailsViewModel.class);
-        LiveData<OrderResultModel> orderResultModelLiveData = _viewModel.postOrdersDetails(orderDetailsModel, customerDetails);
-        orderResultModelLiveData.observe(this, new Observer<OrderResultModel>() {
-            @Override
-            public void onChanged(@Nullable OrderResultModel orderResultModel) {
-                if (orderResultModel != null) {
-                    ProgressDialogUtil.dismiss();
-                    Log.e("nahmed", orderResultModel.toString());
+        if (orderDetailsModel != null && orderDetailsModel.size() > 0) {
+            ProgressDialogUtil.show(this);
+            Utils.setCallerClass(this);
+            SendOrderDetailsViewModel _viewModel = ViewModelProviders.of(this).get(SendOrderDetailsViewModel.class);
+            LiveData<OrderResultModel> orderResultModelLiveData = _viewModel.postOrdersDetails(orderDetailsModel, customerDetails);
+            orderResultModelLiveData.observe(this, new Observer<OrderResultModel>() {
+                @Override
+                public void onChanged(@Nullable OrderResultModel orderResultModel) {
+                    if (orderResultModel != null) {
+                        ProgressDialogUtil.dismiss();
+                        Log.e("nahmed", orderResultModel.toString());
 
-                    if (orderResultModel.getError_msg() == null || orderResultModel.getError_msg().isEmpty()) {
-                        Intent intent = new Intent(ReviewOrderDetailsActivity.this, ReferenceNumberActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        intent.putExtra(Constants.REF_NO, orderResultModel.getResult());
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(ReviewOrderDetailsActivity.this, orderResultModel.getError_msg(), Toast.LENGTH_LONG).show();
+                        if (orderResultModel.getError_msg() == null || orderResultModel.getError_msg().isEmpty()) {
+                            Intent intent = new Intent(ReviewOrderDetailsActivity.this, ReferenceNumberActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.putExtra(Constants.REF_NO, orderResultModel.getResult());
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(ReviewOrderDetailsActivity.this, orderResultModel.getError_msg(), Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
+            });
+        } else {
+            AlertDialog.Builder builder;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+            } else {
+                builder = new AlertDialog.Builder(this);
             }
-        });
+            builder.setTitle(getResources().getString(R.string.error))
+                    .setMessage(getResources().getString(R.string.no_selected_orders))
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Utils.displayNextActivityFinish(ReviewOrderDetailsActivity.this, ChooseCountryActivity.class);
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    })
+                    .setIcon(R.drawable.ic_error)
+                    .show();
+        }
     }
 
     @Override

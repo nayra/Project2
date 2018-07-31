@@ -61,22 +61,26 @@ public class SendOrderDetailsViewModel extends ViewModel {
 
         OrderToBeSent orderToBeSent = new OrderToBeSent();
         orderToBeSent.setAddress(customerDetails.getAddress());
-        orderToBeSent.setAreaID(1);
+        //orderToBeSent.setAreaID(1);
         orderToBeSent.setCityID(cityId);
         orderToBeSent.setEmail(customerDetails.getEmail());
         orderToBeSent.setFirstname(customerDetails.getName());
         orderToBeSent.setPhoneNumber(customerDetails.getPhone());
         orderToBeSent.setLang(lang);
+        orderToBeSent.setLat(customerDetails.getLat());
+        orderToBeSent.setLng(customerDetails.getLng());
         ArrayList<Details> details = new ArrayList<>();
         int num = modelList.size();
         for (int i = 0; i < num; i++) {
             Details detail = new Details();
             detail.setProductID(modelList.get(i).getProductId());
             detail.setCuttingMethodID(modelList.get(i).getCuttingId());
-            detail.setCuttingMethodID(modelList.get(i).getCookingId());
+            detail.setCookingMethodId(modelList.get(i).getCookingId());
             detail.setPackagingMethodId(modelList.get(i).getPackagingId());
             detail.setDistributionMethod(modelList.get(i).getDistributionMethod());
-            detail.setCuttingMethodOther(modelList.get(i).getCuttingMethod());
+            if (detail.getCuttingMethodID() == 0) {
+                detail.setCuttingMethodOther(modelList.get(i).getCuttingMethod());
+            }
             details.add(detail);
         }
         orderToBeSent.setDetails(details);

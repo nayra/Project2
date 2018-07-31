@@ -96,5 +96,9 @@
     <string name="warning">Are you sure you want to go back?</string>
     <string name="are_u_sure">If you go back, your orders will be deleted.</string>
     <string name="further_queries">For further queries, please be in touch with our customer care team.</string>
+    <string name="try_again">Try Again</string>
+    <string name="no_selected_orders">Sorry, There is no order selected</string>
+    <string name="error">Error</string>
+    <string name="NoShoppingItems">No Orders</string>
 
 </resources>

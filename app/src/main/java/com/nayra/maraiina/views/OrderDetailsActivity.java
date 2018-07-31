@@ -150,6 +150,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private String[] distributionsMethods;
     private String[] distributionDescriptionDishes;
     private String[] distributionDescriptionBags;
+    private static int REQUEST_CODE = 500;
+
+    private boolean isBack = false;
 
     //private boolean isCamel = false;
     @Override
@@ -167,7 +170,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         distributionDescriptionDishes = getResources().getStringArray(R.array.meetDistributionsDescDishes);
         distributionDescriptionBags = getResources().getStringArray(R.array.meetDistributionsDescBags);
 
-        distributionMethod = distributionsMethods[0];
+        //distributionMethod = distributionsMethods[0];
 
 
         checkCategory();
@@ -204,16 +207,20 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         cityId = SharedPrefsUtil.getInteger(SharedPrefsUtil.SELECTED_CITY_ID);
         if (cityId == SharedPrefsUtil.ABUZABI && category_id != Constants.CAMEL_ID) {
             mainCookingMethodsLinearLayout.setVisibility(View.VISIBLE);
+            cookingMethodLinearLayout.setVisibility(View.VISIBLE);
             //txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
         } else if (category_id == Constants.CAMEL_ID) {
             distributionMethodLinearLayout.setVisibility(View.GONE);
             packagingMethodLinearLayout.setVisibility(View.GONE);
             mainCookingMethodsLinearLayout.setVisibility(View.GONE);
+            cookingMethodLinearLayout.setVisibility(View.GONE);
             cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
+            cookSegmentedGroup.setVisibility(View.GONE);
             isCooking = false;
         } else {
             isCooking = false;
             mainCookingMethodsLinearLayout.setVisibility(View.GONE);
+            cookingMethodLinearLayout.setVisibility(View.GONE);
             packagingMethodLinearLayout.setVisibility(View.VISIBLE);
             cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
             distributionMethodLinearLayout.setVisibility(View.VISIBLE);
@@ -389,6 +396,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                         cookingMethodLinearLayout.setVisibility(View.VISIBLE);
                         cuttingMethodLinearLayout.setVisibility(View.GONE);
                         packagingMethodLinearLayout.setVisibility(View.GONE);
+                        distributionMethodLinearLayout.setVisibility(View.GONE);
                         cookRadioButton.setChecked(true);
 
                         price += 150;
@@ -439,7 +447,13 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     void addMoreOrders() {
         Intent result = new Intent();
         OrderDetailsModel model = new OrderDetailsModel();
-        model.setCookingId(cookingMethodID);
+
+        if (isCooking) {
+            model.setCookingId(cookingMethodID);
+        } else {
+            model.setCookingId(0);
+        }
+
         model.setCuttingId(cuttingMethodID);
         model.setPackagingId(packagingMethodID);
         model.setDoYouWantCooking(isCooking);
@@ -453,7 +467,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         model.setDistributionMethod(distributionMethod);
         model.setImg_url(img_url);
 
-        if (myOrdersList != null && !myOrdersList.contains(model)) {
+        Log.e("nahmed", model.toString());
+
+        if (myOrdersList != null && !isBack) {
             myOrdersList.add(model);
         }
         result.putParcelableArrayListExtra(Constants.ORDERS_LIST, myOrdersList);
@@ -463,25 +479,48 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     @OnClick(R.id.btContinue)
     void continueInfo() {
         OrderDetailsModel model = new OrderDetailsModel();
-        model.setCookingId(cookingMethodID);
+
+        if (isCooking) {
+            model.setCookingId(cookingMethodID);
+        } else {
+            model.setCookingId(0);
+        }
+        model.setCookingMethod(cookingMethod);
+
         model.setCuttingId(cuttingMethodID);
         model.setPackagingId(packagingMethodID);
+        model.setCuttingMethod(cuttingMethod);
+        model.setPackagingMethod(packagingMethod);
+        model.setDistributionMethod(distributionMethod);
+
+
         model.setDoYouWantCooking(isCooking);
         model.setPrice(price);
         model.setWeight(weightOrAge);
         model.setProductId(productId);
-        model.setCookingMethod(cookingMethod);
-        model.setCuttingMethod(cuttingMethod);
-        model.setPackagingMethod(packagingMethod);
+
         model.setType(typeName);
-        model.setDistributionMethod(distributionMethod);
         model.setImg_url(img_url);
 
-        myOrdersList.add(model);
+        if (myOrdersList != null && !isBack) {
+            myOrdersList.add(model);
+        }
         Log.e("nahmed", model.toString());
         Intent intent = new Intent(this, CustomerDetailsActivity.class);
         intent.putParcelableArrayListExtra(Constants.ORDERS_LIST, myOrdersList);
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    showMyOrders() {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            isBack = true;
+        }
     }
 
     @Override

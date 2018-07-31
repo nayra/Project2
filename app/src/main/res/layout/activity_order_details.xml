@@ -93,6 +93,8 @@
                         style="@style/Base.TextAppearance.AppCompat.Medium" />
 
 
+                    </LinearLayout>
+
                     <info.hoang8f.android.segmented.SegmentedGroup
                         android:id="@+id/segmentedCook"
                         android:layout_width="wrap_content"
@@ -149,7 +151,7 @@
                             android:layout_margin="@dimen/_10sdp"/>
 
                     </LinearLayout>
-                    </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/linearCuttingMethods"
                         android:layout_width="match_parent"
@@ -352,6 +354,15 @@
                     android:padding="@dimen/_5sdp"
                     android:background="@drawable/bg_green_very_dark_button"
                     android:src="@drawable/ic_add_shopping_cart_black_24dp" />
+
+                <ImageButton
+                    android:id="@+id/bt_my_orders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/bg_green_very_dark_button"
+                    android:src="@drawable/ic_shopping_cart" />
 
                 <com.nayra.maraiina.custom_views.MyButton
                     android:id="@+id/btContinue"

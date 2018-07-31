@@ -88,6 +88,10 @@
     <string name="warning">هل انت متأكد من الرجوع ؟</string>
     <string name="are_u_sure">إذا أكملت سيتم مسح بيانات طلباتك.</string>
     <string name="further_queries">لمزيد من الاستفسارات ، يرجى الاتصال بفريق خدمة العملاء لدينا.</string>
+    <string name="try_again">إعادة المحاولة</string>
+    <string name="no_selected_orders">عفوا, لا يوجد طلبات مختارة</string>
+    <string name="error">خطأ</string>
+    <string name="NoShoppingItems">لا يوجد طلبات</string>
 
 
 </resources>

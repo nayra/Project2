@@ -25,6 +25,12 @@ public class OrderToBeSent {
     @SerializedName("Firstname")
     @Expose
     private String firstname;
+    @SerializedName("Latitude")
+    @Expose
+    private double lat;
+    @SerializedName("Longitude")
+    @Expose
+    private double lng;
     @SerializedName("Lang")
     @Expose
     private String lang;
@@ -96,4 +102,19 @@ public class OrderToBeSent {
         this.details = details;
     }
 
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
 }

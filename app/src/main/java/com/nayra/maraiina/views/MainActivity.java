@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     private CustomDrawerItem[] drawerItems = new CustomDrawerItem[6];
     private CustomDrawerItem lastSelectedItem;
     private int REQUEST_CODE = 200;
+
+
+    HomeFragment fragment = new HomeFragment();
     //private int open = 1;
 
     private ArrayList<OrderDetailsModel> myOrders = new ArrayList<>();
@@ -66,8 +69,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && data != null && requestCode == REQUEST_CODE) {
             myOrders = data.getParcelableArrayListExtra(Constants.ORDERS_LIST);
-        } else {
+            fragment.setOrders(myOrders);
+        } else if (requestCode == REQUEST_CODE) {
             myOrders = new ArrayList<>();
+            fragment.setOrders(myOrders);
         }
     }
 
@@ -141,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     public void menuNavigation(int pos) {
         switch (pos) {
             case 1:
-                HomeFragment fragment = new HomeFragment();
+                fragment.setOrders(myOrders);
                 FragmentUtils.replaceFragment(R.id.frame_container, this, fragment, HomeFragment.class.getSimpleName());
                 break;
 
@@ -227,7 +232,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         return item;
     }
 
-
     @Override
     public void onFragmentInteraction(int catId, int subId, String type, String img_url) {
         Intent intent = new Intent(this, OrderDetailsActivity.class);
@@ -239,6 +243,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
             myOrders = new ArrayList<>();
         intent.putParcelableArrayListExtra(Constants.ORDERS_LIST, myOrders);
         startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    public void onBackFromMyOrders(ArrayList<OrderDetailsModel> models) {
+        myOrders = models;
     }
 
     @Override
