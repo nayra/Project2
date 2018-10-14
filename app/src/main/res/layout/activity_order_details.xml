@@ -21,6 +21,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.nayra.maraiina.custom_views.MyTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_count"
+                android:textColor="@color/grey_dark"
+                android:layout_margin="@dimen/_10sdp"
+                style="@style/Base.TextAppearance.AppCompat.Medium" />
+
+            <Spinner
+                android:id="@+id/spCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:entries="@array/count">
+
+            </Spinner>
 
             <com.nayra.maraiina.custom_views.MyTextView
                 android:id="@+id/tv_choose_weight"

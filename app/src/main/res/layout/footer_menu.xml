@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nayra.maraiina.custom_views.MyTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="@string/powered_by"
+    android:background="@color/green_very_dark"
+    android:textColor="@android:color/white"
+    android:gravity="center"
+    android:textDirection="ltr">
+
+</com.nayra.maraiina.custom_views.MyTextView>

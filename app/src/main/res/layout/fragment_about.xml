@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,10 +15,9 @@
         android:layout_weight="1"
         android:background="#88FFFFFF">
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
             android:orientation="vertical">
 
 
@@ -31,9 +29,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/logo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center"
                 android:contentDescription="@string/desc"/>
 
             <com.nayra.maraiina.custom_views.MyBoldTextView
@@ -44,8 +40,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/about_title"
                 android:textColor="@color/green_very_dark"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/logo" />
+                android:textStyle="bold" />
 
 
             <com.nayra.maraiina.custom_views.MyBoldTextView
@@ -57,16 +52,14 @@
                 android:gravity="center_horizontal"
                 android:text="@string/about_vision"
                 android:textColor="@color/green_very_dark"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                android:textStyle="bold" />
 
             <com.nayra.maraiina.custom_views.MyTextView
                 android:id="@+id/theVision"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/about_vision_details"
-                app:layout_constraintTop_toBottomOf="@+id/tvVision" />
+                android:text="@string/about_vision_details" />
 
             <com.nayra.maraiina.custom_views.MyBoldTextView
                 android:id="@+id/tvMission"
@@ -77,16 +70,14 @@
                 android:gravity="center_horizontal"
                 android:text="@string/about_mission"
                 android:textColor="@color/green_very_dark"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/theVision" />
+                android:textStyle="bold" />
 
             <com.nayra.maraiina.custom_views.MyTextView
                 android:id="@+id/tvTheMission"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/about_mission_details"
-                app:layout_constraintTop_toBottomOf="@+id/tvMission" />
+                android:text="@string/about_mission_details" />
 
             <com.nayra.maraiina.custom_views.MyBoldTextView
                 android:id="@+id/Slogan"
@@ -96,8 +87,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/about_slogan"
                 android:textColor="@color/green_very_dark"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/tvTheMission" />
+                android:textStyle="bold" />
 
             <com.nayra.maraiina.custom_views.MyTextView
                 android:id="@+id/tvSlogan"
@@ -107,19 +97,46 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:gravity="center"
                 android:text="@string/about_our_slogan"
-                android:textColor="@color/green_dark"
-                app:layout_constraintTop_toBottomOf="@+id/Slogan" />
+                android:textColor="@color/green_dark" />
 
 
             <com.nayra.maraiina.custom_views.MyTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/about_agreement"
-                app:layout_constraintTop_toBottomOf="@+id/tvSlogan" />
+                android:text="@string/about_agreement" />
 
 
-        </android.support.constraint.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/imgInstgram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/instgram"
+                    android:layout_margin="@dimen/_5sdp" />
+
+                <ImageButton
+                    android:id="@+id/imgTwitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/twitter"
+                    android:layout_margin="@dimen/_5sdp" />
+
+                <ImageButton
+                    android:id="@+id/imgFacebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/facebook"
+                    android:layout_margin="@dimen/_5sdp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
 
     </ScrollView>
 
@@ -128,6 +145,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_developed_by_matteo"
-        android:background="#88FFFFFF"
+        android:background="#FFFFFF"
+        android:gravity="center"
         android:padding="@dimen/_5sdp" />
 </LinearLayout>

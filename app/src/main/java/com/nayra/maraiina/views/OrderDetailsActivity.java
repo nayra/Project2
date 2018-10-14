@@ -126,6 +126,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     @BindView(R.id.tvDistributionDesc)
     MyTextView txtDescDistribution;
 
+    @BindView(R.id.spCount)
+    Spinner spCount;
+
     private static ArrayList<OrderDetailsModel> myOrdersList;
 
     private int selected_language_index = 0;
@@ -155,6 +158,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
     private boolean isBack = false;
 
+    private int count = 1;
     //private boolean isCamel = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +177,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
         //distributionMethod = distributionsMethods[0];
 
+        checkCount();
 
         checkCategory();
         setTypeFace();
@@ -182,6 +187,23 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         getProductsDetails();
 
         showOrHideCookingOption();
+    }
+
+    private void checkCount() {
+        spCount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                count = pos + 1;
+                if (count > 1) {
+                    txtTotalPriceValue.setText(getResources().getString(R.string.fees, price) + " X " + String.valueOf(count));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void checkCategory() {
@@ -209,12 +231,14 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         if (cityId == SharedPrefsUtil.ABUZABI && category_id != Constants.CAMEL_ID) {
             mainCookingMethodsLinearLayout.setVisibility(View.VISIBLE);
             cookingMethodLinearLayout.setVisibility(View.VISIBLE);
+            cookSegmentedGroup.setVisibility(View.VISIBLE);
             //txtDeliveryDuration.setText(getResources().getString(R.string.two_hours));
         } else if (category_id == Constants.CAMEL_ID) {
             distributionMethodLinearLayout.setVisibility(View.GONE);
             packagingMethodLinearLayout.setVisibility(View.GONE);
             mainCookingMethodsLinearLayout.setVisibility(View.GONE);
             cookingMethodLinearLayout.setVisibility(View.GONE);
+            cookSegmentedGroup.setVisibility(View.GONE);
             cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
             cookSegmentedGroup.setVisibility(View.GONE);
             isCooking = false;
@@ -222,6 +246,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             isCooking = false;
             mainCookingMethodsLinearLayout.setVisibility(View.GONE);
             cookingMethodLinearLayout.setVisibility(View.GONE);
+            cookSegmentedGroup.setVisibility(View.GONE);
             packagingMethodLinearLayout.setVisibility(View.VISIBLE);
             cuttingMethodLinearLayout.setVisibility(View.VISIBLE);
             distributionMethodLinearLayout.setVisibility(View.VISIBLE);
@@ -275,6 +300,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             if (cityId == SharedPrefsUtil.ABUZABI && cookRadioButton.isChecked()) {
                 price += 150;
             }
+
             txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
         }
 
@@ -467,6 +493,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         model.setType(typeName);
         model.setDistributionMethod(distributionMethod);
         model.setImg_url(img_url);
+        model.setCount(count);
 
         Log.e("nahmed", model.toString());
 
@@ -502,6 +529,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
         model.setType(typeName);
         model.setImg_url(img_url);
+        model.setCount(count);
 
         if (myOrdersList != null && !isBack) {
             myOrdersList.add(model);
@@ -538,7 +566,11 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         if (cookRadioButton.isChecked()) {
             price += 150;
         }
-        txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
+        if (count > 1) {
+            txtTotalPriceValue.setText(getResources().getString(R.string.fees, price) + " X " + String.valueOf(count));
+        } else {
+            txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
+        }
     }
 
     @Override

@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 .withSliderBackgroundColor(ContextCompat.getColor(this, R.color.green_very_dark))
                 .withHeaderDivider(true)
                 .withDisplayBelowStatusBar(true)
+                .withFooter(R.layout.footer_menu)
                 .withDrawerGravity(Gravity.START)
                 .addDrawerItems(
                         drawerItems
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                         return true;
                     }
                 })
+
                 .build();
 
 

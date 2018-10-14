@@ -23,6 +23,8 @@ public class OrderDetailsModel implements Parcelable {
     private String img_url;
     @SerializedName("CuttingMethodOther")
     private String otherCuttingMethod;
+    @SerializedName("count")
+    private int count;
 
     //private CustomerDetails customerDetails;
 
@@ -151,6 +153,15 @@ public class OrderDetailsModel implements Parcelable {
     }
 
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -172,6 +183,7 @@ public class OrderDetailsModel implements Parcelable {
         dest.writeString(this.distributionMethod);
         dest.writeString(this.img_url);
         dest.writeString(this.otherCuttingMethod);
+        dest.writeInt(this.count);
     }
 
     protected OrderDetailsModel(Parcel in) {
@@ -189,6 +201,7 @@ public class OrderDetailsModel implements Parcelable {
         this.distributionMethod = in.readString();
         this.img_url = in.readString();
         this.otherCuttingMethod = in.readString();
+        this.count = in.readInt();
     }
 
     public static final Creator<OrderDetailsModel> CREATOR = new Creator<OrderDetailsModel>() {
@@ -202,24 +215,4 @@ public class OrderDetailsModel implements Parcelable {
             return new OrderDetailsModel[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "OrderDetailsModel{" +
-                "cookingId=" + cookingId +
-                ", cuttingId=" + cuttingId +
-                ", packagingId=" + packagingId +
-                ", price=" + price +
-                ", productId=" + productId +
-                ", doYouWantCooking=" + doYouWantCooking +
-                ", Weight='" + Weight + '\'' +
-                ", cookingMethod='" + cookingMethod + '\'' +
-                ", packagingMethod='" + packagingMethod + '\'' +
-                ", cuttingMethod='" + cuttingMethod + '\'' +
-                ", type='" + type + '\'' +
-                ", distributionMethod='" + distributionMethod + '\'' +
-                ", img_url='" + img_url + '\'' +
-                ", otherCuttingMethod='" + otherCuttingMethod + '\'' +
-                '}';
-    }
 }

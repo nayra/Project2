@@ -12,6 +12,7 @@ import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.custom_views.MyTextView;
@@ -24,13 +25,35 @@ public class AboutUsFragment extends Fragment {
     @BindView(R.id.tv_website_matteo)
     MyTextView txtWebSite;
 
+    @BindView(R.id.imgFacebook)
+    ImageButton facebookImageButton;
+    @BindView(R.id.imgTwitter)
+    ImageButton twitterImageButton;
+    @BindView(R.id.imgInstgram)
+    ImageButton instgramImageButton;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_about, container, false);
         ButterKnife.bind(this, view);
         setLink();
+        setSocialMedialClickListeners();
         return view;
+    }
+
+    private void setSocialMedialClickListeners() {
+        facebookImageButton.setOnClickListener(view -> {
+
+        });
+
+        twitterImageButton.setOnClickListener(view -> {
+
+        });
+        instgramImageButton.setOnClickListener(view -> {
+
+        });
     }
 
     private void setLink() {
