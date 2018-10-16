@@ -74,7 +74,8 @@
     <string name="contact_title">يمكنك ايضا مراسلتنا عن طريق ملء البيانات التاليه</string>
     <string name="hint_subject_title">عنوان الرسالة</string>
 
-    <string name="contact_number">+971&#8211;2&#8211;5668115 / +971&#8211;50&#8211;3710035</string>
+    <string name="contact_number">+971&#8211;568888210 / +971&#8211;568888211</string>
+    <string name="contact_email">www.maraeena.ae / info@maraeena.ae</string>
     <string name="done">تم</string>
     <string name="locate_address_on_map">حدد مكانك على الخريطة</string>
     <string name="drawer_item_about_application">عن التطبيق</string>
@@ -94,6 +95,18 @@
     <string name="NoShoppingItems">لا يوجد طلبات</string>
     <string name="powered_by">Powered by green island</string>
     <string name="select_count">اختر العدد</string>
+
+    <string name="confirmation">تأكيد</string>
+
+    <string name="confirmationـrequest">يرجى إيداع نصف قيمة الفاتورة على الحساب الموضح أدناه :</string>
+    <string name="account_bank_name">اسم الحساب : مؤسسة الجزيرة الخضراء لتجارة المواشي و الأغنام</string>
+    <string name="account_bank_number">019120025163</string>
+    <string name="i_pan">الايبان</string>
+    <string name="i_pan_value">AE330330000019120025163</string>
+    <string name="swift">رقم السويفت</string>
+    <string name="swift_number">BOMLAEAD</string>
+
+    <string name="bank_name">اسم البنك : بنك المشرق</string>
 
 
 </resources>

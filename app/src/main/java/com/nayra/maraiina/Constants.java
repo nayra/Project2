@@ -37,4 +37,12 @@ public class Constants {
     public static final String MENU_ITEM_NUMBER = "MENU_ITEM_NUMBER";
     public static final String ORDERS_LIST = "ORDERS_LIST";
     public static final String CUSTOMER_DETAILS = "CUSTOMER_DETAILS";
+
+    public static final String facebookLink = "https://www.facebook.com/GreenIslandLivestock/";
+    public static final String twitterLink = "https://twitter.com/GreenIslandlive?lang=ar";
+    public static final String youtubeID = "vDdiTI57ZD8";
+
+    public static final String FACEBOOK_PAGE_ID = "GreenIslandLivestock";
+
+
 }
