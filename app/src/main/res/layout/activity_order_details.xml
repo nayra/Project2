@@ -96,7 +96,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/cook2"
+                                android:src="@drawable/cook"
                                 android:contentDescription="@string/desc"/>
                         </android.support.v7.widget.CardView>
                     <com.nayra.maraiina.custom_views.MyTextView
