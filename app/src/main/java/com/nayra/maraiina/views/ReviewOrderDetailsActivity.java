@@ -1,5 +1,6 @@
 package com.nayra.maraiina.views;
 
+import android.app.Dialog;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -12,11 +13,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
 import com.nayra.maraiina.adapters.OrdersRecyclerViewAdapter;
+import com.nayra.maraiina.custom_views.MyButton;
 import com.nayra.maraiina.custom_views.MyTextView;
 import com.nayra.maraiina.interfaces.DeleteOrderListener;
 import com.nayra.maraiina.model.CustomerDetails;
@@ -146,6 +149,29 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity implements Del
         Utils.setTypeFace(txtTotalPriceValue, Constants.KUFI_REGULAR);*/
     }
 
+    private void showConfirmationMessage(String refId) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.confirmation_layout);
+
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+
+        MyButton okMyButton = (MyButton) dialog.findViewById(R.id.btOk);
+        okMyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ReviewOrderDetailsActivity.this, ReferenceNumberActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra(Constants.REF_NO, refId);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+        dialog.show();
+    }
+
     @OnClick(R.id.btConfirmOrder)
     void confirmOrder() {
         if (orderDetailsModel != null && orderDetailsModel.size() > 0) {
@@ -161,11 +187,7 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity implements Del
                         Log.e("nahmed", orderResultModel.toString());
 
                         if (orderResultModel.getError_msg() == null || orderResultModel.getError_msg().isEmpty()) {
-                            Intent intent = new Intent(ReviewOrderDetailsActivity.this, ReferenceNumberActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            intent.putExtra(Constants.REF_NO, orderResultModel.getResult());
-                            startActivity(intent);
-                            finish();
+                            showConfirmationMessage(orderResultModel.getResult());
                         } else {
                             Toast.makeText(ReviewOrderDetailsActivity.this, orderResultModel.getError_msg(), Toast.LENGTH_LONG).show();
                         }

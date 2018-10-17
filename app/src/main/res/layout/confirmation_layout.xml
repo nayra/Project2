@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_marginRight="@dimen/_5sdp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="@dimen/_10sdp">
+
+        <com.nayra.maraiina.custom_views.MyBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/confirmation"
+            android:textColor="@color/green_dark" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirmationـrequest"
+            android:gravity="center" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account_bank_name"
+            android:gravity="center" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account_bank_number"
+            android:layout_marginTop="@dimen/_5sdp" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account_bank_number_value" />
+
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i_pan"
+            android:layout_marginTop="@dimen/_5sdp" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i_pan_value" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/swift"
+            android:layout_marginTop="@dimen/_5sdp" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/swift_number" />
+
+        <com.nayra.maraiina.custom_views.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bank_name"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_5sdp" />
+
+        <com.nayra.maraiina.custom_views.MyButton
+            android:id="@+id/btOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_green_dark_button"
+            android:textColor="@android:color/white"
+            android:text="@string/ok"
+            android:layout_margin="@dimen/_5sdp"
+            android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

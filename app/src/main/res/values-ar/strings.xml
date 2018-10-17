@@ -100,13 +100,15 @@
 
     <string name="confirmationـrequest">يرجى إيداع نصف قيمة الفاتورة على الحساب الموضح أدناه :</string>
     <string name="account_bank_name">اسم الحساب : مؤسسة الجزيرة الخضراء لتجارة المواشي و الأغنام</string>
-    <string name="account_bank_number">019120025163</string>
-    <string name="i_pan">الايبان</string>
+    <string name="account_bank_number">رقم الحساب :</string>
+    <string name="account_bank_number_value">019120025163</string>
+    <string name="i_pan">الايبان :</string>
     <string name="i_pan_value">AE330330000019120025163</string>
-    <string name="swift">رقم السويفت</string>
+    <string name="swift">رقم السويفت :</string>
     <string name="swift_number">BOMLAEAD</string>
 
     <string name="bank_name">اسم البنك : بنك المشرق</string>
+    <string name="ok">موافق</string>
 
 
 </resources>
