@@ -4,7 +4,7 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 android {
     signingConfigs {
         release {
-            keyAlias 'nahmed'
+            keyAlias 'maraeena'
             keyPassword '123456'
             storeFile file('/Users/nayrael-sayed/Documents/KeyStore/maraeena')
             storePassword '123456'
@@ -21,17 +21,17 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
         manifestPlaceholders = [
-                onesignal_app_id               : '2016c5c2-b11e-49e3-98a7-f5809546026c',
+                onesignal_app_id               : '33a45667-1c38-4bb9-89fe-99f403501d26',
                 // Project number pulled from dashboard, local value is ignored.
-                onesignal_google_project_number: 'REMOTE',
-                HOCKEYAPP_APP_ID               : "0fcf0298b2404d1e906ac6ec8b0a70bd"
+                onesignal_google_project_number: 'REMOTE'/*,
+                HOCKEYAPP_APP_ID               : "0fcf0298b2404d1e906ac6ec8b0a70bd"*/
         ]
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            debuggable true
+            debuggable false
             jniDebuggable false
             signingConfig signingConfigs.release
             renderscriptDebuggable true

@@ -55,9 +55,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_api_key" />
-        <meta-data
+        <!--<meta-data
             android:name="net.hockeyapp.android.appIdentifier"
-            android:value="${HOCKEYAPP_APP_ID}" />
+            android:value="${HOCKEYAPP_APP_ID}" />-->
 
         <activity android:name=".views.NoInternetConnectionActivity" />
         <activity android:name=".views.MyOrdersActivity"></activity>
