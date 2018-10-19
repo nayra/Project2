@@ -129,6 +129,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     @BindView(R.id.spCount)
     Spinner spCount;
 
+    @BindView(R.id.etOtherComments)
+    AppCompatEditText etOtherCommentsWithCook;
+
     private static ArrayList<OrderDetailsModel> myOrdersList;
 
     private int selected_language_index = 0;
@@ -477,8 +480,10 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
         if (isCooking) {
             model.setCookingId(cookingMethodID);
+            model.setOtherCuttingMethod(etOtherCommentsWithCook.getText().toString());
         } else {
             model.setCookingId(0);
+            model.setOtherCuttingMethod(etxtOtherCuttingMethod.getText().toString());
         }
 
         model.setCuttingId(cuttingMethodID);
@@ -523,7 +528,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
 
         model.setDoYouWantCooking(isCooking);
-        model.setPrice(price);
+        model.setPrice(price * count);
         model.setWeight(weightOrAge);
         model.setProductId(productId);
 

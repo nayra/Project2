@@ -23,7 +23,7 @@ public class Details {
     @Expose
     private String distributionMethod;
 
-    @SerializedName("CuttingMethodOther")
+    @SerializedName("Other")
     @Expose
     private String cuttingMethodOther;
 

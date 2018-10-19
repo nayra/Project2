@@ -14,4 +14,19 @@
         <item>كل جزء من اللحم في كيس منفصل مثلا: الايدي باكياس منفصله وكذلك كل جزء من الذبيحه باكياس منفصل</item>
         <item>كل كيس يحوي على تشكيلة من اجزاء مختلفة من اللحم</item>
     </string-array>
+
+    <string-array name="count">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
 </resources>

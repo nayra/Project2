@@ -166,6 +166,13 @@
                             android:layoutDirection="locale"
                             android:layout_margin="@dimen/_10sdp"/>
 
+                        <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/etOtherComments"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/other_comments"
+                            android:layout_margin="@dimen/_10sdp" />
+
                     </LinearLayout>
 
                     <LinearLayout

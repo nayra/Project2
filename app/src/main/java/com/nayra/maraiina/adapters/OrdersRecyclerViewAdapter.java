@@ -41,12 +41,15 @@ public class OrdersRecyclerViewAdapter extends RecyclerView.Adapter<OrdersRecycl
     public void onBindViewHolder(@NonNull OrdersRecyclerViewAdapter.MyViewHolder holder, int position) {
         OrderDetailsModel orderDetailsModel = ordersList.get(position);
 
-        if (orderDetailsModel.getCount() == 1) {
+        holder.txtTotalPriceValue.setText(mContext.getResources().getString(R.string.fees, orderDetailsModel.getPrice()));
+
+        /*if (orderDetailsModel.getCount() == 1) {
             holder.txtTotalPriceValue.setText(mContext.getResources().getString(R.string.fees, orderDetailsModel.getPrice()));
         } else {
             holder.txtTotalPriceValue.setText(mContext.getResources().getString(R.string.fees, orderDetailsModel.getPrice()) + " X " + orderDetailsModel.getCount());
-        }
-        String desc = orderDetailsModel.getType() + " ";
+        }*/
+
+        String desc = orderDetailsModel.getCount() + " " + orderDetailsModel.getType() + " ";
 
         if (orderDetailsModel.isDoYouWantCooking()) {
             desc += orderDetailsModel.getCookingMethod() + " ";

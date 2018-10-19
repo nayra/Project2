@@ -78,6 +78,7 @@ public class SendOrderDetailsViewModel extends ViewModel {
             detail.setCookingMethodId(modelList.get(i).getCookingId());
             detail.setPackagingMethodId(modelList.get(i).getPackagingId());
             detail.setDistributionMethod(modelList.get(i).getDistributionMethod());
+            detail.setCuttingMethodOther(modelList.get(i).getOtherCuttingMethod());
             if (detail.getCuttingMethodID() == 0) {
                 detail.setCuttingMethodOther(modelList.get(i).getCuttingMethod());
             }

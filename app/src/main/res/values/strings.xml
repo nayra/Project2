@@ -84,7 +84,9 @@
     <string name="app_developed_by" translatable="false">This application developed by</string>
     <string name="app_developed_by_matteo" translatable="false">Developed By Matteo Works</string>
     <string name="matteo_works" translatable="false">Matteo Works</string>
-    <string name="phone_number_about_application" translatable="false">+971 52 272 3747</string>
+    <!--
+        <string name="phone_number_about_application" translatable="false">+971 52 272 3747</string>
+    -->
     <string name="email_address_about_application" translatable="false">Email: info@matteoworks.com</string>
     <string name="website" translatable="false">www.matteoworks.com</string>
     <string name="drawer_item_about_application">About Application</string>
@@ -119,5 +121,7 @@
 
     <string name="bank_name">Bank name : Mashreq bank</string>
     <string name="ok">Ok</string>
+    <string name="other_comments">Other comments</string>
+
 
 </resources>

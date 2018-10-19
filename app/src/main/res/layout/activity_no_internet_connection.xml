@@ -25,7 +25,7 @@
     <com.nayra.maraiina.custom_views.MyTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+971 52 272 3747"
+        android:text="@string/contact_number"
         android:drawableLeft="@drawable/ic_phone_in_talk"
         android:drawablePadding="@dimen/_5sdp"
         android:textColor="#3F51B5"

@@ -109,6 +109,7 @@
 
     <string name="bank_name">اسم البنك : بنك المشرق</string>
     <string name="ok">موافق</string>
+    <string name="other_comments">طلبات أخرى</string>
 
 
 </resources>
