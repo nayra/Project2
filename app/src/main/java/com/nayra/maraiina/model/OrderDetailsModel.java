@@ -23,7 +23,7 @@ public class OrderDetailsModel implements Parcelable {
     private String img_url;
     @SerializedName("CuttingMethodOther")
     private String otherCuttingMethod;
-    @SerializedName("count")
+    @SerializedName("Count")
     private int count;
 
     //private CustomerDetails customerDetails;

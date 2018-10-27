@@ -118,12 +118,6 @@
                 android:src="@drawable/logo_1"
                 android:layout_alignParentRight="true" />
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/logo_2"
-                android:layout_alignParentLeft="true" />
-
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

@@ -27,6 +27,10 @@ public class Details {
     @Expose
     private String cuttingMethodOther;
 
+    @SerializedName("Count")
+    @Expose
+    private int count;
+
     public int getCuttingMethodID() {
         return cuttingMethodID;
     }
@@ -73,5 +77,13 @@ public class Details {
 
     public void setCuttingMethodOther(String cuttingMethodOther) {
         this.cuttingMethodOther = cuttingMethodOther;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

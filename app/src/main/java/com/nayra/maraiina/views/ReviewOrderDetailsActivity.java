@@ -150,26 +150,46 @@ public class ReviewOrderDetailsActivity extends AppCompatActivity implements Del
     }
 
     private void showConfirmationMessage(String refId) {
-        Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.confirmation_layout);
+        boolean isCooked = checkIfAtLeastOneOrderCooked();
+        if (isCooked) {
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.confirmation_layout);
 
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
 
-        MyButton okMyButton = (MyButton) dialog.findViewById(R.id.btOk);
-        okMyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ReviewOrderDetailsActivity.this, ReferenceNumberActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.putExtra(Constants.REF_NO, refId);
-                startActivity(intent);
-                finish();
+            MyButton okMyButton = (MyButton) dialog.findViewById(R.id.btOk);
+            okMyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ReviewOrderDetailsActivity.this, ReferenceNumberActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra(Constants.REF_NO, refId);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+
+
+            dialog.show();
+        } else {
+            Intent intent = new Intent(ReviewOrderDetailsActivity.this, ReferenceNumberActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.putExtra(Constants.REF_NO, refId);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    private boolean checkIfAtLeastOneOrderCooked() {
+        boolean isCooked = false;
+        for (int i = 0; i < orderDetailsModel.size(); i++) {
+            if (orderDetailsModel.get(i).isDoYouWantCooking()) {
+                isCooked = true;
+                break;
             }
-        });
-
-
-        dialog.show();
+        }
+        return isCooked;
     }
 
     @OnClick(R.id.btConfirmOrder)
