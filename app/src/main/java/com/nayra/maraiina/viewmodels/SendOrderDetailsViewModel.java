@@ -80,9 +80,7 @@ public class SendOrderDetailsViewModel extends ViewModel {
             detail.setDistributionMethod(modelList.get(i).getDistributionMethod());
             detail.setCuttingMethodOther(modelList.get(i).getOtherCuttingMethod());
             detail.setCount(modelList.get(i).getCount());
-            if (detail.getCuttingMethodID() == 0) {
-                detail.setCuttingMethodOther(modelList.get(i).getCuttingMethod());
-            }
+
             details.add(detail);
         }
         orderToBeSent.setDetails(details);

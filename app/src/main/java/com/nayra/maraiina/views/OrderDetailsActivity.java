@@ -515,8 +515,10 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
 
         if (isCooking) {
             model.setCookingId(cookingMethodID);
+            model.setOtherCuttingMethod(etOtherCommentsWithCook.getText().toString());
         } else {
             model.setCookingId(0);
+            model.setOtherCuttingMethod(etxtOtherCuttingMethod.getText().toString());
         }
         model.setCookingMethod(cookingMethod);
 
