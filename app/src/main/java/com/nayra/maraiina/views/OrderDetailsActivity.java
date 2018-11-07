@@ -162,6 +162,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
     private boolean isBack = false;
 
     private int count = 1;
+
     //private boolean isCamel = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,7 +199,9 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
                 count = pos + 1;
                 if (count > 1) {
-                    txtTotalPriceValue.setText(getResources().getString(R.string.fees, price) + " X " + String.valueOf(count));
+                    txtTotalPriceValue.setText(getResources().getString(R.string.fees_with_count, price, count));
+                } else {
+                    txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
                 }
             }
 
@@ -224,8 +227,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         img_url = getIntent().getStringExtra(Constants.CATEGORY_IMAGE);
         if (img_url != null && !img_url.isEmpty()) {
             Picasso.get().load(img_url).into(imgView);
-        }
-        else
+        } else
             Picasso.get().load(R.drawable.no_image).into(imgView);
     }
 
@@ -298,13 +300,17 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             if (selected_language_index == SharedPrefsUtil.ENGLISH) {
                 weightOrAge = products.get(0).getName();
             } else {
-                weightOrAge = products.get(0).getDescription();
+                weightOrAge = products.get(0).getNameAr();
             }
             if (cityId == SharedPrefsUtil.ABUZABI && cookRadioButton.isChecked()) {
                 price += 150;
             }
 
-            txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
+            if (count > 1) {
+                txtTotalPriceValue.setText(getResources().getString(R.string.fees_with_count, price, count));
+            } else {
+                txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
+            }
         }
 
     }
@@ -430,7 +436,11 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                         cookRadioButton.setChecked(true);
 
                         price += 150;
-                        txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
+                        if (count > 1) {
+                            txtTotalPriceValue.setText(getResources().getString(R.string.fees_with_count, price, count));
+                        } else {
+                            txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
+                        }
 
                         isCooking = true;
                         break;
@@ -445,8 +455,11 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
                         distributionMethodLinearLayout.setVisibility(View.VISIBLE);
 
                         price -= 150;
-                        txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
-
+                        if (count > 1) {
+                            txtTotalPriceValue.setText(getResources().getString(R.string.fees_with_count, price, count));
+                        } else {
+                            txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
+                        }
                         //}
                         noCookRadioButton.setChecked(true);
                         isCooking = false;
@@ -489,7 +502,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         model.setCuttingId(cuttingMethodID);
         model.setPackagingId(packagingMethodID);
         model.setDoYouWantCooking(isCooking);
-        model.setPrice(price);
+        model.setPrice(price * count);
         model.setWeight(weightOrAge);
         model.setProductId(productId);
         model.setCookingMethod(cookingMethod);
@@ -505,10 +518,15 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         if (myOrdersList != null && !isBack) {
             myOrdersList.add(model);
         }
+        /*else if (myOrdersList != null && myOrdersList.size() > 0 && isBack) {
+            myOrdersList.remove(myOrdersList.size() - 1);
+            myOrdersList.add(model);
+        }*/
         result.putParcelableArrayListExtra(Constants.ORDERS_LIST, myOrdersList);
         setResult(RESULT_OK, result);
         finish();
     }
+
     @OnClick(R.id.btContinue)
     void continueInfo() {
         OrderDetailsModel model = new OrderDetailsModel();
@@ -541,6 +559,10 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
         if (myOrdersList != null && !isBack) {
             myOrdersList.add(model);
         }
+        /*else if (myOrdersList != null && myOrdersList.size() > 0 && isBack) {
+            myOrdersList.remove(myOrdersList.size() - 1);
+            myOrdersList.add(model);
+        }*/
         Log.e("nahmed", model.toString());
         Intent intent = new Intent(this, CustomerDetailsActivity.class);
         intent.putParcelableArrayListExtra(Constants.ORDERS_LIST, myOrdersList);
@@ -574,7 +596,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements WeightsRe
             price += 150;
         }
         if (count > 1) {
-            txtTotalPriceValue.setText(getResources().getString(R.string.fees, price) + " X " + String.valueOf(count));
+            txtTotalPriceValue.setText(getResources().getString(R.string.fees_with_count, price, count));
         } else {
             txtTotalPriceValue.setText(getResources().getString(R.string.fees, price));
         }

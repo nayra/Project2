@@ -55,7 +55,7 @@ public class WeightsAdapter extends RecyclerView.Adapter<WeightsAdapter.MyViewHo
         if (selected_language_index == SharedPrefsUtil.ENGLISH) {
             weight = weightsList.get(position).getName();
         } else {
-            weight = weightsList.get(position).getDescription();
+            weight = weightsList.get(position).getNameAr();
             Utils.setTypeFace(holder.title, Constants.KUFI_BOLD_font);
         }
 

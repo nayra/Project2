@@ -19,6 +19,7 @@
     <string name="receive_order_in">Receive order in</string>
     <string name="hours_num">%1$d hours</string>
     <string name="fees">%1$d AED</string>
+    <string name="fees_with_count">%1$d AED X %2$d</string>
 
     <string name="english">English</string>
     <string name="arabic">اللغة العربية</string>

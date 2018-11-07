@@ -58,7 +58,7 @@ public class ChooseCountryActivity extends AppCompatActivity {
 
         LanguageUtil.setLocaleLanguage(selectedLanguage, this);
 
-        setContentView(R.layout.activity_choose_country);
+        setContentView(R.layout.activity_choose_country2);
         ButterKnife.bind(this);
 
         setTypeFace();

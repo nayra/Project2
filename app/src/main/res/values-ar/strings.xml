@@ -18,6 +18,8 @@
     <string name="receive_order_in">التوصيل في خلال</string>
     <string name="hours_num">%1$d ساعة</string>
     <string name="fees">%1$d درهم</string>
+    <string name="fees_with_count">%1$d درهم X %2$d</string>
+
     <string name="Loading">تحميل</string>
     <string name="CookingMethod">طريقة الطبخ</string>
     <string name="CuttingMethod">طريقة التقطيع</string>

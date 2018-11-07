@@ -12,6 +12,9 @@ public class Product {
     @SerializedName("Name")
     @Expose
     private String name;
+    @SerializedName("NameAr")
+    @Expose
+    private String nameAr;
     @SerializedName("ImageUrl")
     @Expose
     private String imageUrl;
@@ -128,14 +131,23 @@ public class Product {
         this.subCategory = subCategory;
     }
 
+    public String getNameAr() {
+        return nameAr;
+    }
+
+    public void setNameAr(String nameAr) {
+        this.nameAr = nameAr;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "productID=" + productID +
-                ", name=" + name +
-                ", imageUrl=" + imageUrl +
+                ", name='" + name + '\'' +
+                ", nameAr='" + nameAr + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 ", price=" + price +
-                ", barcode=" + barcode +
+                ", barcode='" + barcode + '\'' +
                 ", saleUnit=" + saleUnit +
                 ", description='" + description + '\'' +
                 ", subCategoryID=" + subCategoryID +
@@ -144,5 +156,4 @@ public class Product {
                 ", subCategory=" + subCategory +
                 '}';
     }
-
 }
