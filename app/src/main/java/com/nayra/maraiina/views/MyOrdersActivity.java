@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.nayra.maraiina.Constants;
 import com.nayra.maraiina.R;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class MyOrdersActivity extends AppCompatActivity implements DeleteOrderListener {
@@ -61,6 +63,17 @@ public class MyOrdersActivity extends AppCompatActivity implements DeleteOrderLi
                 orderDetailsModel.remove(pos);
                 adapter.notifyDataSetChanged();
             }
+        }
+    }
+
+    @OnClick(R.id.btContinue)
+    void onContinueClick() {
+        if (orderDetailsModel == null || orderDetailsModel.size() == 0) {
+            Toast.makeText(this, R.string.no_selected_orders, Toast.LENGTH_LONG).show();
+        } else {
+            Intent intent = new Intent(this, CustomerDetailsActivity.class);
+            intent.putParcelableArrayListExtra(Constants.ORDERS_LIST, orderDetailsModel);
+            startActivity(intent);
         }
     }
 

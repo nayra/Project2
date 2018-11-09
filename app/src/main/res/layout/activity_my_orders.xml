@@ -11,7 +11,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_margin="@dimen/_5sdp"
         android:layout_gravity="center">
 
@@ -33,5 +34,16 @@
             android:gravity="center"
             android:visibility="invisible" />
     </FrameLayout>
+
+    <com.nayra.maraiina.custom_views.MyButton
+        android:id="@+id/btContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/bg_green_very_dark_button"
+        android:text="@string/continue_to_app"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
 </LinearLayout>
